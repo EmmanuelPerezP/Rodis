@@ -33,3 +33,23 @@ img {
 .controls{
   font-size: 4rem;
 }
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 5rem;
+  line-height: 1rem; /* Vertically center the text there */
+  background-color: #dee2e6;
+}

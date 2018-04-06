@@ -45,6 +45,7 @@ export default class Player extends React.Component {
               </div>
             </div>
 
+            <footer className="footer">
             <div className="row pt-2 justify-content-center no-gutters">
               <div className="col-3">
 
@@ -69,6 +70,7 @@ export default class Player extends React.Component {
 
               </div>
             </div>
+          </footer>
           </div>
       )
     }

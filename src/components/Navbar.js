@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 
 export default class Navbar extends React.Component {
     constructor(props){
@@ -16,10 +17,10 @@ export default class Navbar extends React.Component {
               <div className="collapse navbar-collapse" id="navbarResponsive">
                 <ul className="navbar-nav mr-auto">
                   <li className="nav-item">
-                    <a className="nav-link js-scroll-trigger" href="/player">Player</a>
+                    <Link className="nav-link js-scroll-trigger" to="/player">Player</Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link js-scroll-trigger" href="/library">Library</a>
+                    <Link className="nav-link js-scroll-trigger" to="/library">Library</Link>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link js-scroll-trigger" href="#services">Settings</a>

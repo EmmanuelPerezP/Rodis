@@ -14,7 +14,7 @@ export default class Library extends React.Component {
               </div>
               <div className="col-6">
                 <form>
-                  <div class="form-group">
+                  <div className="form-group">
                     <h1>
                       Buscar Folder
                     </h1>
