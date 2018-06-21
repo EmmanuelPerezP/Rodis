@@ -5,6 +5,20 @@ import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter } from 'react-router-dom';
 
+import Router from './router';
 
-ReactDOM.render((<BrowserRouter><App /></BrowserRouter>), document.getElementById('root'));
+// import redux libraries
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+
+// import reducers to sync with the store from redux
+import rootReducer from './reducers/index';
+// create store
+const store = createStore(rootReducer);
+
+ReactDOM.render((
+  <Provider store={store}>
+    <Router/>
+  </Provider>
+), document.getElementById('root'));
 registerServiceWorker();

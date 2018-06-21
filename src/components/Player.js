@@ -1,8 +1,22 @@
 import React from "react";
+import audioPlayer from "../player.js";
 
 export default class Player extends React.Component {
     constructor(props){
         super(props);
+        audioPlayer.setAudioSrc("file:///home/ema/source/rodis/src/heart.mp3");
+    }
+
+    handlePlay(e){
+      console.log("clicked play");
+      audioPlayer.play();
+      // this.setState({carnet: e.target.value});
+    }
+
+    handlePause(e){
+      console.log("clicked pause");
+      audioPlayer.pause();
+      // this.setState({carnet: e.target.value});
     }
 
     render(){
@@ -56,10 +70,10 @@ export default class Player extends React.Component {
                     <a><i className="fas fa-step-backward"></i></a>
                   </div>
                   <div className="col">
-                    <a><i className="fas fa-play"></i></a>
+                    <a onClick={this.handlePlay} ><i className="fas fa-play"></i></a>
                   </div>
                   <div className="col">
-                    <a><i className="fas fa-pause"></i></a>
+                    <a onClick={this.handlePause} ><i className="fas fa-pause"></i></a>
                   </div>
                   <div className="col">
                     <a><i className="fas fa-step-forward"></i></a>
