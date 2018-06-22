@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
 import '../css/App.css';
-import Navbar from './Navbar.js';
-import Main from './Main.js';
+import Navbar from './navbar';
+import Content from './content';
+import Playbar from './footer-playbar';
 
 
 class App extends Component {
@@ -18,7 +19,10 @@ class App extends Component {
     return (
       <div>
         <Navbar/>
-        <Main/>
+        <div className="container-fluid pl-0">
+          <Content/>
+          <Playbar/>
+        </div>
       </div>
     );
   }

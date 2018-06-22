@@ -3,14 +3,14 @@ import { Switch, Route } from 'react-router-dom';
 import React from "react";
 
 // import React components for the app
-import Player from './Player.js';
-import Library from './Library.js';
+import MainView from './main_view';
+import LibraryView from './library_view';
 
 // import custom css for the app
 import '../css/App.css';
 
 
-export default class Navbar extends React.Component {
+export default class Content extends React.Component {
     constructor(props){
         super(props);
     }
@@ -19,8 +19,8 @@ export default class Navbar extends React.Component {
         return(
           <main>
             <Switch>
-              <Route exact path='/player' component={Player}/>
-              <Route exact path='/library' component={Library}/>
+              <Route exact path='/main_view' component={MainView}/>
+              <Route exact path='/library_view' component={LibraryView}/>
             </Switch>
           </main>
         )

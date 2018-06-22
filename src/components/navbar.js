@@ -17,7 +17,7 @@ export default class Navbar extends React.Component {
               <div className="collapse navbar-collapse" id="navbarResponsive">
                 <ul className="navbar-nav mr-auto">
                   <li className="nav-item">
-                    <Link className="nav-link js-scroll-trigger" to="/player">Player</Link>
+                    <Link className="nav-link js-scroll-trigger" to="/main_view">Player</Link>
                   </li>
                   <li className="nav-item">
                     <Link className="nav-link js-scroll-trigger" to="/library">Library</Link>

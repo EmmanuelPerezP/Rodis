@@ -1,27 +1,26 @@
 import React from "react";
-import audioPlayer from "../player.js";
 
-export default class Player extends React.Component {
+export default class MainView extends React.Component {
     constructor(props){
         super(props);
-        audioPlayer.setAudioSrc("file:///home/ema/source/rodis/src/heart.mp3");
+        // audioPlayer.setAudioSrc("file:///home/ema/source/rodis/src/heart.mp3");
     }
 
     handlePlay(e){
       console.log("clicked play");
-      audioPlayer.play();
+      // audioPlayer.play();
       // this.setState({carnet: e.target.value});
     }
 
     handlePause(e){
       console.log("clicked pause");
-      audioPlayer.pause();
+      // audioPlayer.pause();
       // this.setState({carnet: e.target.value});
     }
 
     render(){
         return(
-          <div className="container-fluid pl-0">
+          // <div className="container-fluid pl-0">
             <div className="row no-gutters">
               <div className="col-3">
                 <table className="table table-hover table-bordered">
@@ -58,34 +57,8 @@ export default class Player extends React.Component {
                 </div>
               </div>
             </div>
-
-            <footer className="footer">
-            <div className="row pt-2 justify-content-center no-gutters">
-              <div className="col-3">
-
-              </div>
-              <div className="col-6 mx-auto">
-                <div className="row controls">
-                  <div className="col">
-                    <a><i className="fas fa-step-backward"></i></a>
-                  </div>
-                  <div className="col">
-                    <a onClick={this.handlePlay} ><i className="fas fa-play"></i></a>
-                  </div>
-                  <div className="col">
-                    <a onClick={this.handlePause} ><i className="fas fa-pause"></i></a>
-                  </div>
-                  <div className="col">
-                    <a><i className="fas fa-step-forward"></i></a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-3">
-
-              </div>
-            </div>
-          </footer>
-          </div>
+            //footer
+        // </div>
       )
     }
 }

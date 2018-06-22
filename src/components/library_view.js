@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class Library extends React.Component {
+export default class LibraryView extends React.Component {
     constructor(props){
         super(props);
     }
