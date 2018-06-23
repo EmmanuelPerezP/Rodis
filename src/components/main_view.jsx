@@ -1,26 +1,28 @@
-import React from "react";
+import React from 'react';
 
-export default class LibraryView extends React.Component {
+export default class MainView extends React.Component {
     constructor(props){
         super(props);
+        // audioPlayer.setAudioSrc("file:///home/ema/source/rodis/src/heart.mp3");
+    }
+
+    handlePlay(e){
+      console.log("clicked play");
+      // audioPlayer.play();
+      // this.setState({carnet: e.target.value});
+    }
+
+    handlePause(e){
+      console.log("clicked pause");
+      // audioPlayer.pause();
+      // this.setState({carnet: e.target.value});
     }
 
     render(){
         return(
-          <div className="container-fluid pl-0">
+          // <div className="container-fluid pl-0">
             <div className="row no-gutters">
               <div className="col-3">
-
-              </div>
-              <div className="col-6">
-                <form>
-                  <div className="form-group">
-                    <h1>
-                      Buscar Folder
-                    </h1>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1"></input>
-                  </div>
-                </form>
                 <table className="table table-hover table-bordered">
                   <thead>
                     <tr>
@@ -51,10 +53,12 @@ export default class LibraryView extends React.Component {
 
               <div className="col-9">
                 <div className="row">
+                  <img src="cover2.jpg" className="rounded mx-auto d-block" alt="..."></img>
                 </div>
               </div>
             </div>
-          </div>
-        )
+            //footer
+        // </div>
+      )
     }
 }
