@@ -1,20 +1,28 @@
 import React from 'react';
 
+// containers
+import LibraryItemContainer from '../containers/libary_item.container';
+import SearchFolderContainer from '../containers/search_folder.container';
+
 export default class LibraryView extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+    const songs = this.props.songs;
+    var songsRows = songs.map((songData, index) =>
+      <LibraryItemContainer key={index} data={songData} />
+    ); 
+
     return (
       <div className="container-fluid pl-0">
         <div className="row no-gutters">
           <div className="col-3" />
           <div className="col-6">
-            <form>
-              <div className="form-group">
-                <h1>
-                  Buscar Folder
-                </h1>
-                <input type="file" className="form-control-file" id="exampleFormControlFile1" />
-              </div>
-            </form>
+
+            <SearchFolderContainer />
+
             <table className="table table-hover table-bordered">
               <thead>
                 <tr>
@@ -23,6 +31,9 @@ export default class LibraryView extends React.Component {
                   </th>
                   <th scope="col">
                     Time
+                  </th>
+                  <th>
+                    +/-
                   </th>
                 </tr>
               </thead>
@@ -34,6 +45,9 @@ export default class LibraryView extends React.Component {
                   <td>
                     2:00
                   </td>
+                  <td>
+                    <i class="fas fa-plus"></i>
+                  </td>
                 </tr>
                 <tr>
                   <td scope="row">
@@ -42,23 +56,13 @@ export default class LibraryView extends React.Component {
                   <td>
                     2:52
                   </td>
-                </tr>
-                <tr>
-                  <td scope="row">
-                    Whateva Will Be
-                  </td>
                   <td>
-                    3:54
+                    <i class="fas fa-plus"></i>
                   </td>
                 </tr>
-                <tr>
-                  <td scope="row">
-                    Whateva Will Be loraldksfjalsdf aldkfj alksdjf fekj dcvn lj
-                  </td>
-                  <td>
-                    3:54
-                  </td>
-                </tr>
+
+                {songsRows}
+
               </tbody>
             </table>
           </div>

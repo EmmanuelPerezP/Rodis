@@ -24,7 +24,7 @@ export default class Navbar extends React.Component {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link js-scroll-trigger" to="/library">
+                <Link className="nav-link js-scroll-trigger" to="/library_view">
                   Library
                 </Link>
               </li>

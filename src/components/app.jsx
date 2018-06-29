@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import '../css/App.css';
 import Navbar from './navbar';
 import Content from './content';
-import Playbar from './footer-playbar';
+import Playbar from './playbar';
 
 
 class App extends Component {
