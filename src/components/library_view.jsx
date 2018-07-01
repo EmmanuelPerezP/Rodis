@@ -11,9 +11,9 @@ export default class LibraryView extends React.Component {
 
   render() {
     const songs = this.props.songs;
-    var songsRows = songs.map((songData, index) =>
-      <LibraryItemContainer key={index} data={songData} />
-    ); 
+    // var songsRows = songs.map((songData, index) =>
+    //   <LibraryItemContainer key={index} data={songData} />
+    // ); 
 
     return (
       <div className="container-fluid pl-0">
@@ -38,17 +38,7 @@ export default class LibraryView extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td scope="row">
-                    The space program
-                  </td>
-                  <td>
-                    2:00
-                  </td>
-                  <td>
-                    <i class="fas fa-plus"></i>
-                  </td>
-                </tr>
+
                 <tr>
                   <td scope="row">
                     We the people
@@ -61,7 +51,7 @@ export default class LibraryView extends React.Component {
                   </td>
                 </tr>
 
-                {songsRows}
+                {/* {songsRows} */}
 
               </tbody>
             </table>

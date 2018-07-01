@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 // import app from './app';
 // import library from './library';
 // import toasts from './toasts';
-import player from '../lib/player';
+import player from './player';
 // import playlists from './playlists';
 
 const rootReducer = combineReducers({

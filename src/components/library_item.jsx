@@ -6,7 +6,6 @@ export default class LibraryItem extends React.Component {
   }
     
   render() {
-    const songData = this.props.songData;
     return (                
       <tr>
         <td scope="row">

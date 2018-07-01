@@ -1,4 +1,4 @@
-import types from '../actions/actions';
+import types from '../actions/types';
 
 // import { config } from '../lib/app';
 // import { shuffleTracks } from '../utils/utils-player';
@@ -6,16 +6,27 @@ import types from '../actions/actions';
 const initialState = {
   queue: [], // Tracks to be played
   oldQueue: [], // Queue backup (in case of shuffle)
+  playlist: [],
   queueCursor: null, // The cursor of the queue
   // repeat: config.get('audioRepeat'), // the current repeat state (one, all, none)
   // shuffle: config.get('audioShuffle'), // If shuffle mode is enabled
   playerStatus: 'stop', // Player status
 };
 
-export default (state = initialState, payload) => {
-  switch (payload.type) {
+export default (state = initialState, action) => {
+  switch (action.type) {
+
+
+    case(types.APP_PLAYLIST_ADD): {
+      const playlist = [...state.playlist, action.track];
+      return {
+        ...state,
+        playlist,
+      };
+    }
+
     case (types.APP_PLAYER_START): {
-      const { queue, queueCursor, oldQueue } = payload;
+      const { queue, queueCursor, oldQueue } = action;
 
       // Backup that and change the UI
       return {
@@ -56,7 +67,7 @@ export default (state = initialState, payload) => {
       return {
         ...state,
         playerStatus: 'play',
-        queueCursor: payload.newQueueCursor,
+        queueCursor: action.newQueueCursor,
       };
     }
 
@@ -64,7 +75,7 @@ export default (state = initialState, payload) => {
       return {
         ...state,
         playerStatus: 'play',
-        queueCursor: payload.newQueueCursor,
+        queueCursor: action.newQueueCursor,
       };
     }
 
