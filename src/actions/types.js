@@ -17,4 +17,5 @@ export default keymirror({
   APP_PLAYER_JUMP_TO: null,
 
   APP_PLAYLIST_ADD: null,
+  APP_LIBRARY_ADD: null,
 });

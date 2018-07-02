@@ -7,6 +7,7 @@ const initialState = {
   queue: [], // Tracks to be played
   oldQueue: [], // Queue backup (in case of shuffle)
   playlist: [],
+  library: [],
   queueCursor: null, // The cursor of the queue
   // repeat: config.get('audioRepeat'), // the current repeat state (one, all, none)
   // shuffle: config.get('audioShuffle'), // If shuffle mode is enabled
@@ -17,11 +18,19 @@ export default (state = initialState, action) => {
   switch (action.type) {
 
 
-    case(types.APP_PLAYLIST_ADD): {
-      const playlist = [...state.playlist, action.track];
+    case(types.APP_LIBRARY_ADD): {
+      const library = [...state.library, action.audioFile];
       return {
         ...state,
-        playlist,
+        library: library,
+      };
+    }
+
+    case(types.APP_PLAYLIST_ADD): {
+      const playlist = [...state.playlist, action.audioFile];
+      return {
+        ...state,
+        playlist: playlist,
       };
     }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 // containers
-import LibraryItemContainer from '../containers/libary_item.container';
+import LibraryItemContainer from '../containers/library_item.container';
 import SearchFolderContainer from '../containers/search_folder.container';
 
 export default class LibraryView extends React.Component {
@@ -10,10 +10,12 @@ export default class LibraryView extends React.Component {
   }
 
   render() {
-    const songs = this.props.songs;
-    // var songsRows = songs.map((songData, index) =>
-    //   <LibraryItemContainer key={index} data={songData} />
-    // ); 
+    const songs = this.props.librarySongs;
+    console.log("all the songs: ")
+    console.log(songs);
+    var songsRows = songs.map((songData, index) =>
+      <LibraryItemContainer key={index} songData={songData} />
+    ); 
 
     return (
       <div className="container-fluid pl-0">
@@ -39,19 +41,7 @@ export default class LibraryView extends React.Component {
               </thead>
               <tbody>
 
-                <tr>
-                  <td scope="row">
-                    We the people
-                  </td>
-                  <td>
-                    2:52
-                  </td>
-                  <td>
-                    <i class="fas fa-plus"></i>
-                  </td>
-                </tr>
-
-                {/* {songsRows} */}
+                {songsRows}
 
               </tbody>
             </table>

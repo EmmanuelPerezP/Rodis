@@ -31,22 +31,14 @@ export default class MainView extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
+
                     <tr>
                       <td scope="row">The space program</td>
                       <td>2:00</td>
                     </tr>
-                    <tr>
-                      <td scope="row">We the people</td>
-                      <td>2:52</td>
-                    </tr>
-                    <tr>
-                      <td scope="row">Whateva Will Be</td>
-                      <td>3:54</td>
-                    </tr>
-                    <tr>
-                      <td scope="row">Whateva Will Be loraldksfjalsdf aldkfj alksdjf fekj dcvn lj</td>
-                      <td>3:54</td>
-                    </tr>
+
+
+
                   </tbody>
                 </table>
               </div>

@@ -1,7 +1,22 @@
 import React from 'react';
-// import audioPlayer from '../lib/player';
+import audioPlayer from '../lib/player';
 
 export default class playbar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handlePlay = this.handlePlay.bind(this);
+    this.handlePause = this.handlePause.bind(this);
+  }
+
+  handlePlay(e){
+    audioPlayer.setAudioSrc("file:///home/ema/source/rodis/heart.mp3")
+    audioPlayer.play();
+  }
+
+  handlePause(e){
+    audioPlayer.pause();
+  }
+
   render() {
     return (
       <footer className="footer">

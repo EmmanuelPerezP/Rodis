@@ -13,6 +13,8 @@ import { createStore } from 'redux';
 
 // import reducers to sync with the store from redux
 import rootReducer from './reducers/index';
+
+
 // create store
 const store = createStore(rootReducer);
 

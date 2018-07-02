@@ -13,18 +13,18 @@ class LibraryViewContainer extends React.Component {
   }
     
   render() {
-    // var hello = [1,2,3,4];
-    console.log(this.props.playlist);
-
+    // this.props.library is the songs in the library
     return (
-      <LibraryView songs={this.props.playlist}/>
+      <LibraryView librarySongs={this.props.library}/>
     );
   }
 }
 
 function mapStateToProps(state, ownProps) {
   return {
-    "playlist": state.playlist,
+    "playlist": state.player.playlist,
+    "library": state.player.library,
+    ...ownProps,
   }
 }
 
