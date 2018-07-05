@@ -4,11 +4,12 @@ import types from '../actions/types';
 // import { shuffleTracks } from '../utils/utils-player';
 
 const initialState = {
-  queue: [], // Tracks to be played
-  oldQueue: [], // Queue backup (in case of shuffle)
+  // queue: [], // Tracks to be played
+  // oldQueue: [], // Queue backup (in case of shuffle)
   playlist: [],
   library: [],
-  queueCursor: null, // The cursor of the queue
+  playlistCursor: 0,
+  // queueCursor: null, // The cursor of the queue
   // repeat: config.get('audioRepeat'), // the current repeat state (one, all, none)
   // shuffle: config.get('audioShuffle'), // If shuffle mode is enabled
   playerStatus: 'stop', // Player status
@@ -76,7 +77,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         playerStatus: 'play',
-        queueCursor: action.newQueueCursor,
+        playlistCursor: action.nextCursor,
       };
     }
 
@@ -84,7 +85,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         playerStatus: 'play',
-        queueCursor: action.newQueueCursor,
+        playlistCursor: action.previousCursor,
       };
     }
 

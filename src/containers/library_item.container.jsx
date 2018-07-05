@@ -23,7 +23,13 @@ class LibraryItemContainer extends React.Component {
     
   render() {
     return (
-      <LibraryItem songData={this.props.songData} handleAddToPlaylist={this.handleAddToPlaylist} />
+      <LibraryItem 
+        number={this.props.number} 
+        songData={this.props.songData}
+        handleAddToPlaylist={this.handleAddToPlaylist}
+        useAddButton={this.props.useAddButton} 
+        useNumberColumn={this.props.useNumberColumn}
+      />
     );
   }
 }
@@ -32,6 +38,7 @@ function mapStateToProps(state, ownProps) {
   return {
     "playlist": state.player.playlist,
     "library": state.player.library,
+    ...ownProps,
   }
 }
 

@@ -1,5 +1,8 @@
 import React from 'react';
 
+// container
+import LibraryItemContainer from '../containers/library_item.container'
+
 export default class MainView extends React.Component {
     constructor(props){
         super(props);
@@ -19,36 +22,44 @@ export default class MainView extends React.Component {
     }
 
     render(){
-        return(
-          // <div className="container-fluid pl-0">
-            <div className="row no-gutters">
-              <div className="col-3">
-                <table className="table table-hover table-bordered">
-                  <thead>
-                    <tr>
-                      <th scope="col">Name</th>
-                      <th scope="col">Time</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+    const songs = this.props.playlist;
+    console.log("all the songs: ")
+    console.log(songs);
+    var songsRows = songs.map((songData, index) =>
+      <LibraryItemContainer 
+        key={index} 
+        number={index} 
+        songData={songData} 
+        useAddButton={false} 
+        useNumberColumn={true} 
+      />
+    ); 
+    return(
+      // <div className="container-fluid pl-0">
+        <div className="row no-gutters">
+          <div className="col-3">
+            <table className="table table-hover table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Time</th>
+                </tr>
+              </thead>
+              <tbody>
 
-                    <tr>
-                      <td scope="row">The space program</td>
-                      <td>2:00</td>
-                    </tr>
+                {songsRows}
 
+              </tbody>
+            </table>
+          </div>
 
-
-                  </tbody>
-                </table>
-              </div>
-
-              <div className="col-9">
-                <div className="row">
-                  <img src="cover2.jpg" className="rounded mx-auto d-block" alt="..."></img>
-                </div>
-              </div>
+          <div className="col-9">
+            <div className="row">
+              <img src={'file://'+this.props.currentAlbumArt} className="rounded mx-auto d-block" alt="..."></img>
             </div>
+          </div>
+        </div>
             //footer
         // </div>
       )

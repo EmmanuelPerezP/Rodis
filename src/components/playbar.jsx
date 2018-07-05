@@ -1,20 +1,9 @@
 import React from 'react';
-import audioPlayer from '../lib/player';
 
-export default class playbar extends React.Component {
+
+export default class Playbar extends React.Component {
   constructor(props) {
     super(props);
-    this.handlePlay = this.handlePlay.bind(this);
-    this.handlePause = this.handlePause.bind(this);
-  }
-
-  handlePlay(e){
-    audioPlayer.setAudioSrc("file:///home/ema/source/rodis/heart.mp3")
-    audioPlayer.play();
-  }
-
-  handlePause(e){
-    audioPlayer.pause();
   }
 
   render() {
@@ -25,22 +14,22 @@ export default class playbar extends React.Component {
           <div className="col-6 mx-auto">
             <div className="row controls">
               <div className="col">
-                <a>
+                <a onClick={this.props.handlePrevious} >
                   <i className="fas fa-step-backward" />
                 </a>
               </div>
               <div className="col">
-                <a onClick={this.handlePlay}>
+                <a onClick={this.props.handlePlay} >
                   <i className="fas fa-play" />
                 </a>
               </div>
               <div className="col">
-                <a onClick={this.handlePause}>
+                <a onClick={this.props.handlePause} >
                   <i className="fas fa-pause" />
                 </a>
               </div>
               <div className="col">
-                <a>
+                <a onClick={this.props.handleNext} >
                   <i className="fas fa-step-forward" />
                 </a>
               </div>

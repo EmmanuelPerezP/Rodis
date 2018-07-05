@@ -14,7 +14,7 @@ export default class LibraryView extends React.Component {
     console.log("all the songs: ")
     console.log(songs);
     var songsRows = songs.map((songData, index) =>
-      <LibraryItemContainer key={index} songData={songData} />
+      <LibraryItemContainer key={index} songData={songData} useAddButton={true} />
     ); 
 
     return (

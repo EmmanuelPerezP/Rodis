@@ -38,9 +38,14 @@ const util = window.require('util');
         // sets local state to put on the readOnly input
         this.setState({"filePath":result});
         fs.readdir(result[0], function(err, files) {
+          var albumArtPath = null;
           // iterates over the files in the folder
           // replace for a recursive function later on
           for(let fileInFolder of files) {
+            // check for albumart
+            if(fileInFolder.toLocaleLowerCase() == "cover.jpg" || fileInFolder.toLocaleLowerCase() == "folder.jpg") {
+              albumArtPath = result+"/"+fileInFolder;
+            }
             // if the file is an mp3 add to library
             if(fileInFolder.endsWith(".mp3")){
 
@@ -53,7 +58,7 @@ const util = window.require('util');
                 .then(function (metadata) {
                   // console.log(util.inspect(metadata, { showHidden: false, depth: null }));
                   // dispatch
-                  dispatch(addToLibrary(result+"/"+fileInFolder, metadata));
+                  dispatch(addToLibrary(result+"/"+fileInFolder, metadata, albumArtPath));
                 })
                 .catch(function (err) {
                   console.error(err.message);

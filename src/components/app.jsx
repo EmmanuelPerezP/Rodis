@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import '../css/App.css';
 import Navbar from './navbar';
 import Content from './content';
-import Playbar from './playbar';
+import PlaybarContainer from '../containers/playbar.container';
 
 
 class App extends Component {
@@ -20,7 +20,7 @@ class App extends Component {
         <Navbar />
         <div className="container-fluid pl-0">
           <Content />
-          <Playbar />
+          <PlaybarContainer />
         </div>
       </div>
     );

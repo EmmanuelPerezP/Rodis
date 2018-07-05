@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import React from 'react';
 
 // import React components for the app
-import MainView from './main_view';
+import MainViewContainer from '../containers/main_view.container';
 import LibraryViewContainer from '../containers/library_view.container';
 
 // import custom css for the app
@@ -15,7 +15,7 @@ export default class Content extends React.Component {
     return (
       <main>
         <Switch>
-          <Route exact path="/main_view" component={MainView} />
+          <Route exact path="/main_view" component={MainViewContainer} />
           <Route exact path="/library_view" component={LibraryViewContainer} />
         </Switch>
       </main>
