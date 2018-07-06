@@ -5,6 +5,10 @@ export function addToPlayList(audioFile) {
     return { type: types.APP_PLAYLIST_ADD, "audioFile":audioFile };
 }
 
+export function addToCurrentLibrary(object) {
+    return { type: types.APP_LIBRARY_ADD_CURRENT, dataPath: {...object}, };
+}
+
 export function addToLibrary(path, metadata, albumArtPath) {
     return { 
         type: types.APP_LIBRARY_ADD, 
@@ -32,4 +36,8 @@ export function playerNext(nextCursor) {
 // here previous cursor is the current cursor-1
 export function playerPrevious(previousCursor) {
     return { type: types.APP_PLAYER_PREVIOUS, "previousCursor": previousCursor };
+}
+
+export function addToLibraryStack(currentFolder){
+    return { type: types.APP_LIBRARY_ADD_STACK, currentFolder };
 }

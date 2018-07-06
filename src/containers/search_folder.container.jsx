@@ -1,5 +1,5 @@
 import React from 'react';
-import { addToPlayList, addToLibrary } from '../actions/actions';
+import { addToPlayList, addToLibrary, addToLibraryStack, addToCurrentLibrary} from '../actions/actions';
 
 // redux
 import { connect } from 'react-redux'
@@ -30,6 +30,7 @@ const util = window.require('util');
     // to use redux dispatch on the later functions
     const { dispatch } = this.props
 
+    var libraryTab = [];
     // opens the file explorer to search for the folder
     dialog.showOpenDialog({
       properties: ['multiSelections', 'openDirectory'],
@@ -41,10 +42,25 @@ const util = window.require('util');
           var albumArtPath = null;
           // iterates over the files in the folder
           // replace for a recursive function later on
+
+          // check for albumart first
           for(let fileInFolder of files) {
-            // check for albumart
             if(fileInFolder.toLocaleLowerCase() == "cover.jpg" || fileInFolder.toLocaleLowerCase() == "folder.jpg") {
               albumArtPath = result+"/"+fileInFolder;
+            }
+          }
+          if(albumArtPath == null){
+            albumArtPath = null; // add default album art here
+          }
+
+          // add songs to library
+          for(let fileInFolder of files) {
+            
+            if(fs.statSync(result+"/"+fileInFolder).isDirectory()){
+              dispatch(addToCurrentLibrary({
+                "type": "folder",
+                "path":fileInFolder
+              }));
             }
             // if the file is an mp3 add to library
             if(fileInFolder.endsWith(".mp3")){
@@ -57,17 +73,24 @@ const util = window.require('util');
               mm.parseFile(result+"/"+fileInFolder, {native: true, duration: true})
                 .then(function (metadata) {
                   // console.log(util.inspect(metadata, { showHidden: false, depth: null }));
-                  // dispatch
-                  dispatch(addToLibrary(result+"/"+fileInFolder, metadata, albumArtPath));
+                  let path = result+"/"+fileInFolder;
+                  dispatch(addToCurrentLibrary({
+                    "path": path, 
+                    "metadata": metadata, 
+                    "albumArtPath":albumArtPath,
+                    "type":"mp3",
+                  }));
                 })
                 .catch(function (err) {
                   console.error(err.message);
                 });
             }
           }
-        })
+          
+        })    
       }
-    });
+    })
+
   }
 
   render() {

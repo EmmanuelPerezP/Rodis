@@ -29,6 +29,7 @@ function mapStateToProps(state, ownProps) {
   var currentSong = state.player.playlist[state.player.playlistCursor];
   var currentAlbumArt;
   if( currentSong == undefined) {
+    // add default albumart
     currentAlbumArt = "";
   }
   else{

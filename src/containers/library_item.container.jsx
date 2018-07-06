@@ -13,22 +13,26 @@ class LibraryItemContainer extends React.Component {
   constructor(props) {
     super(props);
     this.handleAddToPlaylist = this.handleAddToPlaylist.bind(this);
+    this.handleChangeFolder = this.handleChangeFolder.bind(this);
   }
 
   handleAddToPlaylist(e){
     const { dispatch } = this.props;
-    console.log(this.props.songData);
-    dispatch(addToPlayList(this.props.songData));
+    console.log(this.props.data);
+    dispatch(addToPlayList(this.props.data));
+  }
+
+  handleChangeFolder(e){
+
   }
     
   render() {
     return (
       <LibraryItem 
+        itemType={this.props.itemType}
         number={this.props.number} 
-        songData={this.props.songData}
+        data={this.props.data}
         handleAddToPlaylist={this.handleAddToPlaylist}
-        useAddButton={this.props.useAddButton} 
-        useNumberColumn={this.props.useNumberColumn}
       />
     );
   }

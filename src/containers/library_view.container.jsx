@@ -15,7 +15,7 @@ class LibraryViewContainer extends React.Component {
   render() {
     // this.props.library is the songs in the library
     return (
-      <LibraryView librarySongs={this.props.library}/>
+      <LibraryView itemType={this.props.itemType}  librarySongs={this.props.library} libraryCurrent={this.props.libraryCurrent} />
     );
   }
 }
@@ -24,6 +24,8 @@ function mapStateToProps(state, ownProps) {
   return {
     "playlist": state.player.playlist,
     "library": state.player.library,
+    "libraryStack": state.player.libraryStack,
+    "libraryCurrent": state.player.libraryCurrent,
     ...ownProps,
   }
 }

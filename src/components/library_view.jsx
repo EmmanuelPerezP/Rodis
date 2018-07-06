@@ -10,12 +10,27 @@ export default class LibraryView extends React.Component {
   }
 
   render() {
-    const songs = this.props.librarySongs;
-    console.log("all the songs: ")
-    console.log(songs);
-    var songsRows = songs.map((songData, index) =>
-      <LibraryItemContainer key={index} songData={songData} useAddButton={true} />
-    ); 
+    // if theres something in the stack returns the item, if there is nothing return empty array
+    const rows = this.props.libraryCurrent;
+    // console.log("all the rows: ")
+    // console.log(rows);
+    // var songsRows = songs.map((data, index) =>
+    //   <LibraryItemContainer key={index} data={data} useAddButton={true} />
+    // ); 
+
+    // console.log("imprime filas library_view: ")
+    // console.log(rows);
+    var libraryRows = rows.map((data, index) => {
+        if(data.type == 'folder') {
+          return <LibraryItemContainer itemType={'library'} key={index} data={data} />
+        }
+        else {
+          // console.log("no es folder");
+          return <LibraryItemContainer itemType={'library'} key={index} data={data} />
+        }
+      }
+    );
+    // console.log(libraryRows);
 
     return (
       <div className="container-fluid pl-0">
@@ -41,7 +56,7 @@ export default class LibraryView extends React.Component {
               </thead>
               <tbody>
 
-                {songsRows}
+                {libraryRows}
 
               </tbody>
             </table>

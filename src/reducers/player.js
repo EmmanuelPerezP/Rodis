@@ -8,6 +8,8 @@ const initialState = {
   // oldQueue: [], // Queue backup (in case of shuffle)
   playlist: [],
   library: [],
+  libraryCurrent: [],
+  libraryStack: [],
   playlistCursor: 0,
   // queueCursor: null, // The cursor of the queue
   // repeat: config.get('audioRepeat'), // the current repeat state (one, all, none)
@@ -17,13 +19,29 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-
+    
+    case(types.APP_LIBRARY_ADD_CURRENT): {
+      const library = [...state.libraryCurrent, action.dataPath];
+      return {
+        ...state,
+        libraryCurrent: library,
+      };
+    }
 
     case(types.APP_LIBRARY_ADD): {
       const library = [...state.library, action.audioFile];
       return {
         ...state,
         library: library,
+      };
+    }
+
+    case(types.APP_LIBRARY_ADD_STACK): {
+      const library = [...state.libraryStack];
+      library.push(action.currentFolder);
+      return {
+        ...state,
+        libraryStack: library,
       };
     }
 
