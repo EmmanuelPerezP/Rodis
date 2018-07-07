@@ -1,3 +1,5 @@
 fix album art size
 fix time format when the song is longer than one hour
 fix library recursive folders
+
+fix DRY for the folder explorer

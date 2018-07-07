@@ -4,18 +4,24 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 // components
-import LibraryView from '../components/library_view';
+import BreadcrumItem from '../components/breadcrum_item';
 // import { connect } from 'tls';
 
-class LibraryViewContainer extends React.Component {
+class BreadcrumItemContainer extends React.Component {
   constructor(props) {
     super(props);
+    this.handleFolderChange = this.handleFolderChange.bind(this);
   }
     
+  handleFolderChange(e){
+    // dispatch(FolderChange(key))
+
+  }
+
   render() {
     // this.props.library is the songs in the library
     return (
-      <LibraryView itemType={this.props.itemType}  libraryStack={this.props.libraryStack} libraryNavbar={this.props.libraryNavbar} />
+      <BreadcrumItem handleFolderChange={this.handleFolderChange}  libraryStack={this.props.libraryStack} />
     );
   }
 }
@@ -26,10 +32,9 @@ function mapStateToProps(state, ownProps) {
     "library": state.player.library,
     "libraryStack": state.player.libraryStack,
     "libraryCurrent": state.player.libraryCurrent,
-    "libraryNavbar": state.player.libraryNavbar,
     ...ownProps,
   }
 }
 
 
-export default connect(mapStateToProps)(LibraryViewContainer);
+export default connect(mapStateToProps)(BreadcrumItemContainer);

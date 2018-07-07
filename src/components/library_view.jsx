@@ -3,6 +3,7 @@ import React from 'react';
 // containers
 import LibraryItemContainer from '../containers/library_item.container';
 import SearchFolderContainer from '../containers/search_folder.container';
+import BreadcrumItemContainer from '../containers/breadcrum_item.container';
 
 export default class LibraryView extends React.Component {
   constructor(props) {
@@ -10,26 +11,20 @@ export default class LibraryView extends React.Component {
   }
 
   render() {
-    // if theres something in the stack returns the item, if there is nothing return empty array
-    const rows = this.props.libraryCurrent;
-    // console.log("all the rows: ")
-    // console.log(rows);
-    // var songsRows = songs.map((data, index) =>
-    //   <LibraryItemContainer key={index} data={data} useAddButton={true} />
-    // ); 
+    // we use the last item of the stack/array
+    const rows = this.props.libraryStack[this.props.libraryStack.length-1];
+    const breadcrumRows = this.props.libraryNavbar;
 
     // console.log("imprime filas library_view: ")
     // console.log(rows);
+    var libraryNavbar = breadcrumRows.map((data,index) => {
+      return  <BreadcrumItemContainer />
+    });
     var libraryRows = rows.map((data, index) => {
-        if(data.type == 'folder') {
-          return <LibraryItemContainer itemType={'library'} key={index} data={data} />
-        }
-        else {
-          // console.log("no es folder");
-          return <LibraryItemContainer itemType={'library'} key={index} data={data} />
-        }
+        return <LibraryItemContainer itemType={'library'} key={index} data={data} />
       }
     );
+
     // console.log(libraryRows);
 
     return (
@@ -39,6 +34,15 @@ export default class LibraryView extends React.Component {
           <div className="col-6">
 
             <SearchFolderContainer />
+
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                {libraryNavbar}
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Library</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Data</li>
+              </ol>
+            </nav>
 
             <table className="table table-hover table-bordered">
               <thead>

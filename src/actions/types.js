@@ -18,6 +18,8 @@ export default keymirror({
 
   APP_PLAYLIST_ADD: null,
   APP_LIBRARY_ADD: null,
+  APP_LIBRARY_ADD_NAVBAR: null,
+  APP_LIBRARY_CHANGE_DIRECTORY: null,
   APP_LIBRARY_ADD_CURRENT: null,
   APP_LIBRARY_ADD_STACK: null,
 });

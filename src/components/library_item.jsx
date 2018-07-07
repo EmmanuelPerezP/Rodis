@@ -21,9 +21,11 @@ export default class LibraryItem extends React.Component {
       console.log(this.props.data.type);
       if(this.props.data.type == 'folder'){
         return (                
-          <tr>
+          <tr onClick={this.props.handleChangeFolder} >
             <td scope="row">
-              {this.props.data.path}
+              {this.props.data.fileName}
+            </td>
+            <td>
             </td>
             <td>
             </td>

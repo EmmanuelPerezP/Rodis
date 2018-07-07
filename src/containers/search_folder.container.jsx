@@ -30,6 +30,12 @@ const util = window.require('util');
     // to use redux dispatch on the later functions
     const { dispatch } = this.props
 
+    // in this function there is a problem because we use an async and a sync function in a for loop
+    // therefore when updating the component sometimes it updates before the async function
+    // parseFile is finished and doesnt shows the .mp3 files
+
+
+
     var libraryTab = [];
     // opens the file explorer to search for the folder
     dialog.showOpenDialog({
@@ -59,7 +65,8 @@ const util = window.require('util');
             if(fs.statSync(result+"/"+fileInFolder).isDirectory()){
               dispatch(addToCurrentLibrary({
                 "type": "folder",
-                "path":fileInFolder
+                "path": result+"/"+fileInFolder,
+                "fileName": fileInFolder
               }));
             }
             // if the file is an mp3 add to library
@@ -76,6 +83,7 @@ const util = window.require('util');
                   let path = result+"/"+fileInFolder;
                   dispatch(addToCurrentLibrary({
                     "path": path, 
+                    "fileName": fileInFolder,
                     "metadata": metadata, 
                     "albumArtPath":albumArtPath,
                     "type":"mp3",
