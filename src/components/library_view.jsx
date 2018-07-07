@@ -18,7 +18,7 @@ export default class LibraryView extends React.Component {
     // console.log("imprime filas library_view: ")
     // console.log(rows);
     var libraryNavbar = breadcrumRows.map((data,index) => {
-      return  <BreadcrumItemContainer />
+      return  <BreadcrumItemContainer name={data} key={index} itemNumber={index} />
     });
     var libraryRows = rows.map((data, index) => {
         return <LibraryItemContainer itemType={'library'} key={index} data={data} />
@@ -38,9 +38,6 @@ export default class LibraryView extends React.Component {
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 {libraryNavbar}
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Library</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Data</li>
               </ol>
             </nav>
 

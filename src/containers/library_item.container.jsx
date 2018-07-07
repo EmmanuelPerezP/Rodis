@@ -3,7 +3,7 @@ import React from 'react';
 // redux
 import { connect } from 'react-redux'
 // redux actions
-import { addToPlayList, addToLibrary, addToCurrentLibrary, changeDirectoryLibrary} from '../actions/actions';
+import { addToPlayList, addToLibrary, addToCurrentLibrary, changeDirectoryLibraryDown, addToLibraryNavbar} from '../actions/actions';
 
 // components
 import LibraryItem from '../components/library_item';
@@ -37,8 +37,7 @@ class LibraryItemContainer extends React.Component {
 
     var result = this.props.data.path;
 
-
-    dispatch(changeDirectoryLibrary());
+    dispatch(changeDirectoryLibraryDown(this.props.data.fileName));
 
     fs.readdir(result, function(err, files) {
       var albumArtPath = null;

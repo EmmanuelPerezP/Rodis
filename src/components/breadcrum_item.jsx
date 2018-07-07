@@ -6,9 +6,12 @@ export default class BreadcrumItem extends React.Component {
   }
     
   render() {
+    var lastItemInNavbar = this.props.lastItemInNavbar;
     return (
-      <li class="breadcrumb-item" onClick={this.props.handleFolderChange} >
-          Home
+      <li className="breadcrumb-item" onClick={this.props.handleFolderChange} >
+        <a href="#">
+          {this.props.name}
+        </a>
       </li>
     );
   }

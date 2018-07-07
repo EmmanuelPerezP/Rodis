@@ -9,12 +9,12 @@ export function addToCurrentLibrary(object) {
     return { type: types.APP_LIBRARY_ADD_CURRENT, dataPath: {...object}, };
 }
 
-export function addToLibraryNavbar(folderName) {
-    return { type: types.APP_LIBRARY_ADD_NAVBAR, folderName};
+export function changeDirectoryLibraryUp(folderNavBarIndex) {
+    return { type: types.APP_LIBRARY_CHANGE_DIRECTORY_UP, folderNavBarIndex};
 }
 
-export function changeDirectoryLibrary(object) {
-    return { type: types.APP_LIBRARY_CHANGE_DIRECTORY, dataPath: {...object}, };
+export function changeDirectoryLibraryDown(folderName) {
+    return { type: types.APP_LIBRARY_CHANGE_DIRECTORY_DOWN, folderName};
 }
 
 export function addToLibrary(path, metadata, albumArtPath) {

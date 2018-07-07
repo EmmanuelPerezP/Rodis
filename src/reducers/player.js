@@ -20,10 +20,31 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
 
-    case(types.APP_LIBRARY_CHANGE_DIRECTORY): {
+    case(types.APP_LIBRARY_CHANGE_DIRECTORY_UP): {
+      // we update the navbar state
+      var index = action.folderNavBarIndex;
+      var library = [...state.libraryNavbar];
+      var tempLibraryStack = [...state.libraryStack];
+      // while(state.libraryNavbar.length-1 > index){
+        // library.pop();
+        // tempLibraryStack.pop();
+      // }
+      // we update the library Stack adding an empty array for the new items of the new folder
+      return {
+        ...state,
+        libraryNavbar: library,
+        libraryStack: tempLibraryStack,
+      };
+    }
+  
+    case(types.APP_LIBRARY_CHANGE_DIRECTORY_DOWN): {
+      // we update the navbar state
+      const library = [...state.libraryNavbar, action.folderName];
+      // we update the library Stack adding an empty array for the new items of the new folder
       const tempLibraryStack = [...state.libraryStack, []];
       return {
         ...state,
+        libraryNavbar: library,
         libraryStack: tempLibraryStack,
       };
     }
@@ -37,13 +58,6 @@ export default (state = initialState, action) => {
       };
     }
     
-    case(types.APP_LIBRARY_ADD_NAVBAR): {
-      const library = [...state.libraryNavbar, action.folderName];
-      return {
-        ...state,
-        libraryNavbar: library,
-      };
-    }
 
     case(types.APP_LIBRARY_ADD): {
       const library = [...state.library, action.audioFile];
