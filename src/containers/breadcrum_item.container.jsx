@@ -19,6 +19,10 @@ class BreadcrumItemContainer extends React.Component {
 
     console.log(this.props.itemNumber);
     var itemNumber = this.props.itemNumber;
+    console.log("library navbar: ");
+    console.log(this.props.libraryNavbar);
+    console.log("library Stack: ");
+    console.log(this.props.libraryStack);
     dispatch(changeDirectoryLibraryUp(itemNumber))
 
   }

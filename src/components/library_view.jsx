@@ -36,7 +36,7 @@ export default class LibraryView extends React.Component {
             <SearchFolderContainer />
 
             <nav aria-label="breadcrumb">
-              <ol class="breadcrumb">
+              <ol className="breadcrumb">
                 {libraryNavbar}
               </ol>
             </nav>

@@ -25,10 +25,12 @@ export default (state = initialState, action) => {
       var index = action.folderNavBarIndex;
       var library = [...state.libraryNavbar];
       var tempLibraryStack = [...state.libraryStack];
-      // while(state.libraryNavbar.length-1 > index){
-        // library.pop();
-        // tempLibraryStack.pop();
-      // }
+      // we do -2 because the library Stack is always going to have one empty element at the beginning
+      // and the length is always +1 from the index
+      while(tempLibraryStack.length-2 > index){
+        library.splice(-1,1);
+        tempLibraryStack.splice(-1,1);
+      }
       // we update the library Stack adding an empty array for the new items of the new folder
       return {
         ...state,
@@ -39,12 +41,12 @@ export default (state = initialState, action) => {
   
     case(types.APP_LIBRARY_CHANGE_DIRECTORY_DOWN): {
       // we update the navbar state
-      const library = [...state.libraryNavbar, action.folderName];
+      const libraryNav = [...state.libraryNavbar, action.folderName];
       // we update the library Stack adding an empty array for the new items of the new folder
       const tempLibraryStack = [...state.libraryStack, []];
       return {
         ...state,
-        libraryNavbar: library,
+        libraryNavbar: libraryNav,
         libraryStack: tempLibraryStack,
       };
     }

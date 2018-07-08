@@ -1,5 +1,5 @@
 import React from 'react';
-import { addToPlayList, addToLibrary, addToLibraryStack, addToCurrentLibrary} from '../actions/actions';
+import { addToPlayList, addToLibrary, addToLibraryStack, addToCurrentLibrary, changeDirectoryLibraryDown} from '../actions/actions';
 
 // redux
 import { connect } from 'react-redux'
@@ -42,6 +42,7 @@ const util = window.require('util');
       properties: ['multiSelections', 'openDirectory'],
     }, (result) => {
       if (result) {
+        dispatch(changeDirectoryLibraryDown(result[0]));
         // sets local state to put on the readOnly input
         this.setState({"filePath":result});
         fs.readdir(result[0], function(err, files) {
