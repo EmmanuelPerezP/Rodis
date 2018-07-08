@@ -7,6 +7,24 @@ export default class Playbar extends React.Component {
   }
 
   render() {
+    var playerState = this.props.playerState;
+    var pausePlay;
+    if(playerState.playerStatus == "play"){
+      pausePlay = 
+        <div className="col">
+          <a onClick={this.props.handlePause} >
+            <i className="fas fa-pause" />
+          </a>
+        </div>
+    }
+    else if (playerState.playerStatus == "pause" || true){
+      pausePlay = <div className="col">
+                    <a onClick={this.props.handlePlay} >
+                      <i className="fas fa-play" />
+                    </a>
+                  </div>
+
+    }
     return (
       <footer className="footer">
         <div className="row pt-2 justify-content-center no-gutters">
@@ -18,16 +36,9 @@ export default class Playbar extends React.Component {
                   <i className="fas fa-step-backward" />
                 </a>
               </div>
-              <div className="col">
-                <a onClick={this.props.handlePlay} >
-                  <i className="fas fa-play" />
-                </a>
-              </div>
-              <div className="col">
-                <a onClick={this.props.handlePause} >
-                  <i className="fas fa-pause" />
-                </a>
-              </div>
+              
+              {pausePlay}
+              
               <div className="col">
                 <a onClick={this.props.handleNext} >
                   <i className="fas fa-step-forward" />

@@ -29,11 +29,13 @@ class PlaybarContainer extends React.Component {
     console.log("clicked play");
     audioPlayer.play();
     this.props.dispatch(playerPlay());
+    console.log(this.props.playerState);
   }
 
   handlePause(e) {
     audioPlayer.pause();
     this.props.dispatch(playerPause());
+    console.log(this.props.playerState);
   }
 
   handlePrevious(e) {
