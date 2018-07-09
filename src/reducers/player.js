@@ -15,6 +15,7 @@ const initialState = {
   // shuffle: config.get('audioShuffle'), // If shuffle mode is enabled
   playerStatus: 'stop', // Player status
   libraryNavbar: [],
+  currentSong: '',
 };
 
 export default (state = initialState, action) => {

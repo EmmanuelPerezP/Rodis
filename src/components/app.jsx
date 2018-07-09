@@ -4,6 +4,7 @@ import '../css/App.css';
 import Navbar from './navbar';
 import Content from './content';
 import PlaybarContainer from '../containers/playbar.container';
+import VisualizerPlayerContainer from '../containers/visualizer_player.container';
 
 
 class App extends Component {
@@ -22,6 +23,7 @@ class App extends Component {
           <Content />
           <PlaybarContainer />
         </div>
+        <VisualizerPlayerContainer />
       </div>
     );
   }

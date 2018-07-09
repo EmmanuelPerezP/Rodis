@@ -23,17 +23,17 @@ class PlaybarContainer extends React.Component {
     // console.log(this.props.playlist);
     if(this.props.playerStatus == 'stop') {
       console.log(this.props.playlistCursor);
-      var currentSongPath = this.props.playlist[this.props.playlistCursor].path;
-      audioPlayer.setAudioSrc("file://"+currentSongPath);
+      // var currentSongPath = this.props.playlist[this.props.playlistCursor].path;
+      // audioPlayer.setAudioSrc("file://"+currentSongPath);
     }
     console.log("clicked play");
-    audioPlayer.play();
+    // audioPlayer.play();
     this.props.dispatch(playerPlay());
     console.log(this.props.playerState);
   }
 
   handlePause(e) {
-    audioPlayer.pause();
+    // audioPlayer.pause();
     this.props.dispatch(playerPause());
     console.log(this.props.playerState);
   }
@@ -44,10 +44,10 @@ class PlaybarContainer extends React.Component {
     if(this.props.playlistCursor > 0) {
       var nextCursor = this.props.playlistCursor-1
       this.props.dispatch(playerPrevious(nextCursor));
-      var currentSongPath = this.props.playlist[nextCursor].path;
-      console.log(currentSongPath);
-      audioPlayer.setAudioSrc("file://"+currentSongPath);
-      audioPlayer.play();
+      // var currentSongPath = this.props.playlist[nextCursor].path;
+      // console.log(currentSongPath);
+      // audioPlayer.setAudioSrc("file://"+currentSongPath);
+      // audioPlayer.play();
     }
   }
 
@@ -61,9 +61,9 @@ class PlaybarContainer extends React.Component {
     if(this.props.playlistCursor < this.props.playlist.length-1){
       var nextCursor = this.props.playlistCursor+1
       this.props.dispatch(playerNext(nextCursor));
-      var currentSongPath = this.props.playlist[nextCursor].path;
-      audioPlayer.setAudioSrc("file://"+currentSongPath);
-      audioPlayer.play();
+      // var currentSongPath = this.props.playlist[nextCursor].path;
+      // audioPlayer.setAudioSrc("file://"+currentSongPath);
+      // audioPlayer.play();
     }
   }
 
