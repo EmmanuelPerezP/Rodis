@@ -22,49 +22,43 @@ class PlaybarContainer extends React.Component {
   handlePlay(e){
     // console.log(this.props.playlist);
     if(this.props.playerStatus == 'stop') {
-      console.log(this.props.playlistCursor);
+      // console.log(this.props.playlistCursor);
       // var currentSongPath = this.props.playlist[this.props.playlistCursor].path;
       // audioPlayer.setAudioSrc("file://"+currentSongPath);
     }
-    console.log("clicked play");
+    // console.log("clicked play");
     // audioPlayer.play();
     this.props.dispatch(playerPlay());
-    console.log(this.props.playerState);
+    // console.log(this.props.playerState);
   }
 
   handlePause(e) {
     // audioPlayer.pause();
     this.props.dispatch(playerPause());
-    console.log(this.props.playerState);
+    // console.log(this.props.playerState);
   }
 
   handlePrevious(e) {
-    console.log("previous");
-    console.log(this.props.playlistCursor);
-    if(this.props.playlistCursor > 0) {
-      var nextCursor = this.props.playlistCursor-1
-      this.props.dispatch(playerPrevious(nextCursor));
+    // console.log("previous");
+    // console.log(this.props.playlistCursor);
+      this.props.dispatch(playerPrevious());
       // var currentSongPath = this.props.playlist[nextCursor].path;
       // console.log(currentSongPath);
       // audioPlayer.setAudioSrc("file://"+currentSongPath);
       // audioPlayer.play();
-    }
   }
 
   handleNext(e){
-    console.log("clicked next");
-    console.log(this.props.playlistCursor);
+    // console.log("clicked next");
+    // console.log(this.props.playlistCursor);
     // console.log("playlistCursor:");
     // console.log(this.props.playlistCursor);
     // console.log("playlist length:");
     // console.log(this.props.playlist.length);
-    if(this.props.playlistCursor < this.props.playlist.length-1){
-      var nextCursor = this.props.playlistCursor+1
-      this.props.dispatch(playerNext(nextCursor));
+      this.props.dispatch(playerNext());
       // var currentSongPath = this.props.playlist[nextCursor].path;
       // audioPlayer.setAudioSrc("file://"+currentSongPath);
       // audioPlayer.play();
-    }
   }
 
     

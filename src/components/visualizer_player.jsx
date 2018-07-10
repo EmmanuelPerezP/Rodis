@@ -9,7 +9,7 @@ export default class VisualizerPlayer extends React.Component {
 
   render() {
     return (
-      <P5Wrapper sketch={Sketch} audioFilePath={this.props.audioFilePath} playerStatus={this.props.playerStatus} />
+      <P5Wrapper playNextSong={this.props.playNextSong} sketch={Sketch} audioFilePath={this.props.audioFilePath} playerStatus={this.props.playerStatus} />
     );
   }
 }

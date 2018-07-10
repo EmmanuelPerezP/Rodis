@@ -6,10 +6,12 @@ import { connect } from 'react-redux'
 // components
 import VisualizerPlayer from '../components/visualizer_player';
 // import { connect } from 'tls';
+import { playerNext } from '../actions/actions';
 
 class VisualizerPlayerContainer extends React.Component {
   constructor(props) {
     super(props);
+    this.playNextSong = this.playNextSong.bind(this);
   }
 
   shouldComponentUpdate(nextProps) {
@@ -19,21 +21,29 @@ class VisualizerPlayerContainer extends React.Component {
       differentPath = this.props.playlist[this.props.playlistCursor].path !== nextProps.playlist[nextProps.playlistCursor].path;
       differentPlayerStates = this.props.playerStatus !== nextProps.playerStatus;
     }
+    if(differentPath || differentPlayerStates){
+      console.log("component should update");
+    }
     return differentPath || differentPlayerStates;
+  }
+
+  // we pass this function via props to the sketch to execute when song ends
+  playNextSong(){
+    this.props.dispatch(playerNext());
   }
 
   render() {
     // this.props.library is the songs in the library
     console.log("render visualizer");
     var filePath = '';
-    if(this.props.playerStatus == 'play') {
+    if(this.props.playerStatus == 'play' || this.props.playerStatus == 'pause') {
       console.log(this.props.playlistCursor);
       var currentSongPath = this.props.playlist[this.props.playlistCursor].path;
       var filePath = 'file://' + currentSongPath;
     }
 
     return (
-      <VisualizerPlayer audioFilePath={filePath} playerStatus={this.props.playerStatus} />
+      <VisualizerPlayer playNextSong={this.playNextSong} audioFilePath={filePath} playerStatus={this.props.playerStatus} />
     );
   }
 }

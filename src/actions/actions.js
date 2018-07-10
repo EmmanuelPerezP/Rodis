@@ -37,13 +37,13 @@ export function playerPause() {
 }
 
 // here next cursor is the current cursor+1
-export function playerNext(nextCursor) {
-    return { type: types.APP_PLAYER_NEXT, "nextCursor": nextCursor };
+export function playerNext() {
+    return { type: types.APP_PLAYER_NEXT };
 }
 
 // here previous cursor is the current cursor-1
-export function playerPrevious(previousCursor) {
-    return { type: types.APP_PLAYER_PREVIOUS, "previousCursor": previousCursor };
+export function playerPrevious() {
+    return { type: types.APP_PLAYER_PREVIOUS };
 }
 
 export function addToLibraryStack(currentFolder){

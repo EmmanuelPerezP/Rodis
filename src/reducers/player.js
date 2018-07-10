@@ -18,6 +18,10 @@ const initialState = {
   currentSong: '',
 };
 
+
+// if you have a question about fat reducers vs fat action creators look at this link
+// https://redux.js.org/faq/code-structure#how-should-i-split-my-logic-between-reducers-and-action-creators-where-should-my-business-logic-go
+
 export default (state = initialState, action) => {
   switch (action.type) {
 
@@ -126,18 +130,31 @@ export default (state = initialState, action) => {
     }
 
     case (types.APP_PLAYER_NEXT): {
+      var nextCursor;
+      if(state.playlistCursor < state.playlist.length - 1){
+        nextCursor = state.playlistCursor + 1;
+      }
+      else{
+        nextCursor = state.playlistCursor;
+      }
       return {
         ...state,
-        playerStatus: 'play',
-        playlistCursor: action.nextCursor,
+        playlistCursor: nextCursor,
       };
     }
 
     case (types.APP_PLAYER_PREVIOUS): {
+      var nextCursor;
+      if(state.playlistCursor > 0){
+        nextCursor = state.playlistCursor - 1;
+      }
+      else{
+        nextCursor = state.playlistCursor;
+      }
+
       return {
         ...state,
-        playerStatus: 'play',
-        playlistCursor: action.previousCursor,
+        playlistCursor: nextCursor,
       };
     }
 
