@@ -33,6 +33,7 @@ class VisualizerPlayerContainer extends React.Component {
   }
 
   render() {
+
     // this.props.library is the songs in the library
     console.log("render visualizer");
     var filePath = '';

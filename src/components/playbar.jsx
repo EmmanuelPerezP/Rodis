@@ -27,10 +27,18 @@ export default class Playbar extends React.Component {
     }
     return (
       <footer className="footer">
+        
         <div className="row pt-2 justify-content-center no-gutters">
-          <div className="col-3" />
+          <div className="row mx-auto">
+            <div className="col col-3 justify-content-center">
+              <p>song: name</p>
+            </div>
+          </div>
+
           <div className="col-6 mx-auto">
+
             <div className="row controls">
+
               <div className="col">
                 <a onClick={this.props.handlePrevious} >
                   <i className="fas fa-step-backward" />
@@ -44,9 +52,10 @@ export default class Playbar extends React.Component {
                   <i className="fas fa-step-forward" />
                 </a>
               </div>
+
             </div>
+            
           </div>
-          <div className="col-3" />
         </div>
       </footer>
     );

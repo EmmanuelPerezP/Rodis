@@ -28,35 +28,37 @@ export default function sketch (p) {
   
     // this function doesnt re-renders the canvas or p5 logic
     p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
-      console.log("sketch new props");
-      console.log(currentFilePath);
-      if (currentFilePath !== props.audioFilePath){
+      console.log("file path is the same?: ");
+      console.log(currentFilePath == props.audioFilePath);
+      if (currentFilePath !== props.audioFilePath) {
         // if mySound is not yet defined (like no song loaded) dont do anything, else stop song
         ((typeof mySound !== "undefined") ? mySound.stop() : true );
         mySound = p.loadSound(props.audioFilePath, () => {
-          if (props.playerStatus == 'play'){
+          mySound.onended(() => {
+            // method pass down by visualizer_player.container.jsx
+            console.log("play next song");
+            // props.playNextSong();
+            // store.dispatch(playerNext());
+            console.log("songEnded");
+          });
+          currentFilePath = props.audioFilePath;
+          if (props.playerStatus == 'play' && typeof mySound != "undefined" && mySound.isLoaded() && !mySound.isPlaying()){
             mySound.play()
             fft = new p5.FFT();
             fft.waveform(numBars);
             fft.smooth(0.85);
           }
-          else if (props.playerStatus == 'pause') {
+          else if (props.playerStatus == 'pause' && typeof mySound != "undefined" && mySound.isLoaded() && !mySound.isPlaying()){
             mySound.pause();
           }
         });
-        mySound.onended(() => {
-          // method pass down by visualizer_player.container.jsx
-          props.playNextSong();
-          // store.dispatch(playerNext());
-          console.log("songEnded");
-        });
-        currentFilePath = props.audioFilePath;
+
       }
       else {
-        if (props.playerStatus == 'play'){
+        if (props.playerStatus == 'play' && typeof mySound != "undefined" && mySound.isLoaded()){
           mySound.play()
         }
-        else if (props.playerStatus == 'pause') {
+        else if (props.playerStatus == 'pause' && typeof mySound != "undefined" && mySound.isLoaded()){
           mySound.pause();
         }
       }

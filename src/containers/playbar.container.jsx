@@ -9,6 +9,9 @@ import { playerPause, playerNext, playerPrevious, playerPlay } from '../actions/
 // components
 import Playbar from '../components/playbar';
 
+// lib
+import Player from '../lib/player';
+
 
 class PlaybarContainer extends React.Component {
   constructor(props) {

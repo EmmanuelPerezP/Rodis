@@ -18,6 +18,21 @@ class audioPlayer {
 
     this.threshold = 0.75;
     this.durationThresholdReached = false;
+
+
+    // stuff for visualizer
+    // http://ianreah.com/2013/02/28/Real-time-analysis-of-streaming-audio-data-with-Web-Audio-API.html
+    this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    this.analyserPlayer = this.audioCtx.createAnalyser();
+
+
+    this.sourceAudio = this.audioCtx.createMediaElementSource(this.audio);
+    this.sourceAudio.connect(this.analyserPlayer);
+    this.sourceAudio.connect(this.audioCtx.destination);
+  }
+
+  getAnalyser(){
+    return this.analyserPlayer;
   }
 
   play() {

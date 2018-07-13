@@ -5,6 +5,7 @@ import Navbar from './navbar';
 import Content from './content';
 import PlaybarContainer from '../containers/playbar.container';
 import VisualizerPlayerContainer from '../containers/visualizer_player.container';
+import PlayerContainer from '../containers/player.container';
 
 
 class App extends Component {
@@ -24,6 +25,7 @@ class App extends Component {
           <PlaybarContainer />
         </div>
         <VisualizerPlayerContainer />
+        <PlayerContainer />
       </div>
     );
   }

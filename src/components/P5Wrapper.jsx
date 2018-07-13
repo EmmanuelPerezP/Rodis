@@ -24,6 +24,7 @@ export default class P5Wrapper extends React.Component {
     }
   }
 
+
   componentWillUnmount() {
     this.canvas.remove();
   }
