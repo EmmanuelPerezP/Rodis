@@ -21,7 +21,9 @@ class App extends Component {
       <div>
         <Navbar />
         <div className="container-fluid pl-0">
-          <Content />
+          <div className="main">
+            <Content />
+          </div>
           <PlaybarContainer />
         </div>
         <VisualizerPlayerContainer />

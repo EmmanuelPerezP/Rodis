@@ -53,7 +53,7 @@ export default function sketch (p) {
         for(var i = 0; i < numBars; i++) {
           var x = p.map(i, 0, numBars, 0, p.displayWidth*3);
           var h = -p.height + p.map(spectrum[i], 0, 255, p.height, 0);
-          p.rect(x, p.height, p.width / (numBars/4), h);
+          p.rect(x, p.height, p.width / (numBars/2), h);
         }
       }
     };

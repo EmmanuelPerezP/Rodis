@@ -66,6 +66,10 @@ class PlaybarContainer extends React.Component {
 
     
   render() {
+    var currentSong = {};
+    if(typeof this.props.playlist[this.props.playlistCursor] != undefined){
+      currentSong = this.props.playlist[this.props.playlistCursor];
+    }
     return (
       <Playbar 
         playerState={this.props} 
@@ -73,6 +77,7 @@ class PlaybarContainer extends React.Component {
         handlePrevious={this.handlePrevious} 
         handlePause={this.handlePause} 
         handlePlay={this.handlePlay} 
+        currentSong={currentSong}
       />
     );
   }

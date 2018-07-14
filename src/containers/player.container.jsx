@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 // components
 import LibraryView from '../components/library_view';
 import Player from '../lib/player';
+import { playerNext } from '../actions/actions';
 // import { connect } from 'tls';
 
 class PlayerContainer extends React.Component {
@@ -17,13 +18,13 @@ class PlayerContainer extends React.Component {
       Player.setAudioSrc("file://"+this.props.playlist[this.props.playlistCursor].path);
       Player.audio.play();
     }
+    Player.getAudio().addEventListener('ended', () => this.props.dispatch(playerNext()));
 
   }
 
   componentDidUpdate(prevProps){
     if(typeof this.props.playlist[this.props.playlistCursor] != "undefined" && typeof prevProps.playlist[prevProps.playlistCursor] != "undefined") { 
-      // if(this.props.playlist[this.props.playlistCursor].path !== prevProps.playlist[prevProps.playlistCursor].path){
-        console.log("audio set");
+      // if(this.props.playlist[this.props.playlistCursor].path !== prevProps.playlist[pre        console.log("audio set");
         Player.setAudioSrc("file://"+this.props.playlist[this.props.playlistCursor].path);
       // }
     }
@@ -68,4 +69,4 @@ function mapStateToProps(state, ownProps) {
 }
 
 
-export default connect(mapStateToProps)(PlayerContainer);
+export default connect(mapStateToProps)(PlayerContainer)

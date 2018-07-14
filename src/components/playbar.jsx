@@ -25,17 +25,28 @@ export default class Playbar extends React.Component {
                   </div>
 
     }
+    var timeString = "00:00";
+    var title = "";
+    var artist = "";
+    if(typeof this.props.currentSong != "undefined"){
+      var date = new Date(null);
+      date.setSeconds(this.props.currentSong.metadata.format.duration); // specify value for SECONDS here
+      timeString = date.toISOString().substr(14, 5);
+      title = this.props.currentSong.metadata.common.title;
+      artist =this.props.currentSong.metadata.common.artist;
+    }
     return (
       <footer className="footer">
         
         <div className="row pt-2 justify-content-center no-gutters">
-          <div className="row mx-auto">
-            <div className="col col-3 justify-content-center">
-              <p>song: name</p>
-            </div>
+            <i class="fas fa-list-ul"></i>
+          <div className="song-info">
+            <div className="song-name"> Song: {title} </div>
+            <div className="artist-name"> Artist: {artist}</div>
+            <div className="time-length"> Lenght: {timeString}</div>
           </div>
 
-          <div className="col-6 mx-auto">
+          <div className="col-4 mx-auto">
 
             <div className="row controls">
 

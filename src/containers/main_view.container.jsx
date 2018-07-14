@@ -12,14 +12,18 @@ import MainView from '../components/main_view';
 class MainViewContainer extends React.Component {
   constructor(props) {
     super(props);
+    this.closeSidenav = this.closeSidenav.bind(this);
   }
 
+  closeSidenav(e){
+
+  }
     
   render() {
 
     // we pass currentSong to MainView to display the current albumArt from the song
     return (
-      <MainView playlist={this.props.playlist} currentAlbumArt={this.props.currentAlbumArt} />
+      <MainView playlist={this.props.playlist} currentAlbumArt={this.props.currentAlbumArt} closeSidenav={this.props.closeSidenav} />
     );
   }
 }

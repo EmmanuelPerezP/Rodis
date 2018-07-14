@@ -23,22 +23,29 @@ export default class MainView extends React.Component {
     return(
       // <div className="container-fluid pl-0">
         <div className="row no-gutters">
+
+        <div id="mySidenav" class="sidenav">
+          <a href="#" class="closebtn" onclick={this.props.closeSidenav}>&times;</a>
           <div className="col-3">
-            <table className="table table-hover table-bordered">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Time</th>
-                </tr>
-              </thead>
-              <tbody>
+            <div className="table-custom"  data-simplebar>
+              <table className="table table-hover table-bordered">
 
-                {songsRows}
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Time</th>
+                  </tr>
+                </thead>
 
-              </tbody>
-            </table>
+                <tbody>
+                  {songsRows}
+                </tbody>
+
+              </table>
+            </div>
           </div>
+        </div>
 
           <div className="col-9">
             <div className="row">
