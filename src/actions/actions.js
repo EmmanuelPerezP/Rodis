@@ -49,3 +49,7 @@ export function playerPrevious() {
 export function addToLibraryStack(currentFolder){
     return { type: types.APP_LIBRARY_ADD_STACK, currentFolder };
 }
+
+export function showSidenav(){
+    return { type: types.APP_PLAYLIST_SHOW_SIDENAV };
+}

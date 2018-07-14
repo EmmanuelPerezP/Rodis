@@ -67,6 +67,7 @@ body {
   height: 5rem;
   line-height: 1rem; /* vertically center the text */
   background-color: rgba(255, 255, 255, 0.47);
+  z-index: 3;
   
 }
 
@@ -77,14 +78,16 @@ body {
 
 .table-custom {
   display: block;
-  max-height: 85vh;
+  max-height: 80vh;
   overflow-y: auto;
   width: 25vw;
 }
 
 .song-info {
   position: absolute;
-  left: 2vw;
+  left: 6vw;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
 }
 
 /* sidebar */
@@ -137,4 +140,12 @@ body {
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
+}
+
+.playlist-button {
+  font-size: 2rem;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  height: 52px;
+  padding-left: 2vh;
 }

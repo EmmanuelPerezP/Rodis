@@ -8,7 +8,7 @@ export default class Navbar extends React.Component {
 
   render() {
     return (
-      <nav className="navbar navbar-expand navbar-light bg-light sticky-top" id="mainNav">
+      <nav className="navbar navbar-expand navbar-light sticky-top" id="mainNav">
         <div className="container">
           <a className="navbar-brand js-scroll-trigger" href="#page-top">
             Rodis

@@ -4,7 +4,7 @@ import audioPlayer from '../lib/player';
 // redux
 import { connect } from 'react-redux'
 // redux actions
-import { playerPause, playerNext, playerPrevious, playerPlay } from '../actions/actions';
+import { playerPause, playerNext, playerPrevious, playerPlay, showSidenav } from '../actions/actions';
 
 // components
 import Playbar from '../components/playbar';
@@ -20,6 +20,7 @@ class PlaybarContainer extends React.Component {
     this.handlePause = this.handlePause.bind(this);
     this.handleNext = this.handleNext.bind(this);
     this.handlePrevious = this.handlePrevious.bind(this);
+    this.closeSidenav = this.closeSidenav.bind(this);
   }
 
   handlePlay(e){
@@ -64,7 +65,10 @@ class PlaybarContainer extends React.Component {
       // audioPlayer.play();
   }
 
-    
+  closeSidenav(e){
+    this.props.dispatch(showSidenav());
+  }
+
   render() {
     var currentSong = {};
     if(typeof this.props.playlist[this.props.playlistCursor] != undefined){
@@ -78,6 +82,7 @@ class PlaybarContainer extends React.Component {
         handlePause={this.handlePause} 
         handlePlay={this.handlePlay} 
         currentSong={currentSong}
+        closeSidenav={this.closeSidenav}
       />
     );
   }

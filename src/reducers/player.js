@@ -16,6 +16,7 @@ const initialState = {
   playerStatus: 'stop', // Player status
   libraryNavbar: [],
   currentSong: '',
+  showSidenav: true,
 };
 
 
@@ -24,6 +25,14 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+
+    case(types.APP_PLAYLIST_SHOW_SIDENAV): {
+      return {
+        ...state,
+        showSidenav: !state.showSidenav,
+      }
+
+    }
 
     case(types.APP_LIBRARY_CHANGE_DIRECTORY_UP): {
       // we update the navbar state

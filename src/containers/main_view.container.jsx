@@ -12,18 +12,19 @@ import MainView from '../components/main_view';
 class MainViewContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.closeSidenav = this.closeSidenav.bind(this);
+    this.changeAlbumArt = this.changeAlbumArt.bind(this);
+    this.state = {hideAlbumArt: true};
   }
 
-  closeSidenav(e){
-
+  changeAlbumArt(e){
+    this.setState({hideAlbumArt: !this.state.hideAlbumArt})
   }
     
   render() {
 
     // we pass currentSong to MainView to display the current albumArt from the song
     return (
-      <MainView playlist={this.props.playlist} currentAlbumArt={this.props.currentAlbumArt} closeSidenav={this.props.closeSidenav} />
+      <MainView playlist={this.props.playlist} currentAlbumArt={this.props.currentAlbumArt} showSidenav={this.props.showSidenav} changeAlbumArt={this.changeAlbumArt} hideAlbumArt={this.state.hideAlbumArt}/>
     );
   }
 }
@@ -43,6 +44,7 @@ function mapStateToProps(state, ownProps) {
     "playlist": state.player.playlist,
     "library": state.player.library,
     "currentAlbumArt": currentAlbumArt,
+    "showSidenav": state.player.showSidenav,
   }
 }
 

@@ -23,4 +23,5 @@ export default keymirror({
   APP_LIBRARY_CHANGE_DIRECTORY_UP: null,
   APP_LIBRARY_ADD_CURRENT: null,
   APP_LIBRARY_ADD_STACK: null,
+  APP_PLAYLIST_SHOW_SIDENAV: null,
 });

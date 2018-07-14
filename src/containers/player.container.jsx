@@ -24,11 +24,12 @@ class PlayerContainer extends React.Component {
 
   componentDidUpdate(prevProps){
     if(typeof this.props.playlist[this.props.playlistCursor] != "undefined" && typeof prevProps.playlist[prevProps.playlistCursor] != "undefined") { 
-      // if(this.props.playlist[this.props.playlistCursor].path !== prevProps.playlist[pre        console.log("audio set");
+      if(this.props.playlistCursor !== prevProps.playlistCursor || this.props.playerStatus == "stop") {
+        console.log("audio set");
         Player.setAudioSrc("file://"+this.props.playlist[this.props.playlistCursor].path);
-      // }
+      }
     }
-    if(this.props.playerStatus == "pause"){
+    if(this.props.playerStatus == "pause" && prevProps.playerStatus == "play"){
       Player.audio.pause();
     }
     else if(this.props.playerStatus == "play"){

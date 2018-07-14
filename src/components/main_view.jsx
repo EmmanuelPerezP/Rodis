@@ -20,13 +20,17 @@ export default class MainView extends React.Component {
         data={data} 
       />
     ); 
+    var style = {width: "0"};
+    if(this.props.showSidenav){
+      style = {width: "30vw"};
+    }
     return(
       // <div className="container-fluid pl-0">
         <div className="row no-gutters">
 
-        <div id="mySidenav" class="sidenav">
-          <a href="#" class="closebtn" onclick={this.props.closeSidenav}>&times;</a>
-          <div className="col-3">
+        <div id="mySidenav" class="sidenav" style={style}>
+          <div className="row justify-content-center mx-auto">
+          <div className="col-12">
             <div className="table-custom"  data-simplebar>
               <table className="table table-hover table-bordered">
 
@@ -44,12 +48,24 @@ export default class MainView extends React.Component {
 
               </table>
             </div>
+
           </div>
+          </div>
+          <br />
+          <div className="row justify-content-center mx-auto">
+          <div className="col-12">
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-secondary btn-outline-dark">Save</button>
+              <button type="button" class="btn btn-secondary btn-outline-dark">Delete</button>
+              <button type="button" class="btn btn-secondary btn-outline-dark" onClick={this.props.changeAlbumArt} >Hide Album Art</button>
+            </div>
+          </div>  
+          </div>  
         </div>
 
-          <div className="col-9">
+          <div className="col">
             <div className="row">
-              <img src={'file://'+this.props.currentAlbumArt} className="rounded mx-auto d-block" alt="..."></img>
+              {(this.props.hideAlbumArt) ? (<img src={'file://'+this.props.currentAlbumArt} className="rounded mx-auto d-block" alt="..."></img>) : null}
             </div>
           </div>
         </div>

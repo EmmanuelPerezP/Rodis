@@ -49,11 +49,12 @@ export default function sketch (p) {
         Player.getAnalyser().getByteFrequencyData(frequencyData);
         var spectrum = frequencyData;
         p.noStroke();
+
         p.fill("rgb(0, 0, 0)");
         for(var i = 0; i < numBars; i++) {
           var x = p.map(i, 0, numBars, 0, p.displayWidth*3);
           var h = -p.height + p.map(spectrum[i], 0, 255, p.height, 0);
-          p.rect(x, p.height, p.width / (numBars/2), h);
+          p.rect(x, p.height, 10, h);
         }
       }
     };
