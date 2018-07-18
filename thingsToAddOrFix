@@ -1,5 +1,7 @@
 fix album art size
 fix time format when the song is longer than one hour
-when we browse another folder refresh the library and state
 fix DRY for the folder explorer
 fix DRY for the seconds formater (mm:ss)
+add doubleclick playlist to change song
+add save and delete playlist
+add save state and load state

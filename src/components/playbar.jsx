@@ -38,9 +38,10 @@ export default class Playbar extends React.Component {
     return (
       <footer className="footer">
         
+
         <div className="row pt-2 justify-content-center no-gutters">
           <div className="playlist-button" onClick={this.props.closeSidenav}> 
-            <i class="fas fa-list-ul"></i>
+            <i className="fas fa-list-ul"></i>
           </div>
           <div className="song-info">
             <div className="song-name"> Song: {title} </div>
@@ -70,6 +71,7 @@ export default class Playbar extends React.Component {
             
           </div>
         </div>
+
       </footer>
     );
   }

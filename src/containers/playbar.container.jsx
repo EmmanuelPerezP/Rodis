@@ -4,7 +4,7 @@ import audioPlayer from '../lib/player';
 // redux
 import { connect } from 'react-redux'
 // redux actions
-import { playerPause, playerNext, playerPrevious, playerPlay, showSidenav } from '../actions/actions';
+import { playerPause, playerNext, playerPrevious, playerPlay, toggleSidenav } from '../actions/actions';
 
 // components
 import Playbar from '../components/playbar';
@@ -66,7 +66,7 @@ class PlaybarContainer extends React.Component {
   }
 
   closeSidenav(e){
-    this.props.dispatch(showSidenav());
+    this.props.dispatch(toggleSidenav());
   }
 
   render() {

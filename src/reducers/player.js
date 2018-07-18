@@ -16,7 +16,10 @@ const initialState = {
   playerStatus: 'stop', // Player status
   libraryNavbar: [],
   currentSong: '',
-  showSidenav: true,
+  uiState: {
+    showSidenav: false,
+    showAlbumArt: true,
+  }
 };
 
 
@@ -26,12 +29,24 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
 
-    case(types.APP_PLAYLIST_SHOW_SIDENAV): {
+    case(types.APP_PLAYLIST_TOGGLE_ALBUMART): {
       return {
         ...state,
-        showSidenav: !state.showSidenav,
+        uiState: {
+          ...state.uiState,
+          showAlbumArt: !state.uiState.showAlbumArt,
+        }
       }
+    }
 
+    case(types.APP_PLAYLIST_TOGGLE_SIDENAV): {
+      return {
+        ...state,
+        uiState: {
+          ...state.uiState,
+          showSidenav: !state.uiState.showSidenav,
+        }
+      }
     }
 
     case(types.APP_LIBRARY_CHANGE_DIRECTORY_UP): {

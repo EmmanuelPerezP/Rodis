@@ -6,7 +6,7 @@ import Content from './content';
 import PlaybarContainer from '../containers/playbar.container';
 import VisualizerPlayerContainer from '../containers/visualizer_player.container';
 import PlayerContainer from '../containers/player.container';
-
+import SidenavContainer from '../containers/sidenav.container'
 
 class App extends Component {
   // constructor(props){
@@ -25,6 +25,7 @@ class App extends Component {
             <Content />
           </div>
           <PlaybarContainer />
+          <SidenavContainer />
         </div>
         <VisualizerPlayerContainer />
         <PlayerContainer />
