@@ -149,3 +149,7 @@ body {
   height: 52px;
   padding-left: 2vh;
 }
+
+.album-art {
+  max-height: 70vh;
+}

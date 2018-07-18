@@ -17,7 +17,7 @@ export default class MainView extends React.Component {
 
           <div className="col">
             <div className="row">
-              {(this.props.hideAlbumArt) ? (<img src={'file://'+this.props.currentAlbumArt} className="rounded mx-auto d-block" alt="..."></img>) : null}
+              {(this.props.hideAlbumArt) ? (<img src={'file://'+this.props.currentAlbumArt} className="album-art rounded mx-auto d-block" alt="..."></img>) : null}
             </div>
           </div>
         </div>
