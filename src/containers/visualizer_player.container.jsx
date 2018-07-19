@@ -17,13 +17,17 @@ class VisualizerPlayerContainer extends React.Component {
   shouldComponentUpdate(nextProps) {
     var differentPath = false;
     var differentPlayerStates = false;
-    if(nextProps.playerStatus === 'play' || nextProps.playerStatus === 'pause') {
-      differentPath = this.props.playlist[this.props.playlistCursor].path !== nextProps.playlist[nextProps.playlistCursor].path;
-      differentPlayerStates = this.props.playerStatus !== nextProps.playerStatus;
+    // if a track is loaded
+    if (typeof this.props.playlist[this.props.playlistCursor] != "undefined"){
+      if(nextProps.playerStatus === 'play' || nextProps.playerStatus === 'pause') {
+        differentPath = this.props.playlist[this.props.playlistCursor].path !== nextProps.playlist[nextProps.playlistCursor].path;
+        differentPlayerStates = this.props.playerStatus !== nextProps.playerStatus;
+      }
+      if(differentPath || differentPlayerStates){
+        console.log("component should update");
+      }
     }
-    if(differentPath || differentPlayerStates){
-      console.log("component should update");
-    }
+    
     return differentPath || differentPlayerStates;
   }
 

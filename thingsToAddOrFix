@@ -2,6 +2,12 @@ fix album art size
 fix time format when the song is longer than one hour
 fix DRY for the folder explorer
 fix DRY for the seconds formater (mm:ss)
+fix glitch when you skip on the progress bar and no songs are in the playlist it crashes
+fix when you update the folder the tracks are not in order
+fix scrollbar in library messing up symetrical spacing in the tabs navbar
+
 add doubleclick playlist to change song
+add current song playing in the playlist turning black
 add save and delete playlist
 add save state and load state
+add React router animation transitions between tabs

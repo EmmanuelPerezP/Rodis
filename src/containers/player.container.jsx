@@ -23,18 +23,23 @@ class PlayerContainer extends React.Component {
   }
 
   componentDidUpdate(prevProps){
-    if(typeof this.props.playlist[this.props.playlistCursor] != "undefined" && typeof prevProps.playlist[prevProps.playlistCursor] != "undefined") { 
+    if(typeof this.props.playlist[this.props.playlistCursor] != "undefined") { 
+      // we do this to not restart the song everytime we play or pause the player
+      // if we press play before loading the song to playlist the song doesnt plays (thats why the === stop condition is there)
+      // if there is no stop then it doesnt reloads
       if(this.props.playlistCursor !== prevProps.playlistCursor || this.props.playerStatus == "stop") {
         console.log("audio set");
         Player.setAudioSrc("file://"+this.props.playlist[this.props.playlistCursor].path);
       }
     }
-    if(this.props.playerStatus == "pause" && prevProps.playerStatus == "play"){
-      Player.audio.pause();
-    }
-    else if(this.props.playerStatus == "play"){
-      Player.audio.play();
-      console.log("play");
+    if(typeof this.props.playlist[this.props.playlistCursor] != "undefined") { 
+      if(this.props.playerStatus == "pause" && prevProps.playerStatus == "play"){
+        Player.audio.pause();
+      }
+      else if(this.props.playerStatus == "play"){
+        Player.audio.play();
+        console.log("play");
+      }
     }
   }
 

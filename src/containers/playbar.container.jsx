@@ -21,6 +21,30 @@ class PlaybarContainer extends React.Component {
     this.handleNext = this.handleNext.bind(this);
     this.handlePrevious = this.handlePrevious.bind(this);
     this.closeSidenav = this.closeSidenav.bind(this);
+    this.tick = this.tick.bind(this);
+    this.handleJumpTo = this.handleJumpTo.bind(this);
+
+    this.state = {
+      elapsed: 0,
+      duration: null,
+      x: null,
+      dragging: false,
+    };
+  }
+
+  componentDidMount() {
+    Player.getAudio().addEventListener('timeupdate', this.tick);
+
+    // window.addEventListener('mousemove', this.dragOver);
+    // window.addEventListener('mouseup', this.dragEnd);
+  }
+
+
+  componentWillUnmount() {
+    Player.getAudio().removeEventListener('timeupdate', this.tick);
+
+    // window.removeEventListener('mousemove', this.dragOver);
+    // window.removeEventListener('mouseup', this.dragEnd);
   }
 
   handlePlay(e){
@@ -65,15 +89,43 @@ class PlaybarContainer extends React.Component {
       // audioPlayer.play();
   }
 
+  tick(){
+    this.setState({ elapsed: Player.getCurrentTime() });
+  }
+
+  handleJumpTo(e){
+    const bar = this.progressBarRef;
+    // bar.offsetParent.offsetWidth: the width of the progress bar parent, class .progress
+    // bar.offsetLeft: the offset coordinates of the beginning of the bar (using this for flexible css)
+    // e.pageX: the x coordinate of the mouse when clicking
+    // check link to understand differences between offsetWidth, offsetHeight, clientWidth, clientHeight, scrollWidth and scrollHeight
+    // https://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwidth-scrollwidth-and-height-respectively
+    const percent = ((e.pageX - (bar.offsetLeft + bar.offsetParent.offsetLeft)) / bar.offsetParent.offsetWidth) * 100;
+    console.log(percent);
+
+    const currentSong = this.props.playlist[this.props.playlistCursor];
+    const songDuration = currentSong.metadata.format.duration;
+    const jumpTo = (percent * songDuration) / 100;
+
+    // dispatch and actionCreator (not necessary right now)
+    // PlayerActions.jumpTo(jumpTo);        // change for dispatch(jumpTo()) to make the next line in the player container
+    Player.setAudioCurrentTime(jumpTo);
+  }
+
   closeSidenav(e){
     this.props.dispatch(toggleSidenav());
   }
 
   render() {
-    var currentSong = {};
-    if(typeof this.props.playlist[this.props.playlistCursor] != undefined){
+    var currentSong;
+    var elapsedPercent = 0;
+    if(typeof this.props.playlist[this.props.playlistCursor] != "undefined"){
       currentSong = this.props.playlist[this.props.playlistCursor];
+      const songDuration = currentSong.metadata.format.duration;
+      elapsedPercent = (this.state.elapsed * 100) / songDuration;
     }
+
+
     return (
       <Playbar 
         playerState={this.props} 
@@ -83,6 +135,13 @@ class PlaybarContainer extends React.Component {
         handlePlay={this.handlePlay} 
         currentSong={currentSong}
         closeSidenav={this.closeSidenav}
+        elapsedPercent={elapsedPercent}
+
+        // https://reactjs.org/docs/refs-and-the-dom.html#callback-refs
+        progressBarRef={(bar) => this.progressBarRef = bar}
+
+        handleJumpTo={this.handleJumpTo}
+
       />
     );
   }

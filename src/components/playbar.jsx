@@ -39,6 +39,10 @@ export default class Playbar extends React.Component {
       <footer className="footer">
         
 
+        <div class="progress" onMouseDown={this.props.handleJumpTo}>
+          <div class="progress-bar" role="progressbar" ref={this.props.progressBarRef} style={{ width: this.props.elapsedPercent.toString() + "%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
         <div className="row pt-2 justify-content-center no-gutters">
           <div className="playlist-button" onClick={this.props.closeSidenav}> 
             <i className="fas fa-list-ul"></i>
