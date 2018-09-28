@@ -1,5 +1,6 @@
 import React from 'react';
 import audioPlayer from '../lib/player';
+import { loadState, saveState} from '../actions/actions';
 
 // redux
 import { connect } from 'react-redux'
@@ -35,6 +36,7 @@ class PlaybarContainer extends React.Component {
   componentDidMount() {
     Player.getAudio().addEventListener('timeupdate', this.tick);
 
+    this.props.dispatch(loadState());
     // window.addEventListener('mousemove', this.dragOver);
     // window.addEventListener('mouseup', this.dragEnd);
   }

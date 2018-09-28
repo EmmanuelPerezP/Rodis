@@ -1,5 +1,9 @@
 import types from '../actions/types';
 
+
+const Store = window.require('electron-store');
+const storeEl = new Store();
+
 // import { config } from '../lib/app';
 // import { shuffleTracks } from '../utils/utils-player';
 
@@ -28,6 +32,21 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+
+    case(types.LOAD_STATE): {
+      let newState = storeEl.get('state');
+      return {
+        ...newState,
+      }
+    }
+
+    case(types.SAVE_STATE): {
+      storeEl.set('state', state);
+      console.log(state);
+      return {
+        ...state,
+      }
+    }
 
     case(types.APP_PLAYLIST_TOGGLE_ALBUMART): {
       return {

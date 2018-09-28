@@ -56,3 +56,11 @@ export function toggleSidenav(){
 export function toggleAlbumArt() {
     return { type: types.APP_PLAYLIST_TOGGLE_ALBUMART };
 }
+
+export function saveState() {
+    return { type: types.SAVE_STATE };
+}
+
+export function loadState() {
+    return { type: types.LOAD_STATE };
+}

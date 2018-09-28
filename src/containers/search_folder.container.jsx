@@ -1,5 +1,5 @@
 import React from 'react';
-import { addToPlayList, addToLibrary, addToLibraryStack, addToCurrentLibrary, changeDirectoryLibraryDown} from '../actions/actions';
+import { addToPlayList, addToLibrary, addToLibraryStack, addToCurrentLibrary, changeDirectoryLibraryDown, loadState, saveState} from '../actions/actions';
 
 // redux
 import { connect } from 'react-redux'
@@ -18,12 +18,26 @@ const util = window.require('util');
 
 
 
-
  class SearchFolderContainer extends React.Component {
   constructor(props) {
     super(props);
     this.handleInput = this.handleInput.bind(this);
+    this.saveState = this.saveState.bind(this);
+    this.loadState = this.loadState.bind(this);
     this.state = {"filePath":""};
+  }
+
+
+  loadState(e){
+    const { dispatch } = this.props
+    console.log("load");
+    dispatch(loadState());
+  }
+
+  saveState(e){
+    const { dispatch } = this.props
+    console.log("save");
+    dispatch(saveState());
   }
   
   handleInput(e){
@@ -104,7 +118,12 @@ const util = window.require('util');
 
   render() {
     return (
-      <SearchFolder handleInput={this.handleInput} filePath={this.state.filePath} />
+      <SearchFolder 
+      handleInput={this.handleInput} 
+      loadState={this.loadState} 
+      saveState={this.saveState}
+      filePath={this.state.filePath} 
+      />
     );
   }
 }

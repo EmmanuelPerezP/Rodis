@@ -20,8 +20,10 @@ export default class SearchFolder extends React.Component {
             <div className="input-group-prepend">
               <button className="btn btn-outline-secondary" type="button" onClick={this.props.handleInput} >Browse</button>
             </div>
-            <input type="text" value={this.props.filePath} className="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" readOnly></input>
+            <input type="text" value={this.props.filePath} className="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1"></input>
           </div>
+          <button className="btn btn-outline-secondary" type="button" onClick={this.props.saveState} >Save State</button>
+          <button className="btn btn-outline-secondary" type="button" onClick={this.props.loadState} >Load State</button>
         </div>
       </form>
     );

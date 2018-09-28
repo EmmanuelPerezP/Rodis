@@ -15,6 +15,8 @@ class App extends Component {
   //   // this.materias = [];
   //   // this.state = {datos:{}, "schedule":[]};
   // }
+  componentDidMount() {
+  }
 
   render() {
     return (
