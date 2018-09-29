@@ -52,7 +52,7 @@ export default function sketch (p) {
         Player.getAnalyser().getByteFrequencyData(frequencyData);
         let spectrum = frequencyData;
         p.noStroke();
-        p.colorMode(p.HSB, numBars);
+        p.colorMode(p.HSB, 100);
 
         let rowColumnNumber = Math.sqrt(numBars);
         let columnCounter = 0;
@@ -65,14 +65,15 @@ export default function sketch (p) {
             rowCounter += 1;
           }
           columnCounter += 1;
-          let x = p.map(columnCounter, 0, rowColumnNumber, 0, window.innerWidth) - 20;
-          let y = p.map(rowCounter, 0, rowColumnNumber, 0, window.innerHeight);
-          let wh = p.map(spectrum[i], 0, 255, 0, 300);
+          let x = p.map(columnCounter, 0, rowColumnNumber, 0, window.innerWidth) - 35;
+          let y = p.map(rowCounter, 0, rowColumnNumber, 0, window.innerHeight) + 100;
+          let wh = p.map(spectrum[i], 0, 255, 50, 400);
 
 
-          let color1 = p.map(i, 0, numBars, 0, 255);
+          // let color1 = p.map(i, 0, numBars, 0, 255, true);
+          let color1 = p.map(i, 0, numBars, 50, 100, true);
           // let color2 = p.map(i, numBars, 0, 0, 255);
-          p.fill(color1, color1, 255);
+          p.fill(color1, 50, 100);
           p.ellipse(x, y, wh);
 
         }
