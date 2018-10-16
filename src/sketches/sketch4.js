@@ -8,19 +8,20 @@ export default function sketch (p) {
 
     var mySound;
     var currentFilePath = '';
-    var numBars = 256;
+    var numBars = 32;
     var song;
     var fft;
     // var frequencyData;
     var frequencyData = new Uint8Array(Player.getAnalyser().frequencyBinCount);
-    var ps = null;
+    var fireArray = [];
 
-    p.preload = function () {
-    }
+    // p.preload = function () {
+    // }
     
     // ----------------------------------------------------------------------------------------------
     p.setup = function () {
       p.pixelDensity(1);
+      p.colorMode(p.RGB, 100);
       p.frameRate(50);
       // p.createCanvas(window.innerWidth, window.innerHeight, p.WEBGL); // webgl
       p.createCanvas(window.innerWidth, window.innerHeight);
@@ -28,8 +29,12 @@ export default function sketch (p) {
       p.background('#ffffff');
       console.log("sketch re-render");
 
-      ps = new ParticleSystem(0,p.width / 2, p.height /2);
 
+      for(let i = 0; i < numBars; i++) {
+        var x = p.map(i, 0, numBars, 0, p.displayWidth);
+        var ps = new ParticleSystem(0, x, p.height);
+        fireArray.push(ps);
+      }
       
     };
     // ----------------------------------------------------------------------------------------------
@@ -42,7 +47,7 @@ export default function sketch (p) {
 
     p.windowResized = function () {
       p.resizeCanvas(window.innerWidth, window.innerHeight);
-    }
+    };
   
     // ----------------------------------------------------------------------------------------------
 
@@ -57,7 +62,8 @@ export default function sketch (p) {
     
         this.vel = p.createVector(vx,vy);
         this.acc = p.createVector(0,-3);
-        this.lifespan = 100.0;
+        this.lifespan = 200.0;
+        this.lifespanMax = this.lifespan;
 
       }
 
@@ -65,9 +71,8 @@ export default function sketch (p) {
         //Set the file colour to an RGBA value where it starts off red-orange, but progressively
         //gets more grey and transparent the longer the particle has been alive for
 
-        p.colorMode(p.RGB, 100);
 
-        let lifespan = p.map(this.lifespan, 0, 100, 0, 100);
+        let lifespan = p.map(this.lifespan, 0, this.lifespanMax, 0, 85);
 
         let red = 100;
         let green = lifespan; 
@@ -93,6 +98,10 @@ export default function sketch (p) {
 
       applyForce(f){
         this.acc.add(f);
+      }
+
+      addVel(f){
+        this.vel.add(f.copy());
       }
 
       isDead(){
@@ -156,6 +165,13 @@ export default function sketch (p) {
       }
     }
 
+    addVel(dir){
+      var len = this.particles.length;
+      for(var i = 0; i < len; ++i){
+          this.particles[i].addVel(dir);
+      }
+    }
+
 
     addParticle(){
       this.particles.push(new Particle(this.origin.x, this.origin.y));
@@ -169,53 +185,23 @@ export default function sketch (p) {
     p.draw = function () {
       p.background('#ffffff');
 
+      if(typeof frequencyData != "undefined") {
+        Player.getAnalyser().getByteFrequencyData(frequencyData);
+        let spectrum = frequencyData;
 
-      // let ps = new ParticleSystem(0, p.mouseX, p.mouseY);
-
-      // ps = new ParticleSystem(0,p.width / 2, p.height - 60);
-
-      ps.run();
-      for (var i = 0; i < 5; i++) {
-          ps.addParticle();
+        for(let i = 0; i < numBars; i++) {
+          fireArray[i].run();
+          fireArray[i].addParticle();
+          let wh = p.map(spectrum[i], 0, 255, 0, -0.1);
+          fireArray[i].addVel(p.createVector(0,wh));
+          // for (let p = 0; p < wh; p++) {
+          //     fireArray[i].addParticle();
+          // }
+        }
       }
 
 
-      
-      // col2 += 1;
-      // if(typeof frequencyData != "undefined") {
-      //   Player.getAnalyser().getByteFrequencyData(frequencyData);
-      //   let spectrum = frequencyData;
-      //   p.noStroke();
-      //   p.colorMode(p.HSB, 100);
 
-      //   let rowColumnNumber = Math.sqrt(numBars);
-      //   let columnCounter = 0;
-      //   let rowCounter = 0;
-
-      //   for(let i = 0; i < numBars; i++) {
-
-      //     if(columnCounter >= rowColumnNumber){
-      //       columnCounter = 0;
-      //       rowCounter += 1;
-      //     }
-      //     columnCounter += 1;
-      //     let x = p.map(columnCounter, 0, rowColumnNumber, 0, window.innerWidth) - 35;
-      //     let y = p.map(rowCounter, 0, rowColumnNumber, 0, window.innerHeight) + 100;
-      //     let wh = p.map(spectrum[i], 0, 255, 50, 400);
-
-
-      //     // let color1 = p.map(i, 0, numBars, 0, 255, true);
-      //     let color1 = p.map(i, 0, numBars, 50, 100, true);
-      //     // let color2 = p.map(i, numBars, 0, 0, 255);
-      //     p.fill(color1, 50, 100);
-      //     p.ellipse(x, y, wh);
-
-      //   }
-      // }
-      // if (col2 >= 255){
-      //   col2 = 0;
-      // }
-    // draw
     };
 
 
