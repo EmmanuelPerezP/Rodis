@@ -8,7 +8,7 @@ export default function sketch (p) {
 
     var mySound;
     var currentFilePath = '';
-    var numBars = 16;
+    var numBars = 32;
     var song;
     var fft;
     // var frequencyData;
@@ -64,6 +64,7 @@ export default function sketch (p) {
         this.acc = p.createVector(0,-3);
         this.lifespan = 200.0;
         this.lifespanMax = this.lifespan;
+        this.size = 30;
 
       }
 
@@ -81,7 +82,7 @@ export default function sketch (p) {
 
         p.noStroke();
         p.fill(fillStyle);
-        p.ellipse(this.loc.x, this.loc.y, 30);
+        p.ellipse(this.loc.x, this.loc.y, this.size);
       }
 
       run() {
@@ -102,6 +103,10 @@ export default function sketch (p) {
 
       addVel(f){
         this.vel.add(f.copy());
+      }
+
+      changeSize(f){
+        this.size = f;
       }
 
       isDead(){
@@ -172,6 +177,13 @@ export default function sketch (p) {
       }
     }
 
+    changeSize(dir){
+      var len = this.particles.length;
+      for(var i = 0; i < len; ++i){
+          this.particles[i].changeSize(dir);
+      }
+    }
+
 
     addParticle(){
       this.particles.push(new Particle(this.origin.x, this.origin.y));
@@ -192,8 +204,10 @@ export default function sketch (p) {
         for(let i = 0; i < numBars; i++) {
           fireArray[i].run();
           fireArray[i].addParticle();
-          let wh = p.map(spectrum[i], 0, 255, 0, -0.1);
-          fireArray[i].addVel(p.createVector(0,wh));
+          // let wh = p.map(spectrum[i], 0, 255, 0, -0.1);
+          let wh = p.map(spectrum[i], 100, 255, 0, 30);
+          fireArray[i].changeSize(wh);
+          // fireArray[i].addVel(p.createVector(0,wh));
           // for (let p = 0; p < wh; p++) {
           //     fireArray[i].addParticle();
           // }
