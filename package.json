@@ -23,7 +23,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "electron": "electron ."
+    "electron": "electron .",
+    "dev":"npm run start & npm run electron"
   },
   "devDependencies": {
     "electron": "^1.8.4",

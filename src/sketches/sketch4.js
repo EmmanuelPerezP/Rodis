@@ -8,7 +8,7 @@ export default function sketch (p) {
 
     var mySound;
     var currentFilePath = '';
-    var numBars = 32;
+    var numBars = 16;
     var song;
     var fft;
     // var frequencyData;
@@ -77,7 +77,7 @@ export default function sketch (p) {
         let red = 100;
         let green = lifespan; 
         let blue = 0; 
-        let fillStyle = p.color(red,green,blue,lifespan*0.6);
+        let fillStyle = p.color(red,green,blue,lifespan);
 
         p.noStroke();
         p.fill(fillStyle);
