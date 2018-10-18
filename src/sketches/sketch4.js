@@ -8,7 +8,7 @@ export default function sketch (p) {
 
     var mySound;
     var currentFilePath = '';
-    var numBars = 32;
+    var numBars = 16;
     var song;
     var fft;
     // var frequencyData;
@@ -205,7 +205,7 @@ export default function sketch (p) {
           fireArray[i].run();
           fireArray[i].addParticle();
           // let wh = p.map(spectrum[i], 0, 255, 0, -0.1);
-          let wh = p.map(spectrum[i], 100, 255, 0, 30);
+          let wh = p.map(spectrum[i], 100, 255, 0, 50);
           fireArray[i].changeSize(wh);
           // fireArray[i].addVel(p.createVector(0,wh));
           // for (let p = 0; p < wh; p++) {

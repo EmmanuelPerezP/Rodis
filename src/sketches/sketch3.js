@@ -74,6 +74,9 @@ export default function sketch (p) {
           let color1 = p.map(i, 0, numBars, 50, 100, true);
           // let color2 = p.map(i, numBars, 0, 0, 255);
           p.fill(color1, 50, 100);
+          if(wh == 50){
+            p.ellipse(x, y, 100);
+          }
           p.ellipse(x, y, wh);
 
         }
