@@ -105,6 +105,10 @@ class audioPlayer {
 
     return this.durationThresholdReached;
   }
+
+  changeFftSize(size){
+    this.analyserPlayer.fftSize = size;
+  }
 }
 
 export default new audioPlayer({

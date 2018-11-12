@@ -2,6 +2,7 @@ import "p5/lib/addons/p5.sound";
 import p5 from "p5";
 import store from '../store/store';
 import { playerNext } from '../actions/actions';
+import Player from '../lib/player';
 
 
 export default function sketch (p) {
@@ -11,6 +12,9 @@ export default function sketch (p) {
     var numBars = 256;
     var song;
     var fft;
+    // var frequencyData;
+    var frequencyData = new Uint8Array(Player.getAnalyser().frequencyBinCount);
+
 
 
     p.preload = function () {
@@ -28,39 +32,7 @@ export default function sketch (p) {
   
     // this function doesnt re-renders the canvas or p5 logic
     p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
-      console.log("file path is the same?: ");
-      console.log(currentFilePath == props.audioFilePath);
-      if (currentFilePath !== props.audioFilePath) {
-        // if mySound is not yet defined (like no song loaded) dont do anything, else stop song
-        ((typeof mySound !== "undefined") ? mySound.stop() : true );
-        mySound = p.loadSound(props.audioFilePath, () => {
-          mySound.onended(() => {
-            // method pass down by visualizer_player.container.jsx
-            console.log("play next song");
-            // props.playNextSong();
-            // store.dispatch(playerNext());
-            console.log("songEnded");
-          });
-          currentFilePath = props.audioFilePath;
-          if (props.playerStatus == 'play' && typeof mySound != "undefined" && mySound.isLoaded() && !mySound.isPlaying()){
-            mySound.play()
-            fft = new p5.FFT();
-            fft.waveform(numBars);
-            fft.smooth(0.85);
-          }
-          else if (props.playerStatus == 'pause' && typeof mySound != "undefined" && mySound.isLoaded() && !mySound.isPlaying()){
-            mySound.pause();
-          }
-        });
-
-      }
-      else {
-        if (props.playerStatus == 'play' && typeof mySound != "undefined" && mySound.isLoaded()){
-          mySound.play()
-        }
-        else if (props.playerStatus == 'pause' && typeof mySound != "undefined" && mySound.isLoaded()){
-          mySound.pause();
-        }
+      if(props.playerStatus == "play"){
       }
     };
 
@@ -69,23 +41,30 @@ export default function sketch (p) {
     }
   
     // ----------------------------------------------------------------------------------------------
+    let col2 = 0;
     p.draw = function () {
       p.background('#ffffff');
 
-      if(typeof mySound != "undefined" && mySound.isLoaded() && !mySound.isPlaying()) { 
-        fft = new p5.FFT();
-        fft.waveform(numBars);
-        fft.smooth(0.85);
-      }
-      if(typeof fft != "undefined") {
-        var spectrum = fft.analyze();
+      
+      col2 += 1;
+      if(typeof frequencyData != "undefined") {
+        Player.getAnalyser().getByteFrequencyData(frequencyData);
+        var spectrum = frequencyData;
         p.noStroke();
-        p.fill("rgb(0, 0, 0)");
+        p.colorMode(p.HSB, numBars);
+
         for(var i = 0; i < numBars; i++) {
-          var x = p.map(i, 0, numBars, 0, p.displayWidth*3);
+
+          let color1 = p.map(i, 0, numBars, 0, 255);
+          // let color2 = p.map(i, numBars, 0, 0, 255);
+          p.fill(color1, 255, 255);
+          var x = p.map(i, 0, numBars, 0, p.displayWidth);
           var h = -p.height + p.map(spectrum[i], 0, 255, p.height, 0);
-          p.rect(x, p.height, p.width / (numBars/4), h);
+          p.rect(x, p.height, 10, h);
         }
+      }
+      if (col2 >= 255){
+        col2 = 0;
       }
     };
   };
