@@ -286,7 +286,10 @@ export default function sketch (p) {
 
 
 
-
+    p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
+      if(props.playerStatus == "play"){
+      }
+    };
 
 
     // ----------------------------------------------------------------------------------------------
@@ -323,24 +326,28 @@ export default function sketch (p) {
       frequencyData = new Uint8Array(Player.getAnalyser().frequencyBinCount);
 
 
-      for(let i = 2; i < 6; i++){
-        let tree1 = new Tree(0, 100, p.displayWidth/4, (p.height/5)*i);
+      for(let i = 1; i < 5; i++){
+        let tree1 = new Tree(0, 100, window.innerWidth/5 * 2, (window.innerHeight/4)*i);
         forest.push(tree1);
       }
-      for(let i = 2; i < 6; i++){
-        let tree1 = new Tree(0, 100, (p.displayWidth/4)*2, (p.height/5)*i);
+      for(let i = 1; i < 5; i++){
+        let tree1 = new Tree(0, 100, (window.innerWidth/5)*3, (window.innerHeight/4)*i);
+        forest.push(tree1);
+      }
+      for(let i = 1; i < 5; i++){
+        let tree1 = new Tree(0, 100, (window.innerWidth/5)*4, (window.innerHeight/4)*i);
         forest.push(tree1);
       }
 
 
       var x = p.map(0, 0, 3, 0, p.displayWidth);
-      var ps = new ParticleSystem(0, x, p.height);
+      var ps = new ParticleSystem(0, window.innerWidth, p.displayHeight/2);
       fireArray.push(ps);
       var x = p.map(1, 0, 3, 0, p.displayWidth);
-      var ps = new ParticleSystem(0, x, p.height/2);
+      var ps = new ParticleSystem(0, window.innerWidth/2, p.displayHeight/2);
       fireArray.push(ps);
       var x = p.map(2, 0, 3, 0, p.displayWidth);
-      var ps = new ParticleSystem(0, x, p.height);
+      var ps = new ParticleSystem(0, 0, p.displayHeight/2);
       fireArray.push(ps);
 
     };
@@ -358,6 +365,7 @@ export default function sketch (p) {
         // var j = p.map(spectrum[2], 0, 255, 2, 3);
 
 
+        // tree render
         let spectrumIndex = 7;
         for(let i = 0; i < forest.length; i++){
           let h = p.map(spectrum[spectrumIndex], 0, 255, 0, 9);
@@ -366,6 +374,9 @@ export default function sketch (p) {
           spectrumIndex += 5;
           p.strokeWeight(3);
         }
+
+
+        // Fire render
         spectrumIndex = 7;
         for(let i = 0; i < fireArray.length; i++) {
           fireArray[i].run();
