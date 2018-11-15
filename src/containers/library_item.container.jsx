@@ -22,7 +22,7 @@ class LibraryItemContainer extends React.Component {
 
   handleAddToPlaylist(e){
     const { dispatch } = this.props;
-    console.log(this.props.data);
+    // console.log(this.props.data);
     dispatch(addToPlayList(this.props.data));
   }
 
@@ -32,8 +32,8 @@ class LibraryItemContainer extends React.Component {
     const { dispatch } = this.props
 
 
-    console.log("change folder: " + this.props.data.path);
-    console.log(this.props.data);
+    // console.log("change folder: " + this.props.data.path);
+    // console.log(this.props.data);
 
     var result = this.props.data.path;
 

@@ -17,6 +17,7 @@ class VisualizerPlayerContainer extends React.Component {
   shouldComponentUpdate(nextProps) {
     var differentPath = false;
     var differentPlayerStates = false;
+    var differentSketches = false;
     // if a track is loaded
     if (typeof this.props.playlist[this.props.playlistCursor] != "undefined"){
       if(nextProps.playerStatus === 'play' || nextProps.playerStatus === 'pause') {
@@ -24,11 +25,14 @@ class VisualizerPlayerContainer extends React.Component {
         differentPlayerStates = this.props.playerStatus !== nextProps.playerStatus;
       }
       if(differentPath || differentPlayerStates){
-        console.log("component should update");
+        // console.log("component should update");
       }
     }
+    if (this.props.sketch != nextProps.sketch){
+      differentSketches = true;
+    }
     
-    return differentPath || differentPlayerStates;
+    return differentPath || differentPlayerStates || differentSketches;
   }
 
   // we pass this function via props to the sketch to execute when song ends
@@ -39,16 +43,16 @@ class VisualizerPlayerContainer extends React.Component {
   render() {
 
     // this.props.library is the songs in the library
-    console.log("render visualizer");
+    // console.log("render visualizer");
     var filePath = '';
     if(this.props.playerStatus == 'play' || this.props.playerStatus == 'pause') {
-      console.log(this.props.playlistCursor);
+      // console.log(this.props.playlistCursor);
       var currentSongPath = this.props.playlist[this.props.playlistCursor].path;
       var filePath = 'file://' + currentSongPath;
     }
 
     return (
-      <VisualizerPlayer playNextSong={this.playNextSong} audioFilePath={filePath} playerStatus={this.props.playerStatus} />
+      <VisualizerPlayer sketch={this.props.sketch} playNextSong={this.playNextSong} audioFilePath={filePath} playerStatus={this.props.playerStatus} />
     );
   }
 }
@@ -58,6 +62,7 @@ function mapStateToProps(state, ownProps) {
     "playerStatus": state.player.playerStatus,
     "playlist": state.player.playlist,
     "playlistCursor": state.player.playlistCursor,
+    "sketch": state.player.sketch,
     ...ownProps,
   }
 }

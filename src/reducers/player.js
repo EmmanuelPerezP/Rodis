@@ -22,8 +22,10 @@ const initialState = {
   currentSong: '',
   uiState: {
     showSidenav: false,
+    showSidenavRight: false,
     showAlbumArt: true,
-  }
+  },
+  sketch: 1
 };
 
 
@@ -32,6 +34,13 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+
+    case(types.SWITCH_SKETCH): {
+      return {
+        ...state,
+        sketch: action.payload
+      }
+    }
 
     case(types.LOAD_STATE): {
       let newState = storeEl.get('state');
@@ -64,6 +73,16 @@ export default (state = initialState, action) => {
         uiState: {
           ...state.uiState,
           showSidenav: !state.uiState.showSidenav,
+        }
+      }
+    }
+
+    case(types.APP_PLAYLIST_TOGGLE_SIDENAV_RIGHT): {
+      return {
+        ...state,
+        uiState: {
+          ...state.uiState,
+          showSidenavRight: !state.uiState.showSidenavRight,
         }
       }
     }

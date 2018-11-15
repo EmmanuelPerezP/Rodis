@@ -53,6 +53,10 @@ export function toggleSidenav(){
     return { type: types.APP_PLAYLIST_TOGGLE_SIDENAV };
 }
 
+export function toggleSidenavRight(){
+    return { type: types.APP_PLAYLIST_TOGGLE_SIDENAV_RIGHT };
+}
+
 export function toggleAlbumArt() {
     return { type: types.APP_PLAYLIST_TOGGLE_ALBUMART };
 }
@@ -63,4 +67,8 @@ export function saveState() {
 
 export function loadState() {
     return { type: types.LOAD_STATE };
+}
+
+export function switchSketch(sketchNumber) {
+    return { type: types.SWITCH_SKETCH , payload: sketchNumber};
 }

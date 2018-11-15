@@ -7,6 +7,7 @@ import PlaybarContainer from '../containers/playbar.container';
 import VisualizerPlayerContainer from '../containers/visualizer_player.container';
 import PlayerContainer from '../containers/player.container';
 import SidenavContainer from '../containers/sidenav.container'
+import SidenavRightContainer from '../containers/sidenav_right.container'
 
 class App extends Component {
   // constructor(props){
@@ -23,6 +24,7 @@ class App extends Component {
       <div>
         <Navbar />
         <div className="container-fluid pl-0">
+          <SidenavRightContainer />
           <div className="main">
             <Content />
           </div>

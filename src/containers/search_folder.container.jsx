@@ -30,13 +30,13 @@ const util = window.require('util');
 
   loadState(e){
     const { dispatch } = this.props
-    console.log("load");
+    // console.log("load");
     dispatch(loadState());
   }
 
   saveState(e){
     const { dispatch } = this.props
-    console.log("save");
+    // console.log("save");
     dispatch(saveState());
   }
   

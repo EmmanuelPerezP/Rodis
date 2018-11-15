@@ -74,6 +74,11 @@ export default class Playbar extends React.Component {
             </div>
             
           </div>
+          <dir className="col-1">
+            <div className="playlist-button" onClick={this.props.closeSidenavRight}> 
+              <i className="fas fa-ellipsis-h"></i>
+            </div>
+          </dir>
         </div>
 
       </footer>

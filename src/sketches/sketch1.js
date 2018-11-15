@@ -27,6 +27,8 @@ export default function sketch (p) {
       p.createCanvas(window.innerWidth, window.innerHeight);
       p.background('#ffffff');
       console.log("sketch re-render");
+      p.colorMode(p.HSB, 100);
+
     };
     // ----------------------------------------------------------------------------------------------
   
@@ -51,11 +53,10 @@ export default function sketch (p) {
         Player.getAnalyser().getByteFrequencyData(frequencyData);
         var spectrum = frequencyData;
         p.noStroke();
-        p.colorMode(p.HSB, numBars);
 
         for(var i = 0; i < numBars; i++) {
 
-          let color1 = p.map(i, 0, numBars, 0, 255);
+          let color1 = p.map(i, 0, numBars, 0, 50);
           // let color2 = p.map(i, numBars, 0, 0, 255);
           p.fill(color1, 255, 255);
           var x = p.map(i, 0, numBars, 0, p.displayWidth);

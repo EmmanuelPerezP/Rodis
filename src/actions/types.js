@@ -24,8 +24,12 @@ export default keymirror({
   APP_LIBRARY_ADD_CURRENT: null,
   APP_LIBRARY_ADD_STACK: null,
   APP_PLAYLIST_TOGGLE_SIDENAV: null,
+  APP_PLAYLIST_TOGGLE_SIDENAV_RIGHT: null,
   APP_PLAYLIST_TOGGLE_ALBUMART: null,
 
   SAVE_STATE: null,
   LOAD_STATE: null,
+
+  SWITCH_SKETCH: null,
+
 });

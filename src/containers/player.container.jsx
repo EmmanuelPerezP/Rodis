@@ -28,7 +28,7 @@ class PlayerContainer extends React.Component {
       // if we press play before loading the song to playlist the song doesnt plays (thats why the === stop condition is there)
       // if there is no stop then it doesnt reloads
       if(this.props.playlistCursor !== prevProps.playlistCursor || this.props.playerStatus == "stop") {
-        console.log("audio set");
+        // console.log("audio set");
         Player.setAudioSrc("file://"+this.props.playlist[this.props.playlistCursor].path);
       }
     }
@@ -38,7 +38,7 @@ class PlayerContainer extends React.Component {
       }
       else if(this.props.playerStatus == "play"){
         Player.audio.play();
-        console.log("play");
+        // console.log("play");
       }
     }
   }

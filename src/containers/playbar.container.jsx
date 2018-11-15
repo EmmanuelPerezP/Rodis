@@ -5,7 +5,7 @@ import { loadState, saveState} from '../actions/actions';
 // redux
 import { connect } from 'react-redux'
 // redux actions
-import { playerPause, playerNext, playerPrevious, playerPlay, toggleSidenav } from '../actions/actions';
+import { playerPause, playerNext, playerPrevious, playerPlay, toggleSidenav, toggleSidenavRight } from '../actions/actions';
 
 // components
 import Playbar from '../components/playbar';
@@ -22,6 +22,7 @@ class PlaybarContainer extends React.Component {
     this.handleNext = this.handleNext.bind(this);
     this.handlePrevious = this.handlePrevious.bind(this);
     this.closeSidenav = this.closeSidenav.bind(this);
+    this.closeSidenavRight = this.closeSidenavRight.bind(this);
     this.tick = this.tick.bind(this);
     this.handleJumpTo = this.handleJumpTo.bind(this);
 
@@ -117,6 +118,10 @@ class PlaybarContainer extends React.Component {
   closeSidenav(e){
     this.props.dispatch(toggleSidenav());
   }
+  
+  closeSidenavRight(e){
+    this.props.dispatch(toggleSidenavRight());
+  }
 
   render() {
     var currentSong;
@@ -137,6 +142,7 @@ class PlaybarContainer extends React.Component {
         handlePlay={this.handlePlay} 
         currentSong={currentSong}
         closeSidenav={this.closeSidenav}
+        closeSidenavRight={this.closeSidenavRight}
         elapsedPercent={elapsedPercent}
 
         // https://reactjs.org/docs/refs-and-the-dom.html#callback-refs
