@@ -3,10 +3,10 @@ import React from 'react';
 // redux
 import { connect } from 'react-redux'
 // redux actions
-import { addToPlayList, addToLibrary } from '../actions/actions';
+import { addToPlayList, addToLibrary } from '../../actions/actions';
 
 // components
-import MainView from '../components/main_view';
+import MainView from './main_view';
 
 
 class MainViewContainer extends React.Component {

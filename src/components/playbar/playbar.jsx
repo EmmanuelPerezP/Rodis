@@ -18,11 +18,12 @@ export default class Playbar extends React.Component {
         </div>
     }
     else if (playerState.playerStatus == "pause" || true){
-      pausePlay = <div className="col">
-                    <a onClick={this.props.handlePlay} >
-                      <i className="fas fa-play" />
-                    </a>
-                  </div>
+      pausePlay = 
+        <div className="col">
+          <a onClick={this.props.handlePlay} >
+            <i className="fas fa-play" />
+          </a>
+        </div>
 
     }
     var timeString = "00:00";
@@ -37,8 +38,6 @@ export default class Playbar extends React.Component {
     }
     return (
       <footer className="footer">
-        
-
         <div className="progress" onMouseDown={this.props.handleJumpTo}>
           <div className="progress-bar" role="progressbar" ref={this.props.progressBarRef} style={{ width: this.props.elapsedPercent.toString() + "%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
@@ -54,26 +53,21 @@ export default class Playbar extends React.Component {
           </div>
 
           <div className="col-4 mx-auto">
-
             <div className="row controls">
-
               <div className="col">
                 <a onClick={this.props.handlePrevious} >
                   <i className="fas fa-step-backward" />
                 </a>
               </div>
-              
               {pausePlay}
-              
               <div className="col">
                 <a onClick={this.props.handleNext} >
                   <i className="fas fa-step-forward" />
                 </a>
               </div>
-
             </div>
-            
           </div>
+
           <dir className="col-1">
             <div className="playlist-button" onClick={this.props.closeSidenavRight}> 
               <i className="fas fa-ellipsis-h"></i>

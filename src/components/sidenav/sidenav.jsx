@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LibraryItemContainer from '../containers/library_item.container'
+import LibraryItemContainer from '../library_item/library_item.container'
 
 
 export default class Sidenav extends React.Component {

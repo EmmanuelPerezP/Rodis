@@ -1,9 +1,9 @@
 import React from 'react';
 
 // containers
-import LibraryItemContainer from '../containers/library_item.container';
-import SearchFolderContainer from '../containers/search_folder.container';
-import BreadcrumItemContainer from '../containers/breadcrum_item.container';
+import LibraryItemContainer from '../library_item/library_item.container';
+import SearchFolderContainer from '../search_folder/search_folder.container';
+import BreadcrumItemContainer from '../breadcrum_item/breadcrum_item.container';
 
 export default class LibraryView extends React.Component {
   constructor(props) {

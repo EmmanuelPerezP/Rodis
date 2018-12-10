@@ -3,10 +3,10 @@ import React from 'react';
 // redux
 import { connect } from 'react-redux'
 // redux actions
-import { addToPlayList, addToLibrary, addToCurrentLibrary, changeDirectoryLibraryDown, addToLibraryNavbar} from '../actions/actions';
+import { addToPlayList, addToLibrary, addToCurrentLibrary, changeDirectoryLibraryDown, addToLibraryNavbar} from '../../actions/actions';
 
 // components
-import LibraryItem from '../components/library_item';
+import LibraryItem from './library_item';
 
 // 
 const fs = window.require('fs');
@@ -31,14 +31,10 @@ class LibraryItemContainer extends React.Component {
     // make dispatch avaliable
     const { dispatch } = this.props
 
-
     // console.log("change folder: " + this.props.data.path);
     // console.log(this.props.data);
-
     var result = this.props.data.path;
-
     dispatch(changeDirectoryLibraryDown(this.props.data.fileName));
-
     fs.readdir(result, function(err, files) {
       var albumArtPath = null;
       // iterates over the files in the folder
@@ -66,27 +62,25 @@ class LibraryItemContainer extends React.Component {
         }
         // if the file is an mp3 add to library
         if(fileInFolder.endsWith(".mp3")){
-
           // check if file exists
           // fs.access(result+"/"+fileInFolder, fs.constants.F_OK, (err) => {
           //   console.log(`${result+"/"+fileInFolder} ${err ? 'does not exist' : 'exists'}`);
           // });
-
           mm.parseFile(result+"/"+fileInFolder, {native: true, duration: true})
-            .then(function (metadata) {
-              // console.log(util.inspect(metadata, { showHidden: false, depth: null }));
-              let path = result+"/"+fileInFolder;
-              dispatch(addToCurrentLibrary({
-                "path": path, 
-                "fileName": fileInFolder,
-                "metadata": metadata, 
-                "albumArtPath":albumArtPath,
-                "type":"mp3",
-              }));
-            })
-            .catch(function (err) {
-              console.error(err.message);
-            });
+          .then(function (metadata) {
+            // console.log(util.inspect(metadata, { showHidden: false, depth: null }));
+            let path = result+"/"+fileInFolder;
+            dispatch(addToCurrentLibrary({
+              "path": path, 
+              "fileName": fileInFolder,
+              "metadata": metadata, 
+              "albumArtPath":albumArtPath,
+              "type":"mp3",
+            }));
+          })
+          .catch(function (err) {
+            console.error(err.message);
+          });
         }
       }
       

@@ -4,7 +4,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 // components
-import LibraryView from '../components/library_view';
+import LibraryView from './library_view/library_view';
 import Player from '../lib/player';
 import { playerNext } from '../actions/actions';
 // import { connect } from 'tls';
@@ -44,17 +44,9 @@ class PlayerContainer extends React.Component {
   }
 
   componentDidMount(){
-
-    // if(typeof mySound != "undefined" && mySound.isLoaded() && !mySound.isPlaying()) { 
-      // var currentSongPath = this.props.playlist[this.props.playlistCursor].path;
-      // audioPlayer.setAudioSrc("file://"+currentSongPath);
-    // }
-    // console.log("clicked play");
-    // audioPlayer.play();
   }
     
   render() {
-    // this.props.library is the songs in the library
     return (
       null
     );

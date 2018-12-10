@@ -4,7 +4,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 // components
-import LibraryView from '../components/library_view';
+import LibraryView from './library_view';
 // import { connect } from 'tls';
 
 class LibraryViewContainer extends React.Component {

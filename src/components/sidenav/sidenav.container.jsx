@@ -4,9 +4,9 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 // components
-import Sidenav from '../components/sidenav';
+import Sidenav from './sidenav';
 // import action creators
-import { toggleAlbumArt, toggleSidenav } from '../actions/actions';
+import { toggleAlbumArt, toggleSidenav } from '../../actions/actions';
 
 class SidenavContainer extends React.Component {
   constructor(props) {

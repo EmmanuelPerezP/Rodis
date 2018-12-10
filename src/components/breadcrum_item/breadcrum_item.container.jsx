@@ -4,8 +4,8 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 // components
-import BreadcrumItem from '../components/breadcrum_item';
-import {changeDirectoryLibraryUp} from '../actions/actions'
+import BreadcrumItem from './breadcrum_item';
+import {changeDirectoryLibraryUp} from '../../actions/actions'
 // import { connect } from 'tls';
 
 class BreadcrumItemContainer extends React.Component {

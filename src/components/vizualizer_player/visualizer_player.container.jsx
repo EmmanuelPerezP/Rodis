@@ -4,9 +4,9 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 // components
-import VisualizerPlayer from '../components/visualizer_player';
+import VisualizerPlayer from './visualizer_player';
 // import { connect } from 'tls';
-import { playerNext } from '../actions/actions';
+import { playerNext } from '../../actions/actions';
 
 class VisualizerPlayerContainer extends React.Component {
   constructor(props) {

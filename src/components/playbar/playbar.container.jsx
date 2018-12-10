@@ -1,17 +1,17 @@
 import React from 'react';
-import audioPlayer from '../lib/player';
-import { loadState, saveState} from '../actions/actions';
+import audioPlayer from '../../lib/player';
+import { loadState, saveState} from '../../actions/actions';
 
 // redux
 import { connect } from 'react-redux'
 // redux actions
-import { playerPause, playerNext, playerPrevious, playerPlay, toggleSidenav, toggleSidenavRight } from '../actions/actions';
+import { playerPause, playerNext, playerPrevious, playerPlay, toggleSidenav, toggleSidenavRight } from '../../actions/actions';
 
 // components
-import Playbar from '../components/playbar';
+import Playbar from './playbar';
 
 // lib
-import Player from '../lib/player';
+import Player from '../../lib/player';
 
 
 class PlaybarContainer extends React.Component {

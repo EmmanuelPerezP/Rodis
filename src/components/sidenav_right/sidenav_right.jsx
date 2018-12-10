@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LibraryItemContainer from '../containers/library_item.container'
+import LibraryItemContainer from '../library_item/library_item.container'
 
 
 export default class Sidenav extends React.Component {
@@ -19,7 +19,7 @@ export default class Sidenav extends React.Component {
         <div id="mySidenav" className="sidenav-right" style={style}>
           <div className="row justify-content-center mx-auto">
             <div className="col-12">
-            <div class="btn-group-vertical btn-group-lg">
+            <div className="btn-group-vertical btn-group-lg">
 
                 <button type="button" className="btn btn-secondary btn-outline-dark" onClick={this.props.sketch1}>Sketch 1</button>
                 <button type="button" className="btn btn-secondary btn-outline-dark" onClick={this.props.sketch2}>Sketch 2</button>

@@ -1,10 +1,10 @@
 import React from 'react';
-import P5Wrapper from './P5Wrapper';
-import Sketch1 from '../sketches/sketch1';
-import Sketch2 from '../sketches/sketch2';
-import Sketch3 from '../sketches/sketch3';
-import Sketch4 from '../sketches/sketch4';
-import Sketch5 from '../sketches/sketch5';
+import P5Wrapper from '../P5Wrapper';
+import Sketch1 from '../../sketches/sketch1';
+import Sketch2 from '../../sketches/sketch2';
+import Sketch3 from '../../sketches/sketch3';
+import Sketch4 from '../../sketches/sketch4';
+import Sketch5 from '../../sketches/sketch5';
 
 export default class VisualizerPlayer extends React.Component {
   constructor(props) {
