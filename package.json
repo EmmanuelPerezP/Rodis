@@ -6,6 +6,7 @@
   "dependencies": {
     "electron-context-menu": "^0.9.1",
     "electron-store": "^2.0.0",
+    "graceful-fs": "^4.1.15",
     "key-mirror": "^1.0.1",
     "keymirror": "^0.1.1",
     "music-metadata": "^2.2.0",
@@ -24,16 +25,16 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "electron": "electron .",
-    "dev":"npm run start & npm run electron"
+    "dev": "npm run start & npm run electron"
   },
   "devDependencies": {
     "electron": "^1.8.4",
     "electron-react-devtools": "^0.5.3",
     "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^17.0.0",
-    "eslint-plugin-import": "^2.12.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.9.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
     "redux-devtools": "^3.4.1"
   }
 }

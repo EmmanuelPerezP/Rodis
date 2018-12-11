@@ -1,0 +1,11 @@
+{
+    "extends": "airbnb",
+    "rules": {
+        "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"]
+    },
+    "env": {
+        "browser": true,
+        "node": true,
+        "jasmine": true
+    }
+}
