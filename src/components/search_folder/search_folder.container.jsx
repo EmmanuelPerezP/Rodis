@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { addToPlayList, addToLibrary, addToLibraryStack, addToCurrentLibrary, changeDirectoryLibraryDown, loadState, saveState} from '../../actions/actions';
+import { addToPlayList, addToLibrary, addToLibraryStack, changeDirectoryLibraryDown, loadState, saveState} from '../../actions/actions';
 
 import Explorer from '../../lib/explorer';
 // components
@@ -39,7 +39,12 @@ class SearchFolderContainer extends React.Component {
     // to use redux dispatch on the later functions
     const { dispatch } = this.props;
 
-    Explorer.doEverything();
+    Explorer.doEverything()
+      .then((folderData) => {
+
+        dispatch()
+
+      });
   }
 
   render() {

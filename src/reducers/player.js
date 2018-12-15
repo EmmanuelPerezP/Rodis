@@ -35,21 +35,21 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
 
-    case(types.SWITCH_SKETCH): {
+    case (types.SWITCH_SKETCH): {
       return {
         ...state,
         sketch: action.payload
       }
     }
 
-    case(types.LOAD_STATE): {
+    case (types.LOAD_STATE): {
       let newState = storeEl.get('state');
       return {
         ...newState,
       }
     }
 
-    case(types.SAVE_STATE): {
+    case (types.SAVE_STATE): {
       storeEl.set('state', state);
       console.log(state);
       return {
@@ -57,7 +57,7 @@ export default (state = initialState, action) => {
       }
     }
 
-    case(types.APP_PLAYLIST_TOGGLE_ALBUMART): {
+    case (types.APP_PLAYLIST_TOGGLE_ALBUMART): {
       return {
         ...state,
         uiState: {
@@ -67,7 +67,7 @@ export default (state = initialState, action) => {
       }
     }
 
-    case(types.APP_PLAYLIST_TOGGLE_SIDENAV): {
+    case (types.APP_PLAYLIST_TOGGLE_SIDENAV): {
       return {
         ...state,
         uiState: {
@@ -77,7 +77,7 @@ export default (state = initialState, action) => {
       }
     }
 
-    case(types.APP_PLAYLIST_TOGGLE_SIDENAV_RIGHT): {
+    case (types.APP_PLAYLIST_TOGGLE_SIDENAV_RIGHT): {
       return {
         ...state,
         uiState: {
@@ -87,16 +87,17 @@ export default (state = initialState, action) => {
       }
     }
 
-    case(types.APP_LIBRARY_CHANGE_DIRECTORY_UP): {
+    // library ---------------------------------------------------------------------------
+    case (types.APP_LIBRARY_CHANGE_DIRECTORY_UP): {
       // we update the navbar state
-      var index = action.folderNavBarIndex;
-      var library = [...state.libraryNavbar];
-      var tempLibraryStack = [...state.libraryStack];
-      // we do -2 because the library Stack is always going to have one empty element at the beginning
-      // and the length is always +1 from the index
-      while(tempLibraryStack.length-2 > index){
-        library.splice(-1,1);
-        tempLibraryStack.splice(-1,1);
+      let index = action.folderNavBarIndex;
+      let library = [...state.libraryNavbar];
+      let tempLibraryStack = [...state.libraryStack];
+      // we do -2 because the library Stack is always going to have
+      // one empty element at the beginning and the length is always +1 from the index
+      while (tempLibraryStack.length - 2 > index) {
+        library.splice(-1, 1);
+        tempLibraryStack.splice(-1, 1);
       }
       // we update the library Stack adding an empty array for the new items of the new folder
       return {
@@ -105,8 +106,8 @@ export default (state = initialState, action) => {
         libraryStack: tempLibraryStack,
       };
     }
-  
-    case(types.APP_LIBRARY_CHANGE_DIRECTORY_DOWN): {
+
+    case (types.APP_LIBRARY_CHANGE_DIRECTORY_DOWN): {
       // we update the navbar state
       const libraryNav = [...state.libraryNavbar, action.folderName];
       // we update the library Stack adding an empty array for the new items of the new folder
@@ -117,18 +118,8 @@ export default (state = initialState, action) => {
         libraryStack: tempLibraryStack,
       };
     }
-    
-    case(types.APP_LIBRARY_ADD_CURRENT): {
-      var tempLibraryStack = [...state.libraryStack]
-      tempLibraryStack[tempLibraryStack.length-1].push(action.dataPath);
-      return {
-        ...state,
-        libraryStack: tempLibraryStack,
-      };
-    }
-    
 
-    case(types.APP_LIBRARY_ADD): {
+    case (types.APP_LIBRARY_ADD): {
       const library = [...state.library, action.audioFile];
       return {
         ...state,
@@ -136,7 +127,7 @@ export default (state = initialState, action) => {
       };
     }
 
-    case(types.APP_LIBRARY_ADD_STACK): {
+    case (types.APP_LIBRARY_ADD_STACK): {
       const library = [...state.libraryStack];
       library.push(action.currentFolder);
       return {
@@ -144,8 +135,9 @@ export default (state = initialState, action) => {
         libraryStack: library,
       };
     }
+    // library ---------------------------------------------------------------------------
 
-    case(types.APP_PLAYLIST_ADD): {
+    case (types.APP_PLAYLIST_ADD): {
       const playlist = [...state.playlist, action.audioFile];
       return {
         ...state,
@@ -192,11 +184,10 @@ export default (state = initialState, action) => {
     }
 
     case (types.APP_PLAYER_NEXT): {
-      var nextCursor;
-      if(state.playlistCursor < state.playlist.length - 1){
+      let nextCursor;
+      if (state.playlistCursor < state.playlist.length - 1) {
         nextCursor = state.playlistCursor + 1;
-      }
-      else{
+      } else {
         nextCursor = state.playlistCursor;
       }
       return {
@@ -206,11 +197,10 @@ export default (state = initialState, action) => {
     }
 
     case (types.APP_PLAYER_PREVIOUS): {
-      var nextCursor;
-      if(state.playlistCursor > 0){
+      let nextCursor;
+      if (state.playlistCursor > 0) {
         nextCursor = state.playlistCursor - 1;
-      }
-      else{
+      } else {
         nextCursor = state.playlistCursor;
       }
 
