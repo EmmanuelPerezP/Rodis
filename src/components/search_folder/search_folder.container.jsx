@@ -11,8 +11,6 @@ import SearchFolder from './search_folder';
 // const fs = window.require('graceful-fs');
 const electron = window.require('electron');
 const { dialog } = electron.remote;
-// music metadata
-const mm = window.require('music-metadata');
 
 
 class SearchFolderContainer extends React.Component {
@@ -41,93 +39,17 @@ class SearchFolderContainer extends React.Component {
     // to use redux dispatch on the later functions
     const { dispatch } = this.props;
 
-    // in this function there is a problem because we use an async and a sync function in a for loop
-    // therefore when updating the component sometimes it updates before the async function
-    // parseFile is finished and doesnt shows the .mp3 files
-
-
-
-    var libraryTab = [];
-    // opens the file explorer to search for the folder
-
-
-
     Explorer.doEverything();
-    /* eslint-disable */
-    // dialog.showOpenDialog({
-    //   properties: ['openDirectory'],
-    // }, (result) => {
-    //   if (result) {
-    //     dispatch(changeDirectoryLibraryDown(result[0]));
-    //     // sets local state to put on the readOnly input
-    //     this.setState({"filePath":result});
-    //     fs.readdir(result[0], function(err, files) {
-    //       var albumArtPath = null;
-    //       // iterates over the files in the folder
-    //       // replace for a recursive function later on
-
-    //       console.log("result:", result);
-    //       result = result[0];
-    //       // check for albumart first
-    //       for(let fileInFolder of files) {
-    //         if(fileInFolder.toLocaleLowerCase() == "cover.jpg" || fileInFolder.toLocaleLowerCase() == "folder.jpg") {
-    //           albumArtPath = result+"/"+fileInFolder;
-    //         }
-    //       }
-    //       if(albumArtPath == null){
-    //         albumArtPath = null; // add default album art here
-    //       }
-
-    //       // add songs to library
-    //       for(let fileInFolder of files) {
-            
-    //         if(fs.statSync(result+"/"+fileInFolder).isDirectory()){
-    //           dispatch(addToCurrentLibrary({
-    //             "type": "folder",
-    //             "path": result+"/"+fileInFolder,
-    //             "fileName": fileInFolder
-    //           }));
-    //         }
-    //         // if the file is an mp3 add to library
-    //         if(fileInFolder.endsWith(".mp3")){
-
-    //           // check if file exists
-    //           // fs.access(result+"/"+fileInFolder, fs.constants.F_OK, (err) => {
-    //           //   console.log(`${result+"/"+fileInFolder} ${err ? 'does not exist' : 'exists'}`);
-    //           // });
-
-    //           mm.parseFile(result+"/"+fileInFolder, {native: true, duration: true})
-    //             .then(function (metadata) {
-    //               // console.log(util.inspect(metadata, { showHidden: false, depth: null }));
-    //               let path = result+"/"+fileInFolder;
-    //               dispatch(addToCurrentLibrary({
-    //                 "path": path, 
-    //                 "fileName": fileInFolder,
-    //                 "metadata": metadata, 
-    //                 "albumArtPath":albumArtPath,
-    //                 "type":"mp3",
-    //               }));
-    //             })
-    //             .catch(function (err) {
-    //               console.error(err.message);
-    //             });
-    //         }
-    //       }
-          
-    //     })    
-    //   }
-    // })
-    /* eslint-enable */
-
   }
 
   render() {
+    const { filePath } = this.state;
     return (
       <SearchFolder
         handleInput={this.handleInput}
         loadState={this.loadState}
         saveState={this.saveState}
-        filePath={this.state.filePath}
+        filePath={filePath}
       />
     );
   }

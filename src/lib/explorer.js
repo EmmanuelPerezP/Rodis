@@ -1,10 +1,3 @@
-// node js/electron libraries
-
-// const fs2 = window.require('fs');
-// const fs = window.require('graceful-fs');
-
-// fs.gracefulify(fs2);
-
 const electron = window.require('electron');
 const { dialog } = electron.remote;
 // music metadata
@@ -13,10 +6,6 @@ const mm = window.require('music-metadata');
 const fs = window.require('graceful-fs');
 
 export default class Explorer {
-  constructor() {
-    // this.readDirectory = this.readDirectory.bind(this);
-  }
-
   /**
   * Opens filesystem dialog to select a folder for the library
   * @return {Promise<string>} a promise that returns the filepath selected
@@ -41,7 +30,7 @@ export default class Explorer {
   /**
    * Read the whole directory
    * @param {string} filepath the filepath to read
-   * @returns {Promise<{filepath: string, files: Array.<string>}>} returns a 
+   * @returns {Promise<{filepath: string, files: Array.<string>}>} returns a
    * promise with the original filepath and an array with the files of the folder
    */
   static readDirectory(filepath) {
@@ -85,25 +74,31 @@ export default class Explorer {
   }
 
   /**
-   * crawl the folder
+   * crawl the folder and return the info with metadata, we use async/await to not
+   * get the error/problem EMFILE with the file system library checkout these links for more info:
+   * {@link https://github.com/Borewit/music-metadata/issues/26}
+   * {@link https://github.com/Borewit/music-metadata/issues/109}
+   * {@link https://stackoverflow.com/questions/8965606/node-and-error-emfile-too-many-open-files}
+   * and this for the solution:
+   * {@link https://stackoverflow.com/questions/29880715/how-to-synchronize-a-sequence-of-promises}
    * @param {{filepath: string, files: Array.<string>, albumArtPath: string}} data the data
    * object containing filepath, files, and album art of the current folder
-   * @returns {Promise} return the data
+   * @returns {Object} return the data
    */
-  static crawlFolder(data) {
+  static async crawlFolder(data) {
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
     const { filepath, files, albumArtPath } = data;
     // the folder array containing all the objects type 'mp3' and 'folder'
     const folder = [];
     // add songs to library
     // promises array to keep track of the promises and when to end the calls
-    const promises = [];
+    // const promises = [];
     for (const fileInFolder of files) {
       const path = `${filepath}/${fileInFolder}`;
       // if file is a directory
       if (fs.statSync(path).isDirectory()) {
         // recursive call to get the subdirectories
-        const subdirPromise = Explorer.readDirectory(path)
+        const subdirPromise = await Explorer.readDirectory(path)
           .then(Explorer.folderCoverArt)
           .then(Explorer.crawlFolder)
           .then((subDirectory) => {
@@ -114,31 +109,27 @@ export default class Explorer {
               subFolder: subDirectory,
             });
           });
-        promises.push(subdirPromise);
-        // folder.push({
-        //   type: 'folder',
-        //   path,
-        //   fileName: fileInFolder,
-        // });
+        // promises.push(subdirPromise);
       // else if the file is an mp3 add it to the library
       } else if (fileInFolder.endsWith('.mp3')) {
-        // const promise = mm.parseFile(path, { native: true, duration: true })
-        //   .then((metadata) => {
-        //     folder.push({
-        //       type: 'mp3',
-        //       path,
-        //       fileName: fileInFolder,
-        //       metadata,
-        //       albumArtPath,
-        //     });
-        //   })
-        //   .catch((err) => {
-        //     console.error(err.message);
-        //   });
+        const promise = await mm.parseFile(path, { native: true, duration: false })
+          .then((metadata) => {
+            folder.push({
+              type: 'mp3',
+              path,
+              fileName: fileInFolder,
+              metadata,
+              albumArtPath,
+            });
+          })
+          .catch((err) => {
+            console.error(err.message);
+          });
         // promises.push(promise);
       }
     }
-    return Promise.all(promises).then(() => folder);
+    // return Promise.all(promises).then(() => folder);
+    return folder;
   }
 
   static doEverything() {
@@ -148,72 +139,73 @@ export default class Explorer {
       .then(this.crawlFolder)
       .then((folder) => {
         console.log('the result of the directory crawl is this: ', folder);
+        return folder;
       });
   }
 
 
   /* eslint-disable */
-  static doEverythingOg(){
-    var libraryTab = [];
-    // opens the file explorer to search for the folder
-    dialog.showOpenDialog({
-      properties: ['multiSelections', 'openDirectory'],
-    }, (result) => {
-      if (result) {
-        dispatch(changeDirectoryLibraryDown(result[0]));
-        // sets local state to put on the readOnly input
-        this.setState({"filePath":result});
-        fs.readdir(result[0], function(err, files) {
-          var albumArtPath = null;
-          // iterates over the files in the folder
-          // replace for a recursive function later on
+  // static doEverythingOg(){
+  //   var libraryTab = [];
+  //   // opens the file explorer to search for the folder
+  //   dialog.showOpenDialog({
+  //     properties: ['multiSelections', 'openDirectory'],
+  //   }, (result) => {
+  //     if (result) {
+  //       dispatch(changeDirectoryLibraryDown(result[0]));
+  //       // sets local state to put on the readOnly input
+  //       this.setState({"filePath":result});
+  //       fs.readdir(result[0], function(err, files) {
+  //         var albumArtPath = null;
+  //         // iterates over the files in the folder
+  //         // replace for a recursive function later on
 
 
-          // check for albumart first
-          for(let fileInFolder of files) {
-            if(fileInFolder.toLocaleLowerCase() == "cover.jpg" || fileInFolder.toLocaleLowerCase() == "folder.jpg") {
-              albumArtPath = result+"/"+fileInFolder;
-            }
-          }
-          if(albumArtPath == null){
-            albumArtPath = null; // add default album art here
-          }
+  //         // check for albumart first
+  //         for(let fileInFolder of files) {
+  //           if(fileInFolder.toLocaleLowerCase() == "cover.jpg" || fileInFolder.toLocaleLowerCase() == "folder.jpg") {
+  //             albumArtPath = result+"/"+fileInFolder;
+  //           }
+  //         }
+  //         if(albumArtPath == null){
+  //           albumArtPath = null; // add default album art here
+  //         }
 
-          // add songs to library
-          for(let fileInFolder of files) {
-            // if file is a directory
-            if(fs.statSync(result+"/"+fileInFolder).isDirectory()){
-              dispatch(addToCurrentLibrary({
-                "type": "folder",
-                "path": result+"/"+fileInFolder,
-                "fileName": fileInFolder
-              }));
-            }
-            // if the file is an mp3 add to library
-            if(fileInFolder.endsWith(".mp3")){
-              mm.parseFile(result+"/"+fileInFolder, {native: true, duration: true})
-                .then(function (metadata) {
-                  // console.log(util.inspect(metadata, { showHidden: false, depth: null }));
-                  let path = result+"/"+fileInFolder;
-                  dispatch(addToCurrentLibrary({
-                    "type":"mp3",
-                    "path": path, 
-                    "fileName": fileInFolder,
-                    "metadata": metadata, 
-                    "albumArtPath":albumArtPath
-                  }));
-                })
-                .catch(function (err) {
-                  console.error(err.message);
-                });
-            }
-          }
+  //         // add songs to library
+  //         for(let fileInFolder of files) {
+  //           // if file is a directory
+  //           if(fs.statSync(result+"/"+fileInFolder).isDirectory()){
+  //             dispatch(addToCurrentLibrary({
+  //               "type": "folder",
+  //               "path": result+"/"+fileInFolder,
+  //               "fileName": fileInFolder
+  //             }));
+  //           }
+  //           // if the file is an mp3 add to library
+  //           if(fileInFolder.endsWith(".mp3")){
+  //             mm.parseFile(result+"/"+fileInFolder, {native: true, duration: true})
+  //               .then(function (metadata) {
+  //                 // console.log(util.inspect(metadata, { showHidden: false, depth: null }));
+  //                 let path = result+"/"+fileInFolder;
+  //                 dispatch(addToCurrentLibrary({
+  //                   "type":"mp3",
+  //                   "path": path, 
+  //                   "fileName": fileInFolder,
+  //                   "metadata": metadata, 
+  //                   "albumArtPath":albumArtPath
+  //                 }));
+  //               })
+  //               .catch(function (err) {
+  //                 console.error(err.message);
+  //               });
+  //           }
+  //         }
 
           
-        })    
-      }
-    })
+  //       })    
+  //     }
+  //   })
 
-  }
+  // }
   /* eslint-enable */
 }
