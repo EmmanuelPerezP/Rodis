@@ -8,10 +8,7 @@ import LibraryView from './library_view';
 // import { connect } from 'tls';
 
 class LibraryViewContainer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-    
+
   render() {
     // this.props.library is the songs in the library
     return (

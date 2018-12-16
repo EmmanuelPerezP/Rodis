@@ -3,8 +3,6 @@ import LibraryItemSongContainer from '../library_item_song/library_item_song.con
 
 export default function Sidenav(props) {
   const { playlist, showSidenav, changeAlbumArt } = props;
-  console.log("all the songs: ")
-  console.log(playlist);
   const songsRows = playlist.map((data, index) =>
     <LibraryItemSongContainer
       itemType={'main'}

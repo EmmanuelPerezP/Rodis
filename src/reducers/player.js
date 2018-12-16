@@ -10,7 +10,7 @@ const storeEl = new Store();
 const initialState = {
   // queue: [], // Tracks to be played
   // oldQueue: [], // Queue backup (in case of shuffle)
-  libraryNavbar: [],
+  libraryNavbar: ['Library'], // 'Library' is always going to be the root folder
   library: [], // the library folders
   libraryStack: [[]],
   playlist: [], // the current playlist
@@ -42,7 +42,7 @@ export default (state = initialState, action) => {
     }
 
     case (types.LOAD_STATE): {
-      let newState = storeEl.get('state', initialState);
+      const newState = storeEl.get('state', initialState);
       return {
         ...newState,
       };
@@ -50,7 +50,6 @@ export default (state = initialState, action) => {
 
     case (types.SAVE_STATE): {
       storeEl.set('state', state);
-      console.log(state);
       return {
         ...state,
       };
@@ -88,20 +87,19 @@ export default (state = initialState, action) => {
 
     // library ---------------------------------------------------------------------------
     case (types.APP_LIBRARY_CHANGE_DIRECTORY_UP): {
-      // we update the navbar state
       const index = action.payload;
-      const library = [...state.libraryNavbar];
+      const tempLibraryNavbar = [...state.libraryNavbar];
       const tempLibraryStack = [...state.libraryStack];
-      // we do -2 because the library Stack is always going to have
+      // we do -1 because the library Stack is always going to have
       // one empty element at the beginning and the length is always +1 from the index
-      while (tempLibraryStack.length - 2 >= index) {
-        library.splice(-1, 1);
+      while (tempLibraryStack.length - 1 > index) {
+        // pop the navbar and stack items until we get the selected one as the current one
+        tempLibraryNavbar.splice(-1, 1);
         tempLibraryStack.splice(-1, 1);
       }
-      // we update the library Stack adding an empty array for the new items of the new folder
       return {
         ...state,
-        libraryNavbar: library,
+        libraryNavbar: tempLibraryNavbar,
         libraryStack: tempLibraryStack,
       };
     }
@@ -122,13 +120,13 @@ export default (state = initialState, action) => {
     }
 
     /**
-     * Clear the library and nav
+     * Clear the library and nav to the default ones
      */
     case (types.APP_LIBRARY_CLEAR): {
       return {
         ...state,
-        libraryNavbar: [],
-        libraryStack: [[]],
+        libraryNavbar: initialState.libraryNavbar,
+        libraryStack: initialState.libraryStack,
       };
     }
 
@@ -136,7 +134,7 @@ export default (state = initialState, action) => {
      * @param action.payload the folder parsed from the explorer.js
      */
     case (types.APP_LIBRARY_ADD): {
-      const library = [...state.library, action.payload];
+      const library = [action.payload];
       return {
         ...state,
         library,

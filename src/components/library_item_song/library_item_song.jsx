@@ -15,7 +15,7 @@ export default function LibraryItem(props) {
   if (itemType === 'library') {
     return (
       <tr>
-        <td scope="row">
+        <td>
           {songMetadata.common.title}
         </td>
         <td>

@@ -16,11 +16,6 @@ class BreadcrumItemContainer extends React.Component {
 
   handleFolderChange(e) {
     const { dispatch, itemNumber } = this.props;
-    // console.log(this.props.itemNumber);
-    // console.log("library navbar: ");
-    // console.log(this.props.libraryNavbar);
-    // console.log("library Stack: ");
-    // console.log(this.props.libraryStack);
     dispatch(changeDirectoryLibraryUp(itemNumber));
   }
 

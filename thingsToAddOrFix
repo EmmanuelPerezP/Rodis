@@ -20,3 +20,5 @@ console.logs:
 remove from sidenav.jsx
 remove from playbar.container.jsx
 
+things that maybe would be nice to do:
+further split library_item_song

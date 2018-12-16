@@ -11,14 +11,13 @@ export default function LibraryView(props) {
   const { libraryStack, libraryNavbar } = props;
   const directoryItems = libraryStack[libraryStack.length - 1];
 
-  console.log('print directory rows library_view: ', directoryItems);
+  // console.log('print directory rows library_view: ', directoryItems);
   const breadcrumRows = libraryNavbar.map((data, index) => {
     return (
       <BreadcrumItemContainer name={data} key={index} itemNumber={index} />
     );
   });
   const libraryRows = directoryItems.map((data, index) => {
-
     if (data.type === 'mp3') {
       return (
         <LibraryItemSongContainer itemType={'library'} key={index} data={data} />

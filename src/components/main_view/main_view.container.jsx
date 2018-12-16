@@ -15,7 +15,6 @@ class MainViewContainer extends React.Component {
   }
     
   render() {
-
     // we pass currentSong to MainView to display the current albumArt from the song
     return (
       <MainView currentAlbumArt={this.props.currentAlbumArt} hideAlbumArt={this.props.showAlbumArt}/>
