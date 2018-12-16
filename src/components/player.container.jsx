@@ -28,7 +28,7 @@ class PlayerContainer extends React.Component {
       // we do this to not restart the song everytime we play or pause the player
       // if we press play before loading the song to playlist the song doesnt plays (thats why the === stop condition is there)
       // if there is no stop then it doesnt reloads
-      if(playlistCursor !== prevProps.playlistCursor || playerStatus == 'stop') {
+      if (playlistCursor !== prevProps.playlistCursor || playerStatus == 'stop') {
         // console.log("audio set");
         Player.setAudioSrc(`file://${playlist[playlistCursor].path}`);
       }

@@ -1,6 +1,6 @@
 TODO:
-library logic
-player logic
+library logic, status: almost done
+player logic, status: NEEDS REFRACTOR
 
 fix album art size
 fix time format when the song is longer than one hour
@@ -16,6 +16,7 @@ add save and delete playlist
 add save state and load state
 add React router animation transitions between tabs
 
-console.logs
-
+console.logs:
 remove from sidenav.jsx
+remove from playbar.container.jsx
+

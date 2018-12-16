@@ -132,7 +132,7 @@ class PlaybarContainer extends React.Component {
     const { playlist, playlistCursor } = this.props;
     var currentSong;
     var elapsedPercent = 0;
-    console.log('playlist: ', playlist);
+    // console.log('playlist: ', playlist);
     if (playlist.length > 0) {
     // if(typeof this.props.playlist != 'undefined') {
       currentSong = playlist[playlistCursor];

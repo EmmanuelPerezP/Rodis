@@ -4,7 +4,6 @@ const app = electron.app;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
 
-const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
 
 const path = require('path');
 const url = require('url');
@@ -19,13 +18,9 @@ require('electron-context-menu')({
 });
 
 
-installExtension(REACT_DEVELOPER_TOOLS)
-  .then((name) => console.log(`Added Extension:  ${name}`))
-  .catch((err) => console.log('An error occurred: ', err));
-
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
+var mainWindow;
 
 function createWindow() {
   // Create the browser window.
@@ -52,6 +47,11 @@ function createWindow() {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+
+  // install react dev tools
+  // https://electronjs.org/docs/tutorial/devtools-extension
+  BrowserWindow.addDevToolsExtension('/home/ema/.config/google-chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/3.4.3_0');
+
 }
 
 // This method will be called when Electron has finished
