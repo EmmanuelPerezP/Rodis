@@ -24,7 +24,6 @@ export default class Playbar extends React.Component {
             <i className="fas fa-play" />
           </a>
         </div>
-
     }
     var timeString = "00:00";
     var title = "";

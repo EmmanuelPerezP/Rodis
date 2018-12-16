@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { addToPlayList, addToLibrary, addToLibraryStack, changeDirectoryLibraryDown, loadState, saveState} from '../../actions/actions';
+import { addToPlayList, addToLibrary, clearLibrary, loadState, saveState} from '../../actions/actions';
 
 import Explorer from '../../lib/explorer';
 // components
@@ -41,6 +41,7 @@ class SearchFolderContainer extends React.Component {
 
     Explorer.doEverything()
       .then((folderData) => {
+        dispatch(clearLibrary());
         dispatch(addToLibrary(folderData));
       });
   }

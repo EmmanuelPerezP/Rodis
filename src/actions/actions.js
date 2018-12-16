@@ -17,6 +17,10 @@ export function changeDirectoryLibraryDown(folderIndex) {
 export function addToLibrary(folderData) {
   return { type: types.APP_LIBRARY_ADD, payload: folderData };
 }
+
+export function clearLibrary() {
+  return { type: types.APP_LIBRARY_CLEAR };
+}
 // library ---------------------------------------------------------------------------
 
 export function playerPlay() {

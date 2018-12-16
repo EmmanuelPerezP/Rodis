@@ -89,12 +89,12 @@ export default (state = initialState, action) => {
     // library ---------------------------------------------------------------------------
     case (types.APP_LIBRARY_CHANGE_DIRECTORY_UP): {
       // we update the navbar state
-      let index = action.folderNavBarIndex;
-      let library = [...state.libraryNavbar];
-      let tempLibraryStack = [...state.libraryStack];
+      const index = action.payload;
+      const library = [...state.libraryNavbar];
+      const tempLibraryStack = [...state.libraryStack];
       // we do -2 because the library Stack is always going to have
       // one empty element at the beginning and the length is always +1 from the index
-      while (tempLibraryStack.length - 2 > index) {
+      while (tempLibraryStack.length - 2 >= index) {
         library.splice(-1, 1);
         tempLibraryStack.splice(-1, 1);
       }
@@ -118,6 +118,17 @@ export default (state = initialState, action) => {
         ...state,
         libraryNavbar: libraryNav,
         libraryStack: tempLibraryStack,
+      };
+    }
+
+    /**
+     * Clear the library and nav
+     */
+    case (types.APP_LIBRARY_CLEAR): {
+      return {
+        ...state,
+        libraryNavbar: [],
+        libraryStack: [[]],
       };
     }
 
