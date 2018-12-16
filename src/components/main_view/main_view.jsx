@@ -1,7 +1,7 @@
 import React from 'react';
 
 // container
-import SidenavContainer from '../sidenav/sidenav.container'
+import SidenavContainer from '../sidenav/sidenav.container';
 
 export default class MainView extends React.Component {
   constructor(props){

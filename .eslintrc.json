@@ -1,7 +1,9 @@
 {
     "extends": "airbnb",
     "rules": {
-        "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"]
+        "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
+        "react/prop-types": 0,
+        "allowElseIf": false
     },
     "env": {
         "browser": true,

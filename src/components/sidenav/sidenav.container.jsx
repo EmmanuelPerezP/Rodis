@@ -1,7 +1,7 @@
 import React from 'react';
 
 // redux
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 // components
 import Sidenav from './sidenav';
@@ -12,16 +12,18 @@ class SidenavContainer extends React.Component {
   constructor(props) {
     super(props);
     this.changeAlbumArt = this.changeAlbumArt.bind(this);
-  }  
-  
-  changeAlbumArt(e){
-    this.props.dispatch(toggleAlbumArt());
   }
-    
+
+  changeAlbumArt(e) {
+    const { dispatch } = this.props;
+    dispatch(toggleAlbumArt());
+  }
+
   render() {
     // this.props.library are the songs in the library
+    const { playlist, showSidenav } = this.props;
     return (
-      <Sidenav playlist={this.props.playlist} showSidenav={this.props.showSidenav}  changeAlbumArt={this.changeAlbumArt}/>
+      <Sidenav playlist={playlist} showSidenav={showSidenav} changeAlbumArt={this.changeAlbumArt} />
     );
   }
 }
@@ -36,7 +38,7 @@ function mapStateToProps(state, ownProps) {
     "libraryNavbar": state.player.libraryNavbar,
     "showSidenav": state.player.uiState.showSidenav,
     "showAlbumArt": state.player.uiState.showAlbumArt,
-  }
+  };
 }
 
 export default connect(mapStateToProps)(SidenavContainer);

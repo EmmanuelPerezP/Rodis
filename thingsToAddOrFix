@@ -15,3 +15,7 @@ add current song playing in the playlist turning black
 add save and delete playlist
 add save state and load state
 add React router animation transitions between tabs
+
+console.logs
+
+remove from sidenav.jsx

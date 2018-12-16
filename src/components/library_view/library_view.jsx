@@ -1,26 +1,34 @@
 import React from 'react';
 
 // containers
-import LibraryItemContainer from '../library_item/library_item.container';
+import LibraryItemSongContainer from '../library_item_song/library_item_song.container';
+import LibraryItemFolderContainer from '../library_item_folder/library_item_folder.container';
 import SearchFolderContainer from '../search_folder/search_folder.container';
 import BreadcrumItemContainer from '../breadcrum_item/breadcrum_item.container';
 
 export default function LibraryView(props) {
   // we use the last item of the stack/array
   const { libraryStack, libraryNavbar } = props;
-  const rows = libraryStack[libraryStack.length - 1];
+  const directoryItems = libraryStack[libraryStack.length - 1];
 
-  // console.log("imprime filas library_view: ")
+  // console.log("print directory rows library_view: ")
   // console.log(rows);
   const breadcrumRows = libraryNavbar.map((data, index) => {
     return (
       <BreadcrumItemContainer name={data} key={index} itemNumber={index} />
     );
   });
-  const libraryRows = rows.map((data, index) => {
-    return (
-      <LibraryItemContainer itemType={'library'} key={index} data={data} />
-    );
+  const libraryRows = directoryItems.map((data, index) => {
+
+    if (data.type === 'mp3') {
+      return (
+        <LibraryItemSongContainer itemType={'library'} key={index} data={data} />
+      );
+    } else if (data.type === 'main') {
+      return (
+        <LibraryItemFolderContainer key={index} data={data} />
+      );
+    }
   });
 
   return (

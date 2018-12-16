@@ -1,7 +1,7 @@
 import React from 'react';
 
 // redux
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 // components
 import LibraryView from './library_view';
