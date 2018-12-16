@@ -10,22 +10,22 @@ const storeEl = new Store();
 const initialState = {
   // queue: [], // Tracks to be played
   // oldQueue: [], // Queue backup (in case of shuffle)
-  playlist: [],
-  library: [],
+  libraryNavbar: [],
+  library: [], // the library folders
   libraryStack: [[]],
+  playlist: [], // the current playlist
   playlistCursor: 0,
   // queueCursor: null, // The cursor of the queue
   // repeat: config.get('audioRepeat'), // the current repeat state (one, all, none)
   // shuffle: config.get('audioShuffle'), // If shuffle mode is enabled
-  playerStatus: 'stop', // Player status
-  libraryNavbar: [],
+  playerStatus: 'stop', // Player status, can ve 'stop', 'play', 'pause'
   currentSong: '',
   uiState: {
     showSidenav: false,
     showSidenavRight: false,
     showAlbumArt: true,
   },
-  sketch: 1
+  sketch: 1,
 };
 
 
@@ -34,19 +34,18 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-
     case (types.SWITCH_SKETCH): {
       return {
         ...state,
-        sketch: action.payload
-      }
+        sketch: action.payload,
+      };
     }
 
     case (types.LOAD_STATE): {
       let newState = storeEl.get('state');
       return {
         ...newState,
-      }
+      };
     }
 
     case (types.SAVE_STATE): {
@@ -54,7 +53,7 @@ export default (state = initialState, action) => {
       console.log(state);
       return {
         ...state,
-      }
+      };
     }
 
     case (types.APP_PLAYLIST_TOGGLE_ALBUMART): {
@@ -63,8 +62,8 @@ export default (state = initialState, action) => {
         uiState: {
           ...state.uiState,
           showAlbumArt: !state.uiState.showAlbumArt,
-        }
-      }
+        },
+      };
     }
 
     case (types.APP_PLAYLIST_TOGGLE_SIDENAV): {
@@ -73,8 +72,8 @@ export default (state = initialState, action) => {
         uiState: {
           ...state.uiState,
           showSidenav: !state.uiState.showSidenav,
-        }
-      }
+        },
+      };
     }
 
     case (types.APP_PLAYLIST_TOGGLE_SIDENAV_RIGHT): {
@@ -83,8 +82,8 @@ export default (state = initialState, action) => {
         uiState: {
           ...state.uiState,
           showSidenavRight: !state.uiState.showSidenavRight,
-        }
-      }
+        },
+      };
     }
 
     // library ---------------------------------------------------------------------------
@@ -119,20 +118,14 @@ export default (state = initialState, action) => {
       };
     }
 
+    /**
+     * @param action.payload the folder parsed from the explorer.js
+     */
     case (types.APP_LIBRARY_ADD): {
-      const library = [...state.library, action.audioFile];
+      const library = [...state.library, action.payload];
       return {
         ...state,
-        library: library,
-      };
-    }
-
-    case (types.APP_LIBRARY_ADD_STACK): {
-      const library = [...state.libraryStack];
-      library.push(action.currentFolder);
-      return {
-        ...state,
-        libraryStack: library,
+        library,
       };
     }
     // library ---------------------------------------------------------------------------

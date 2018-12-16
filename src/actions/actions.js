@@ -14,19 +14,8 @@ export function changeDirectoryLibraryDown(folderName) {
   return { type: types.APP_LIBRARY_CHANGE_DIRECTORY_DOWN, folderName };
 }
 
-export function addToLibraryStack(currentFolder) {
-  return { type: types.APP_LIBRARY_ADD_STACK, currentFolder };
-}
-
-export function addToLibrary(path, metadata, albumArtPath) {
-  return { 
-    type: types.APP_LIBRARY_ADD,
-    audioFile: {
-      "path": path, 
-      "metadata": metadata, 
-      "albumArtPath":albumArtPath,
-    } 
-  };
+export function addToLibrary(folderData) {
+  return { type: types.APP_LIBRARY_ADD, payload: folderData };
 }
 // library ---------------------------------------------------------------------------
 

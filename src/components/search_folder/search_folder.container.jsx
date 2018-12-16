@@ -23,27 +23,25 @@ class SearchFolderContainer extends React.Component {
   }
 
 
-  loadState(e) {
+  loadState() {
     const { dispatch } = this.props;
     // console.log("load");
     dispatch(loadState());
   }
 
-  saveState(e) {
+  saveState() {
     const { dispatch } = this.props;
     // console.log("save");
     dispatch(saveState());
   }
-  
-  handleInput(e) {
+
+  handleInput() {
     // to use redux dispatch on the later functions
     const { dispatch } = this.props;
 
     Explorer.doEverything()
       .then((folderData) => {
-
-        dispatch()
-
+        dispatch(addToLibrary(folderData));
       });
   }
 

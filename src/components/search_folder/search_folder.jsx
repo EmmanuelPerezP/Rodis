@@ -1,6 +1,8 @@
 import React from 'react';
 
 export default function SearchFolder(props) {
+  const { saveState, handleInput, loadState, filePath } = props;
+
   return (
     <form>
       <div className="form-group">
@@ -11,12 +13,12 @@ export default function SearchFolder(props) {
         {/* <button type="button" class="btn btn-outline-secondary">Browse</button> */}
         <div className="input-group mb-3">
           <div className="input-group-prepend">
-            <button className="btn btn-outline-secondary" type="button" onClick={props.handleInput} >Browse</button>
+            <button className="btn btn-outline-secondary" type="button" onClick={handleInput}>Browse</button>
           </div>
-          <input type="text" value={props.filePath} className="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1"></input>
+          <input type="text" value={filePath} className="form-control" placeholder="" />
         </div>
-        <button className="btn btn-outline-secondary" type="button" onClick={props.saveState} >Save State</button>
-        <button className="btn btn-outline-secondary" type="button" onClick={props.loadState} >Load State</button>
+        <button className="btn btn-outline-secondary" type="button" onClick={saveState}>Save State</button>
+        <button className="btn btn-outline-secondary" type="button" onClick={loadState}>Load State</button>
       </div>
     </form>
   );

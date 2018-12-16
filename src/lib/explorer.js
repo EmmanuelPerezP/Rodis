@@ -92,13 +92,13 @@ export default class Explorer {
     const folder = [];
     // add songs to library
     // promises array to keep track of the promises and when to end the calls
-    // const promises = [];
+    /* eslint-disable no-await-in-loop */
     for (const fileInFolder of files) {
       const path = `${filepath}/${fileInFolder}`;
       // if file is a directory
       if (fs.statSync(path).isDirectory()) {
         // recursive call to get the subdirectories
-        const subdirPromise = await Explorer.readDirectory(path)
+        await Explorer.readDirectory(path)
           .then(Explorer.folderCoverArt)
           .then(Explorer.crawlFolder)
           .then((subDirectory) => {
@@ -109,10 +109,9 @@ export default class Explorer {
               subFolder: subDirectory,
             });
           });
-        // promises.push(subdirPromise);
       // else if the file is an mp3 add it to the library
       } else if (fileInFolder.endsWith('.mp3')) {
-        const promise = await mm.parseFile(path, { native: true, duration: false })
+        await mm.parseFile(path, { native: true, duration: false })
           .then((metadata) => {
             folder.push({
               type: 'mp3',
@@ -125,10 +124,9 @@ export default class Explorer {
           .catch((err) => {
             console.error(err.message);
           });
-        // promises.push(promise);
       }
     }
-    // return Promise.all(promises).then(() => folder);
+    /* eslint-enable no-await-in-loop */
     return folder;
   }
 
@@ -192,7 +190,7 @@ export default class Explorer {
                     "path": path, 
                     "fileName": fileInFolder,
                     "metadata": metadata, 
-                    "albumArtPath":albumArtPath
+                    "albumArtPath": albumArtPath
                   }));
                 })
                 .catch(function (err) {
