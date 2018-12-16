@@ -9,15 +9,15 @@ import { changeDirectoryLibraryDown } from '../../actions/actions';
 import LibraryItemFolder from './library_item_folder';
 
 
-class LibraryItemContainer extends React.Component {
+class LibraryItemFolderContainer extends React.Component {
   constructor(props) {
     super(props);
     this.handleChangeFolder = this.handleChangeFolder.bind(this);
   }
 
   handleChangeFolder(e) {
-    const { dispatch } = this.props;
-    dispatch(changeDirectoryLibraryDown());
+    const { dispatch, data } = this.props;
+    dispatch(changeDirectoryLibraryDown(data));
   }
 
   render() {
@@ -39,4 +39,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(LibraryItemContainer);
+export default connect(mapStateToProps)(LibraryItemFolderContainer);

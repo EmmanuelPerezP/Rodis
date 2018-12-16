@@ -131,14 +131,10 @@ export default class Explorer {
   }
 
   static doEverything() {
-    this.dialogOpen()
+    return this.dialogOpen()
       .then(this.readDirectory)
       .then(this.folderCoverArt)
-      .then(this.crawlFolder)
-      .then((folder) => {
-        console.log('the result of the directory crawl is this: ', folder);
-        return folder;
-      });
+      .then(this.crawlFolder);
   }
 
 

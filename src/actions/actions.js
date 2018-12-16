@@ -7,11 +7,11 @@ export function addToPlayList(audioFile) {
 
 // library ---------------------------------------------------------------------------
 export function changeDirectoryLibraryUp(folderNavBarIndex) {
-  return { type: types.APP_LIBRARY_CHANGE_DIRECTORY_UP, folderNavBarIndex };
+  return { type: types.APP_LIBRARY_CHANGE_DIRECTORY_UP, payload: folderNavBarIndex };
 }
 
-export function changeDirectoryLibraryDown(folderName) {
-  return { type: types.APP_LIBRARY_CHANGE_DIRECTORY_DOWN, folderName };
+export function changeDirectoryLibraryDown(folderIndex) {
+  return { type: types.APP_LIBRARY_CHANGE_DIRECTORY_DOWN, payload: folderIndex };
 }
 
 export function addToLibrary(folderData) {

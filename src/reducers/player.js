@@ -42,7 +42,7 @@ export default (state = initialState, action) => {
     }
 
     case (types.LOAD_STATE): {
-      let newState = storeEl.get('state');
+      let newState = storeEl.get('state', initialState);
       return {
         ...newState,
       };
@@ -106,11 +106,14 @@ export default (state = initialState, action) => {
       };
     }
 
+    /**
+     * @param action.payload the data corresponding a folder parsed from explorer.js
+     */
     case (types.APP_LIBRARY_CHANGE_DIRECTORY_DOWN): {
       // we update the navbar state
-      const libraryNav = [...state.libraryNavbar, action.folderName];
+      const libraryNav = [...state.libraryNavbar, action.payload.fileName];
       // we update the library Stack adding an empty array for the new items of the new folder
-      const tempLibraryStack = [...state.libraryStack, []];
+      const tempLibraryStack = [...state.libraryStack, action.payload.subFolder];
       return {
         ...state,
         libraryNavbar: libraryNav,
@@ -126,6 +129,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         library,
+        libraryStack: library,
       };
     }
     // library ---------------------------------------------------------------------------

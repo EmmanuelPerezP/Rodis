@@ -1,8 +1,6 @@
 import React from 'react';
-
 // redux
-import { connect } from 'react-redux'
-
+import { connect } from 'react-redux';
 // components
 import LibraryView from './library_view/library_view';
 import Player from '../lib/player';
@@ -12,40 +10,39 @@ import { playerNext } from '../actions/actions';
 class PlayerContainer extends React.Component {
   constructor(props) {
     super(props);
-
     // var currentSongPath = this.props.playlist[this.props.playlistCursor].path;
-    if(typeof this.props.playlist[this.props.playlistCursor] != "undefined") { 
-      Player.setAudioSrc("file://"+this.props.playlist[this.props.playlistCursor].path);
+
+    const { playlist, playlistCursor, dispatch } = this.props;
+
+    if (typeof playlist[playlistCursor] != 'undefined') { 
+      Player.setAudioSrc(`file://${playlist[playlistCursor].path}`);
       Player.audio.play();
     }
-    Player.getAudio().addEventListener('ended', () => this.props.dispatch(playerNext()));
-
+    Player.getAudio().addEventListener('ended', () => dispatch(playerNext()));
   }
 
-  componentDidUpdate(prevProps){
-    if(typeof this.props.playlist[this.props.playlistCursor] != "undefined") { 
+  componentDidUpdate(prevProps) {
+    const { playlist, playlistCursor, playerStatus } = this.props;
+
+    if (typeof playlist[playlistCursor] != "undefined") {
       // we do this to not restart the song everytime we play or pause the player
       // if we press play before loading the song to playlist the song doesnt plays (thats why the === stop condition is there)
       // if there is no stop then it doesnt reloads
-      if(this.props.playlistCursor !== prevProps.playlistCursor || this.props.playerStatus == "stop") {
+      if(playlistCursor !== prevProps.playlistCursor || playerStatus == 'stop') {
         // console.log("audio set");
-        Player.setAudioSrc("file://"+this.props.playlist[this.props.playlistCursor].path);
+        Player.setAudioSrc(`file://${playlist[playlistCursor].path}`);
       }
     }
-    if(typeof this.props.playlist[this.props.playlistCursor] != "undefined") { 
-      if(this.props.playerStatus == "pause" && prevProps.playerStatus == "play"){
+    if (typeof playlist[playlistCursor] != 'undefined') {
+      if (playerStatus == 'pause' && prevProps.playerStatus == 'play') {
         Player.audio.pause();
-      }
-      else if(this.props.playerStatus == "play"){
+      } else if (playerStatus == 'play') {
         Player.audio.play();
         // console.log("play");
       }
     }
   }
 
-  componentDidMount(){
-  }
-    
   render() {
     return (
       null

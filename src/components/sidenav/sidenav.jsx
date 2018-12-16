@@ -1,12 +1,12 @@
 import React from 'react';
-import LibraryItemContainer from '../library_item/library_item.container';
+import LibraryItemSongContainer from '../library_item_song/library_item_song.container';
 
 export default function Sidenav(props) {
   const { playlist, showSidenav, changeAlbumArt } = props;
   console.log("all the songs: ")
   console.log(playlist);
-  let songsRows = playlist.map((data, index) =>
-    <LibraryItemContainer
+  const songsRows = playlist.map((data, index) =>
+    <LibraryItemSongContainer
       itemType={'main'}
       key={index}
       number={index}

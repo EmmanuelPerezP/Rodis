@@ -11,8 +11,7 @@ export default function LibraryView(props) {
   const { libraryStack, libraryNavbar } = props;
   const directoryItems = libraryStack[libraryStack.length - 1];
 
-  // console.log("print directory rows library_view: ")
-  // console.log(rows);
+  console.log('print directory rows library_view: ', directoryItems);
   const breadcrumRows = libraryNavbar.map((data, index) => {
     return (
       <BreadcrumItemContainer name={data} key={index} itemNumber={index} />
@@ -24,7 +23,7 @@ export default function LibraryView(props) {
       return (
         <LibraryItemSongContainer itemType={'library'} key={index} data={data} />
       );
-    } else if (data.type === 'main') {
+    } else if (data.type === 'folder') {
       return (
         <LibraryItemFolderContainer key={index} data={data} />
       );

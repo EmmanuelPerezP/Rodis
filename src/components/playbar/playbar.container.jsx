@@ -3,7 +3,7 @@ import audioPlayer from '../../lib/player';
 import { loadState, saveState} from '../../actions/actions';
 
 // redux
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 // redux actions
 import { playerPause, playerNext, playerPrevious, playerPlay, toggleSidenav, toggleSidenavRight } from '../../actions/actions';
 
@@ -35,6 +35,7 @@ class PlaybarContainer extends React.Component {
   }
 
   componentDidMount() {
+    const { dispatch } = this.props;
     Player.getAudio().addEventListener('timeupdate', this.tick);
 
     this.props.dispatch(loadState());
@@ -51,6 +52,7 @@ class PlaybarContainer extends React.Component {
   }
 
   handlePlay(e){
+    const { dispatch } = this.props;
     // console.log(this.props.playlist);
     if(this.props.playerStatus == 'stop') {
       // console.log(this.props.playlistCursor);
@@ -59,37 +61,40 @@ class PlaybarContainer extends React.Component {
     }
     // console.log("clicked play");
     // audioPlayer.play();
-    this.props.dispatch(playerPlay());
+    dispatch(playerPlay());
     // console.log(this.props.playerState);
   }
 
   handlePause(e) {
+    const { dispatch } = this.props;
     // audioPlayer.pause();
-    this.props.dispatch(playerPause());
+    dispatch(playerPause());
     // console.log(this.props.playerState);
   }
 
   handlePrevious(e) {
+    const { dispatch } = this.props;
     // console.log("previous");
     // console.log(this.props.playlistCursor);
-      this.props.dispatch(playerPrevious());
-      // var currentSongPath = this.props.playlist[nextCursor].path;
-      // console.log(currentSongPath);
-      // audioPlayer.setAudioSrc("file://"+currentSongPath);
-      // audioPlayer.play();
+    dispatch(playerPrevious());
+    // var currentSongPath = this.props.playlist[nextCursor].path;
+    // console.log(currentSongPath);
+    // audioPlayer.setAudioSrc("file://"+currentSongPath);
+    // audioPlayer.play();
   }
 
-  handleNext(e){
+  handleNext(e) {
+    const { dispatch } = this.props;
     // console.log("clicked next");
     // console.log(this.props.playlistCursor);
     // console.log("playlistCursor:");
     // console.log(this.props.playlistCursor);
     // console.log("playlist length:");
     // console.log(this.props.playlist.length);
-      this.props.dispatch(playerNext());
-      // var currentSongPath = this.props.playlist[nextCursor].path;
-      // audioPlayer.setAudioSrc("file://"+currentSongPath);
-      // audioPlayer.play();
+    dispatch(playerNext());
+    // var currentSongPath = this.props.playlist[nextCursor].path;
+    // audioPlayer.setAudioSrc("file://"+currentSongPath);
+    // audioPlayer.play();
   }
 
   tick(){
@@ -124,10 +129,13 @@ class PlaybarContainer extends React.Component {
   }
 
   render() {
+    const { playlist, playlistCursor } = this.props;
     var currentSong;
     var elapsedPercent = 0;
-    if(typeof this.props.playlist[this.props.playlistCursor] != "undefined"){
-      currentSong = this.props.playlist[this.props.playlistCursor];
+    console.log('playlist: ', playlist);
+    if (playlist.length > 0) {
+    // if(typeof this.props.playlist != 'undefined') {
+      currentSong = playlist[playlistCursor];
       const songDuration = currentSong.metadata.format.duration;
       elapsedPercent = (this.state.elapsed * 100) / songDuration;
     }

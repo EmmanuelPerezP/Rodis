@@ -1,8 +1,5 @@
 import React from 'react';
 
-import LibraryItemContainer from '../library_item/library_item.container'
-
-
 export default class Sidenav extends React.Component {
   constructor(props) {
     super(props);
