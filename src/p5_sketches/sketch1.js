@@ -1,7 +1,3 @@
-import "p5/lib/addons/p5.sound";
-import p5 from "p5";
-import store from '../store/store';
-import { playerNext } from '../actions/actions';
 import Player from '../lib/player';
 
 
