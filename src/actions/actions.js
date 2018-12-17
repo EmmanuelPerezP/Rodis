@@ -53,12 +53,12 @@ export function toggleAlbumArt() {
   return { type: types.APP_PLAYLIST_TOGGLE_ALBUMART };
 }
 
-export function saveState() {
-  return { type: types.SAVE_STATE };
+export function saveState(currentState) {
+  return { type: types.SAVE_STATE, payload: currentState };
 }
 
-export function loadState() {
-  return { type: types.LOAD_STATE };
+export function loadState(loadedState) {
+  return { type: types.LOAD_STATE, payload: loadedState };
 }
 
 export function switchSketch(sketchNumber) {

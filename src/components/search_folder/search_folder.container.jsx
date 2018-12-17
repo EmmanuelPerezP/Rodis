@@ -10,7 +10,6 @@ import SearchFolder from './search_folder';
 // node js/electron libraries
 // const fs = window.require('graceful-fs');
 const electron = window.require('electron');
-const { dialog } = electron.remote;
 
 
 class SearchFolderContainer extends React.Component {
@@ -26,13 +25,31 @@ class SearchFolderContainer extends React.Component {
   loadState() {
     const { dispatch } = this.props;
     // console.log("load");
+    // const newState = storeEl.get('state');
+    // dispatch(loadState(newState));
     dispatch(loadState());
+    // storage.get('state', (stateReturned) => {
+    //   dispatch(loadState(stateReturned));
+    //   console.log('state loaded');
+    // });
   }
 
   saveState() {
-    const { dispatch } = this.props;
+    const { dispatch, reducerState } = this.props;
     // console.log("save");
     dispatch(saveState());
+
+    // const defaultDataPath = storage.getDefaultDataPath();
+
+    // storeEl.set('state', reducerState);
+
+    // console.log('path storage', defaultDataPath);
+    // storage.set('state', reducerState, (error) => {
+    //   if (error) {
+    //     console.error(error);
+    //   }
+    //   console.log('state saved');
+    // });
   }
 
   handleInput() {
@@ -62,6 +79,7 @@ class SearchFolderContainer extends React.Component {
 function mapStateToProps(state, ownProps) {
   return {
     "playlist": state.player.playlist,
+    "reducerState": state.player,
   };
 }
 

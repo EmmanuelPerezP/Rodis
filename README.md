@@ -17,13 +17,17 @@
 - [ ] add save and delete playlist
 - [ ] add save state and load state
 - [ ] add React router animation transitions between tabs
+- [ ] make dialog.open for file explorer asynchronous
+- [ ] minimize to tray icon
 
 ### console.logs:
 - [ ] remove from sidenav.jsx
 - [ ] remove from playbar.container.jsx
+- [ ] remove from player.container.jsx
 
 ### things that maybe would be nice to do:
 - [ ] further split library_item_song
+- [ ] move the local storage code to another place
 
 
 ## Resources to learn electron:

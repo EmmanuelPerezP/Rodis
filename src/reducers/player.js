@@ -2,6 +2,7 @@ import types from '../actions/types';
 
 
 const Store = window.require('electron-store');
+
 const storeEl = new Store();
 
 // import { config } from '../lib/app';
@@ -18,7 +19,7 @@ const initialState = {
   // queueCursor: null, // The cursor of the queue
   // repeat: config.get('audioRepeat'), // the current repeat state (one, all, none)
   // shuffle: config.get('audioShuffle'), // If shuffle mode is enabled
-  playerStatus: 'stop', // Player status, can ve 'stop', 'play', 'pause'
+  playerStatus: 'stop', // Player status, can be 'stop', 'play', 'pause'
   currentSong: '',
   uiState: {
     showSidenav: false,
@@ -85,6 +86,14 @@ export default (state = initialState, action) => {
       };
     }
 
+    case (types.APP_PLAYLIST_ADD): {
+      const playlist = [...state.playlist, action.audioFile];
+      return {
+        ...state,
+        playlist: playlist,
+      };
+    }
+
     // library ---------------------------------------------------------------------------
     case (types.APP_LIBRARY_CHANGE_DIRECTORY_UP): {
       const index = action.payload;
@@ -143,17 +152,11 @@ export default (state = initialState, action) => {
     }
     // library ---------------------------------------------------------------------------
 
-    case (types.APP_PLAYLIST_ADD): {
-      const playlist = [...state.playlist, action.audioFile];
-      return {
-        ...state,
-        playlist: playlist,
-      };
-    }
+    // Player ---------------------------------------------------------------------------
+
 
     case (types.APP_PLAYER_START): {
       const { queue, queueCursor, oldQueue } = action;
-
       // Backup that and change the UI
       return {
         ...state,
@@ -219,6 +222,9 @@ export default (state = initialState, action) => {
     case (types.APP_PLAYER_JUMP_TO): {
       return state;
     }
+
+    // Player ---------------------------------------------------------------------------
+
 
     // case (types.APP_PLAYER_SHUFFLE): {
     //   const trackPlayingId = state.queue[state.queueCursor]._id;

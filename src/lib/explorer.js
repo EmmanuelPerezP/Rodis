@@ -111,7 +111,7 @@ export default class Explorer {
           });
       // else if the file is an mp3 add it to the library
       } else if (fileInFolder.endsWith('.mp3')) {
-        await mm.parseFile(path, { native: true, duration: false })
+        await mm.parseFile(path, { native: false, duration: false, skipCovers: true })
           .then((metadata) => {
             folder.push({
               type: 'mp3',

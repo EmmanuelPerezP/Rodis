@@ -34,7 +34,7 @@ class PlaybarContainer extends React.Component {
     const { dispatch } = this.props;
     Player.getAudio().addEventListener('timeupdate', this.tick);
 
-    dispatch(loadState());
+    // dispatch(loadState());
     // window.addEventListener('mousemove', this.dragOver);
     // window.addEventListener('mouseup', this.dragEnd);
   }
@@ -49,48 +49,26 @@ class PlaybarContainer extends React.Component {
 
   handlePlay(e) {
     const { dispatch, playerStatus } = this.props;
-    // console.log(this.props.playlist);
-    if (playerStatus === 'stop') {
-      // console.log(this.props.playlistCursor);
-      // var currentSongPath = this.props.playlist[this.props.playlistCursor].path;
-      // audioPlayer.setAudioSrc("file://"+currentSongPath);
-    }
-    // console.log("clicked play");
-    // audioPlayer.play();
     dispatch(playerPlay());
-    // console.log(this.props.playerState);
   }
 
   handlePause(e) {
-    const { dispatch } = this.props;
-    // audioPlayer.pause();
+    const { dispatch, playlist } = this.props;
     dispatch(playerPause());
-    // console.log(this.props.playerState);
   }
 
   handlePrevious(e) {
-    const { dispatch } = this.props;
-    // console.log("previous");
-    // console.log(this.props.playlistCursor);
+    const { dispatch, playlist } = this.props;
+    dispatch(playerPause());
     dispatch(playerPrevious());
-    // var currentSongPath = this.props.playlist[nextCursor].path;
-    // console.log(currentSongPath);
-    // audioPlayer.setAudioSrc("file://"+currentSongPath);
-    // audioPlayer.play();
   }
 
   handleNext(e) {
-    const { dispatch } = this.props;
-    // console.log("clicked next");
-    // console.log(this.props.playlistCursor);
-    // console.log("playlistCursor:");
-    // console.log(this.props.playlistCursor);
-    // console.log("playlist length:");
-    // console.log(this.props.playlist.length);
+    const { dispatch, playlist } = this.props;
+    // if (playlist.length === 0) {
+    //   dispatch(playerStop());
+    // }
     dispatch(playerNext());
-    // var currentSongPath = this.props.playlist[nextCursor].path;
-    // audioPlayer.setAudioSrc("file://"+currentSongPath);
-    // audioPlayer.play();
   }
 
   tick() {
@@ -128,8 +106,11 @@ class PlaybarContainer extends React.Component {
   }
 
   render() {
-    const { playlist, playlistCursor } = this.props;
-    let currentSong;
+    const { playlist, playlistCursor, playerStatus } = this.props;
+    console.log('playlist cursor:', playlistCursor);
+    console.log('playlist:', playlist);
+    console.log('player status:', playerStatus);
+    let currentSong = 'empty';
     let elapsedPercent = 0;
     // console.log('playlist: ', playlist);
     if (playlist.length > 0) {
@@ -142,21 +123,20 @@ class PlaybarContainer extends React.Component {
 
     return (
       <Playbar
-        playerState={this.props}
+        // handlers
         handleNext={this.handleNext}
         handlePrevious={this.handlePrevious}
         handlePause={this.handlePause}
         handlePlay={this.handlePlay}
-        currentSong={currentSong}
+        handleJumpTo={this.handleJumpTo}
         closeSidenav={this.closeSidenav}
         closeSidenavRight={this.closeSidenavRight}
+        // data
+        playerState={this.props}
+        currentSong={currentSong}
         elapsedPercent={elapsedPercent}
-
         // https://reactjs.org/docs/refs-and-the-dom.html#callback-refs
         progressBarRef={(bar) => this.progressBarRef = bar}
-
-        handleJumpTo={this.handleJumpTo}
-
       />
     );
   }

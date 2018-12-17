@@ -14,9 +14,10 @@ class PlayerContainer extends React.Component {
 
     const { playlist, playlistCursor, dispatch } = this.props;
 
-    if (typeof playlist[playlistCursor] != 'undefined') { 
+    if (playlist.length > 0) {
       Player.setAudioSrc(`file://${playlist[playlistCursor].path}`);
       Player.audio.play();
+      console.log('set song file and play', playlist[playlistCursor].path);
     }
     Player.getAudio().addEventListener('ended', () => dispatch(playerNext()));
   }
@@ -24,22 +25,26 @@ class PlayerContainer extends React.Component {
   componentDidUpdate(prevProps) {
     const { playlist, playlistCursor, playerStatus } = this.props;
 
-    if (typeof playlist[playlistCursor] != "undefined") {
-      // we do this to not restart the song everytime we play or pause the player
-      // if we press play before loading the song to playlist the song doesnt plays (thats why the === stop condition is there)
-      // if there is no stop then it doesnt reloads
-      if (playlistCursor !== prevProps.playlistCursor || playerStatus == 'stop') {
+    // only manipulate the player if there is a song in the current playlist
+    if (playlist.length > 0) {
+      // if we press the next or previous button set the audio source to the next song
+      if (playlistCursor !== prevProps.playlistCursor) {
         // console.log("audio set");
         Player.setAudioSrc(`file://${playlist[playlistCursor].path}`);
+        console.log('changed song file', playlist[playlistCursor].path);
+      }
+      if (playerStatus === 'pause' && prevProps.playerStatus === 'play') {
+        Player.audio.pause();
+        console.log('call Player.audio.pause()');
+      } else if (playerStatus === 'play') {
+        Player.audio.play();
+        console.log('call Player.audio.play()');
       }
     }
-    if (typeof playlist[playlistCursor] != 'undefined') {
-      if (playerStatus == 'pause' && prevProps.playerStatus == 'play') {
-        Player.audio.pause();
-      } else if (playerStatus == 'play') {
-        Player.audio.play();
-        // console.log("play");
-      }
+    // if we added a song to the previously empty playlist set the audio source to the current song
+    if (playlist.length > prevProps.playlist.length && prevProps.playlist.length === 0) {
+      Player.setAudioSrc(`file://${playlist[playlistCursor].path}`);
+      console.log('changed song file', playlist[playlistCursor].path);
     }
   }
 
@@ -56,11 +61,10 @@ function mapStateToProps(state, ownProps) {
     "library": state.player.library,
     "libraryStack": state.player.libraryStack,
     "libraryCurrent": state.player.libraryCurrent,
-    "libraryNavbar": state.player.libraryNavbar,
     "playlistCursor": state.player.playlistCursor,
     ...ownProps,
     ...state.player,
-  }
+  };
 }
 
 
