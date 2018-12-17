@@ -35,3 +35,7 @@
 - https://github.com/electron/electron#resources-for-learning-electron
 - https://github.com/electron/electron-api-demos
 - https://github.com/hokein/electron-sample-apps
+
+## Libaries used:
+- chroma.js https://github.com/gka/chroma.js
+docs: https://gka.github.io/chroma.js/
