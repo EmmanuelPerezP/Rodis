@@ -25,3 +25,9 @@
 ### things that maybe would be nice to do:
 - [ ] further split library_item_song
 
+
+## Resources to learn electron:
+
+- https://github.com/electron/electron#resources-for-learning-electron
+- https://github.com/electron/electron-api-demos
+- https://github.com/hokein/electron-sample-apps

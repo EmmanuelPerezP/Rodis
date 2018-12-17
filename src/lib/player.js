@@ -31,7 +31,7 @@ class audioPlayer {
     this.sourceAudio.connect(this.audioCtx.destination);
   }
 
-  getAnalyser(){
+  getAnalyser() {
     return this.analyserPlayer;
   }
 
@@ -106,7 +106,7 @@ class audioPlayer {
     return this.durationThresholdReached;
   }
 
-  changeFftSize(size){
+  changeFftSize(size) {
     this.analyserPlayer.fftSize = size;
   }
 }

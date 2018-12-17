@@ -6,8 +6,8 @@ import Content from '../content';
 import PlaybarContainer from '../playbar/playbar.container';
 import VisualizerPlayerContainer from '../vizualizer_player/visualizer_player.container';
 import PlayerContainer from '../player.container';
-import SidenavContainer from '../sidenav/sidenav.container'
-import SidenavRightContainer from '../sidenav_right/sidenav_right.container'
+import SidenavContainer from '../sidenav/sidenav.container';
+import SidenavRightContainer from '../sidenav_right/sidenav_right.container';
 
 class App extends Component {
   // constructor(props){

@@ -1,15 +1,11 @@
 import React from 'react';
-import audioPlayer from '../../lib/player';
-import { loadState, saveState} from '../../actions/actions';
-
 // redux
 import { connect } from 'react-redux';
 // redux actions
-import { playerPause, playerNext, playerPrevious, playerPlay, toggleSidenav, toggleSidenavRight } from '../../actions/actions';
-
+import { playerPause, playerNext, playerPrevious, playerPlay, toggleSidenav,
+  toggleSidenavRight, loadState, saveState } from '../../actions/actions';
 // components
 import Playbar from './playbar';
-
 // lib
 import Player from '../../lib/player';
 
@@ -38,7 +34,7 @@ class PlaybarContainer extends React.Component {
     const { dispatch } = this.props;
     Player.getAudio().addEventListener('timeupdate', this.tick);
 
-    this.props.dispatch(loadState());
+    dispatch(loadState());
     // window.addEventListener('mousemove', this.dragOver);
     // window.addEventListener('mouseup', this.dragEnd);
   }
@@ -51,10 +47,10 @@ class PlaybarContainer extends React.Component {
     // window.removeEventListener('mouseup', this.dragEnd);
   }
 
-  handlePlay(e){
-    const { dispatch } = this.props;
+  handlePlay(e) {
+    const { dispatch, playerStatus } = this.props;
     // console.log(this.props.playlist);
-    if(this.props.playerStatus == 'stop') {
+    if (playerStatus === 'stop') {
       // console.log(this.props.playlistCursor);
       // var currentSongPath = this.props.playlist[this.props.playlistCursor].path;
       // audioPlayer.setAudioSrc("file://"+currentSongPath);
@@ -97,11 +93,12 @@ class PlaybarContainer extends React.Component {
     // audioPlayer.play();
   }
 
-  tick(){
+  tick() {
     this.setState({ elapsed: Player.getCurrentTime() });
   }
 
-  handleJumpTo(e){
+  handleJumpTo(e) {
+    const { playlist, playlistCursor } = this.props;
     const bar = this.progressBarRef;
     // bar.offsetParent.offsetWidth: the width of the progress bar parent, class .progress
     // bar.offsetLeft: the offset coordinates of the beginning of the bar (using this for flexible css)
@@ -111,7 +108,7 @@ class PlaybarContainer extends React.Component {
     const percent = ((e.pageX - (bar.offsetLeft + bar.offsetParent.offsetLeft)) / bar.offsetParent.offsetWidth) * 100;
     console.log(percent);
 
-    const currentSong = this.props.playlist[this.props.playlistCursor];
+    const currentSong = playlist[playlistCursor];
     const songDuration = currentSong.metadata.format.duration;
     const jumpTo = (percent * songDuration) / 100;
 
@@ -120,18 +117,20 @@ class PlaybarContainer extends React.Component {
     Player.setAudioCurrentTime(jumpTo);
   }
 
-  closeSidenav(e){
-    this.props.dispatch(toggleSidenav());
+  closeSidenav(e) {
+    const { dispatch } = this.props;
+    dispatch(toggleSidenav());
   }
-  
-  closeSidenavRight(e){
-    this.props.dispatch(toggleSidenavRight());
+
+  closeSidenavRight(e) {
+    const { dispatch } = this.props;
+    dispatch(toggleSidenavRight());
   }
 
   render() {
     const { playlist, playlistCursor } = this.props;
-    var currentSong;
-    var elapsedPercent = 0;
+    let currentSong;
+    let elapsedPercent = 0;
     // console.log('playlist: ', playlist);
     if (playlist.length > 0) {
     // if(typeof this.props.playlist != 'undefined') {
@@ -142,12 +141,12 @@ class PlaybarContainer extends React.Component {
 
 
     return (
-      <Playbar 
-        playerState={this.props} 
-        handleNext={this.handleNext} 
-        handlePrevious={this.handlePrevious} 
-        handlePause={this.handlePause} 
-        handlePlay={this.handlePlay} 
+      <Playbar
+        playerState={this.props}
+        handleNext={this.handleNext}
+        handlePrevious={this.handlePrevious}
+        handlePause={this.handlePause}
+        handlePlay={this.handlePlay}
         currentSong={currentSong}
         closeSidenav={this.closeSidenav}
         closeSidenavRight={this.closeSidenavRight}
@@ -168,7 +167,7 @@ function mapStateToProps(state, ownProps) {
     "playerStatus": state.player.playerStatus,
     "playlist": state.player.playlist,
     "playlistCursor": state.player.playlistCursor,
-  }
+  };
 }
 
 export default connect(mapStateToProps)(PlaybarContainer);
