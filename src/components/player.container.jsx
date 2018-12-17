@@ -17,7 +17,6 @@ class PlayerContainer extends React.Component {
     if (playlist.length > 0) {
       Player.setAudioSrc(`file://${playlist[playlistCursor].path}`);
       Player.audio.play();
-      console.log('set song file and play', playlist[playlistCursor].path);
     }
     Player.getAudio().addEventListener('ended', () => dispatch(playerNext()));
   }
@@ -31,20 +30,16 @@ class PlayerContainer extends React.Component {
       if (playlistCursor !== prevProps.playlistCursor) {
         // console.log("audio set");
         Player.setAudioSrc(`file://${playlist[playlistCursor].path}`);
-        console.log('changed song file', playlist[playlistCursor].path);
       }
       if (playerStatus === 'pause' && prevProps.playerStatus === 'play') {
         Player.audio.pause();
-        console.log('call Player.audio.pause()');
       } else if (playerStatus === 'play') {
         Player.audio.play();
-        console.log('call Player.audio.play()');
       }
     }
     // if we added a song to the previously empty playlist set the audio source to the current song
     if (playlist.length > prevProps.playlist.length && prevProps.playlist.length === 0) {
       Player.setAudioSrc(`file://${playlist[playlistCursor].path}`);
-      console.log('changed song file', playlist[playlistCursor].path);
     }
   }
 

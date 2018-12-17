@@ -8,18 +8,18 @@ export default class P5Wrapper extends React.Component {
 
   componentDidMount() {
     this.canvas = new p5(this.props.sketch, this.wrapper);
-    if( this.canvas.myCustomRedrawAccordingToNewPropsHandler ) {
+    if (this.canvas.myCustomRedrawAccordingToNewPropsHandler) {
       this.canvas.myCustomRedrawAccordingToNewPropsHandler(this.props);
     }
   }
 
   componentWillReceiveProps(newprops) {
-    if(this.props.sketch !== newprops.sketch){
+    if (this.props.sketch !== newprops.sketch) {
       // this.wrapper.removeChild(this.wrapper.childNodes[0]);
       this.canvas.remove();
       this.canvas = new p5(newprops.sketch, this.wrapper);
     }
-    if( this.canvas.myCustomRedrawAccordingToNewPropsHandler ) {
+    if (this.canvas.myCustomRedrawAccordingToNewPropsHandler) {
       this.canvas.myCustomRedrawAccordingToNewPropsHandler(newprops);
     }
   }
@@ -30,6 +30,6 @@ export default class P5Wrapper extends React.Component {
   }
 
   render() {
-    return <div id="visualizer" ref={wrapper => this.wrapper = wrapper}></div>;
+    return <div id="visualizer" ref={wrapper => this.wrapper = wrapper} />;
   }
 }

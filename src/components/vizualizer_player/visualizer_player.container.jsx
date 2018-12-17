@@ -1,7 +1,7 @@
 import React from 'react';
 
 // redux
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 // components
 import VisualizerPlayer from './visualizer_player';
@@ -15,44 +15,51 @@ class VisualizerPlayerContainer extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    var differentPath = false;
-    var differentPlayerStates = false;
-    var differentSketches = false;
+    const { playerStatus, playlist, playlistCursor, sketch } = this.props;
+    let differentPath = false;
+    let differentPlayerStates = false;
+    let differentSketches = false;
+
     // if a track is loaded
-    if (typeof this.props.playlist[this.props.playlistCursor] != "undefined"){
-      if(nextProps.playerStatus === 'play' || nextProps.playerStatus === 'pause') {
-        differentPath = this.props.playlist[this.props.playlistCursor].path !== nextProps.playlist[nextProps.playlistCursor].path;
-        differentPlayerStates = this.props.playerStatus !== nextProps.playerStatus;
+    if (playlist.length > 0) {
+      if (nextProps.playerStatus === 'play' || nextProps.playerStatus === 'pause') {
+        differentPath = playlist[playlistCursor].path !== nextProps.playlist[nextProps.playlistCursor].path;
+        differentPlayerStates = playerStatus !== nextProps.playerStatus;
       }
-      if(differentPath || differentPlayerStates){
+      if (differentPath || differentPlayerStates) {
         // console.log("component should update");
       }
     }
-    if (this.props.sketch != nextProps.sketch){
+    if (sketch !== nextProps.sketch) {
       differentSketches = true;
     }
-    
     return differentPath || differentPlayerStates || differentSketches;
   }
 
   // we pass this function via props to the sketch to execute when song ends
-  playNextSong(){
-    this.props.dispatch(playerNext());
+  playNextSong() {
+    const { dispatch } = this.props;
+    dispatch(playerNext());
   }
 
   render() {
-
+    const { playerStatus, playlist, playlistCursor, sketch } = this.props;
     // this.props.library is the songs in the library
     // console.log("render visualizer");
-    var filePath = '';
-    if(this.props.playerStatus == 'play' || this.props.playerStatus == 'pause') {
+    let filePath = '';
+    if (playerStatus === 'play' || playerStatus === 'pause') {
       // console.log(this.props.playlistCursor);
-      var currentSongPath = this.props.playlist[this.props.playlistCursor].path;
-      var filePath = 'file://' + currentSongPath;
+      let currentSongPath = playlist[playlistCursor].path;
+      filePath = `file://${currentSongPath}`;
     }
 
     return (
-      <VisualizerPlayer sketch={this.props.sketch} playNextSong={this.playNextSong} audioFilePath={filePath} playerStatus={this.props.playerStatus} />
+      <VisualizerPlayer
+        sketch={sketch}
+        playNextSong={this.playNextSong}
+        audioFilePath={filePath}
+        playerStatus={playerStatus}
+      />
     );
   }
 }
@@ -64,7 +71,7 @@ function mapStateToProps(state, ownProps) {
     "playlistCursor": state.player.playlistCursor,
     "sketch": state.player.sketch,
     ...ownProps,
-  }
+  };
 }
 
 

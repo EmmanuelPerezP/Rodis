@@ -34,7 +34,7 @@ class PlaybarContainer extends React.Component {
     const { dispatch } = this.props;
     Player.getAudio().addEventListener('timeupdate', this.tick);
 
-    // dispatch(loadState());
+    dispatch(loadState());
     // window.addEventListener('mousemove', this.dragOver);
     // window.addEventListener('mouseup', this.dragEnd);
   }
@@ -47,24 +47,24 @@ class PlaybarContainer extends React.Component {
     // window.removeEventListener('mouseup', this.dragEnd);
   }
 
-  handlePlay(e) {
-    const { dispatch, playerStatus } = this.props;
+  handlePlay() {
+    const { dispatch } = this.props;
     dispatch(playerPlay());
   }
 
-  handlePause(e) {
-    const { dispatch, playlist } = this.props;
+  handlePause() {
+    const { dispatch } = this.props;
     dispatch(playerPause());
   }
 
-  handlePrevious(e) {
-    const { dispatch, playlist } = this.props;
+  handlePrevious() {
+    const { dispatch } = this.props;
     dispatch(playerPause());
     dispatch(playerPrevious());
   }
 
-  handleNext(e) {
-    const { dispatch, playlist } = this.props;
+  handleNext() {
+    const { dispatch } = this.props;
     // if (playlist.length === 0) {
     //   dispatch(playerStop());
     // }
@@ -91,7 +91,7 @@ class PlaybarContainer extends React.Component {
     const jumpTo = (percent * songDuration) / 100;
 
     // dispatch and actionCreator (not necessary right now)
-    // PlayerActions.jumpTo(jumpTo);        // change for dispatch(jumpTo()) to make the next line in the player container
+    // PlayerActions.jumpTo(jumpTo); // change for dispatch(jumpTo()) to make the next line in the player container
     Player.setAudioCurrentTime(jumpTo);
   }
 
@@ -107,9 +107,9 @@ class PlaybarContainer extends React.Component {
 
   render() {
     const { playlist, playlistCursor, playerStatus } = this.props;
-    console.log('playlist cursor:', playlistCursor);
-    console.log('playlist:', playlist);
-    console.log('player status:', playerStatus);
+    // console.log('playlist cursor:', playlistCursor);
+    // console.log('playlist:', playlist);
+    // console.log('player status:', playerStatus);
     let currentSong = 'empty';
     let elapsedPercent = 0;
     // console.log('playlist: ', playlist);
