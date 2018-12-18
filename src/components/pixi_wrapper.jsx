@@ -12,7 +12,7 @@ export default class PixiComponent extends React.Component {
    */
   componentDidMount() {
     const { sketch } = this.props;
-    this.app = new PIXI.Application(window.innerWidth, window.innerHeight);
+    this.app = new PIXI.Application({ width: window.innerWidth, height: window.innerHeight, antialias: true });
     this.gameCanvas.appendChild(this.app.view);
     sketch(this.app);
     this.app.start();

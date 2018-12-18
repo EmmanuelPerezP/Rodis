@@ -4,6 +4,7 @@ import { playerNext } from '../actions/actions';
 import Player from '../lib/player';
 
 
+/* eslint-disable */
 export default function sketch (p) {
 
     var mySound;

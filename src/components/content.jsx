@@ -17,6 +17,7 @@ export default class Content extends React.Component {
         <Switch>
           <Route exact path="/main_view" component={MainViewContainer} />
           <Route exact path="/library_view" component={LibraryViewContainer} />
+          <Route exact path="/settings" component={LibraryViewContainer} />
         </Switch>
       </main>
     );
