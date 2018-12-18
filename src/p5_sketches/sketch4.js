@@ -37,15 +37,6 @@ export default function sketch (p) {
         this.y = y;
         this.rand = rand;
         this.branchSize = branchSize;
-
-        let a = p.createVector(x, y);
-        let b = p.createVector(x, y - branchSize);
-        let root = new Branch(a, b); 
-        this.tree.push(root);
-
-        for(let i = 0; i < size; i++){
-          this.addBranch();
-        }
       }
 
       draw(){
@@ -119,7 +110,7 @@ export default function sketch (p) {
         var dir = this.end.copy().sub(this.begin);
         dir.rotate(rotation);
         // dir.mult(0.67);
-        dir.mult(0.90);
+        dir.mult(0.70);
         let newEnd = this.end.copy().add(dir);
         let b = new Branch(this.end, newEnd);
         return b;
@@ -169,7 +160,7 @@ export default function sketch (p) {
 
       // number of branches, size, x, y 
       // let tree1 = new Tree(0, 250, window.innerWidth/5 +window.innerWidth/5, p.displayHeight - 200, 0.1);
-      let tree1 = new Tree(0, 50, window.innerWidth/2, p.displayHeight - 200, 0.1);
+      let tree1 = new Tree(0, 200, window.innerWidth/2, p.displayHeight - 200, 0.1);
       forest.push(tree1);
 
       // let tree2 = new Tree(0, 250, window.innerWidth/5 + (window.innerWidth/5)*1, p.displayHeight - 200, 0.5);

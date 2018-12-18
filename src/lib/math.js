@@ -7,3 +7,4 @@ export function map(value, a, b, c, d) {
     // then map it from (0..1) to (c..d) and return it
     return c + value * (d - c);
 }
+
