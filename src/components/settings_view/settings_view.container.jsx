@@ -1,4 +1,7 @@
 import React from 'react';
+// redux
+import { connect } from 'react-redux';
+import SettingsView from './settings_view';
 
 class Nombre extends React.Component {
   constructor(props) {
@@ -7,6 +10,7 @@ class Nombre extends React.Component {
     
   render() {
     return (
+        <SettingsView />
     );
   }
 }
