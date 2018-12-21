@@ -1,7 +1,7 @@
 import React from 'react';
 
 // redux
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 // components
 import Sidenav from './sidenav_right';
@@ -17,6 +17,7 @@ class SidenavRightContainer extends React.Component {
     this.sketch3 = this.sketch3.bind(this);
     this.sketch4 = this.sketch4.bind(this);
     this.sketch5 = this.sketch5.bind(this);
+    this.sketch6 = this.sketch6.bind(this);
   }  
 
 
@@ -40,6 +41,9 @@ class SidenavRightContainer extends React.Component {
     this.props.dispatch(switchSketch(5));
   }
 
+  sketch6(){
+    this.props.dispatch(switchSketch(6));
+  }
 
 
 
@@ -51,7 +55,9 @@ class SidenavRightContainer extends React.Component {
       sketch2={this.sketch2} 
       sketch3={this.sketch3} 
       sketch4={this.sketch4} 
-      sketch5={this.sketch5}/>
+      sketch5={this.sketch5}
+      sketch6={this.sketch6}
+      />
     );
   }
 }

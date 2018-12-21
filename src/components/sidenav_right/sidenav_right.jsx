@@ -23,6 +23,7 @@ export default class Sidenav extends React.Component {
                 <button type="button" className="btn btn-secondary btn-outline-dark" onClick={this.props.sketch3}>Sketch 3</button>
                 <button type="button" className="btn btn-secondary btn-outline-dark" onClick={this.props.sketch4}>Sketch 4</button>
                 <button type="button" className="btn btn-secondary btn-outline-dark" onClick={this.props.sketch5}>Sketch 5</button>
+                <button type="button" className="btn btn-secondary btn-outline-dark" onClick={this.props.sketch6}>Sketch 6</button>
             </div>  
             </div>  
           </div>  

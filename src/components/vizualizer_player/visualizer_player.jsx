@@ -5,6 +5,7 @@ import Sketch2 from '../../p5_sketches/sketch2';
 import Sketch3 from '../../p5_sketches/sketch3';
 import Sketch4 from '../../p5_sketches/sketch4';
 import Sketch5 from '../../p5_sketches/sketch5';
+import Sketch6 from '../../p5_sketches/sketch6';
 import PixiSketch1 from '../../pixi_sketches/sketch1';
 import PixiSketch2 from '../../pixi_sketches/sketch2';
 import PixiWrapper from '../pixi_wrapper';
@@ -27,6 +28,9 @@ export default function VisualizerPlayer(props) {
   }
   else if (sketch === 5) {
     wrapper = <P5Wrapper playNextSong={playNextSong} sketch={Sketch5} audioFilePath={audioFilePath} playerStatus={playerStatus} />
+  }
+  else if (sketch === 6) {
+    wrapper = <P5Wrapper playNextSong={playNextSong} sketch={Sketch6} audioFilePath={audioFilePath} playerStatus={playerStatus} />
   }
   return (
     <div>

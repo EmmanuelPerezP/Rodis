@@ -5,21 +5,21 @@
   "main": "src/electron-starter.js",
   "dependencies": {
     "chroma-js": "^2.0.2",
-    "electron-context-menu": "^0.9.1",
+    "electron-context-menu": "^0.10.1",
     "electron-json-storage": "^4.1.5",
     "electron-store": "^2.0.0",
     "graceful-fs": "^4.1.15",
     "key-mirror": "^1.0.1",
     "keymirror": "^0.1.1",
-    "music-metadata": "^2.2.0",
+    "music-metadata": "^3.3.1",
     "npm": "^6.1.0",
     "p5": "^0.7.2",
     "pixi.js": "^4.8.3",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
-    "react-redux": "^5.0.7",
+    "react-redux": "^6.0.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.1",
+    "react-scripts": "2.1.1",
     "redux": "^4.0.0",
     "victor": "^1.1.0"
   },
@@ -32,13 +32,18 @@
     "dev": "npm run start & npm run electron"
   },
   "devDependencies": {
-    "electron": "^1.8.4",
+    "electron": "^4.0.0",
     "electron-react-devtools": "^0.5.3",
-    "eslint": "^4.19.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "redux-devtools": "^3.4.1"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

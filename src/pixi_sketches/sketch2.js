@@ -5,10 +5,9 @@ import Player from '../lib/player';
 import * as m from '../lib/math';
 // var Victor = require('victor');
 
-
 // a == app
 export default function sketch(app) {
-  let forest = [];
+  const forest = [];
   const windowHeight = window.innerHeight;
   const windowWidth = window.innerWidth;
 
@@ -16,7 +15,7 @@ export default function sketch(app) {
   app.renderer.backgroundColor = chroma('white').num();
   const numBars = 256;
   const frequencyData = new Uint8Array(Player.getAnalyser().frequencyBinCount);
-  var graphics = new PIXI.Graphics();
+  const graphics = new PIXI.Graphics();
 
   // ----------------------------------------------------------------------------------------------
   // Branch
@@ -40,7 +39,7 @@ export default function sketch(app) {
     show() {
       // console.log('x',this.begin.x);
       // console.log('y', this.begin.x);
-      
+
       // graphics.moveTo(100, 100);
       graphics.moveTo(this.begin.x, this.begin.y);
       // graphics.lineTo(200, 200);
@@ -49,12 +48,12 @@ export default function sketch(app) {
     }
 
     branch(rotation) {
-      let dir = this.end.clone().subtract(this.begin);
+      const dir = this.end.clone().subtract(this.begin);
       dir.rotate(rotation);
       // dir.mult(0.67);
       dir.multiply(new Victor(0.67, 0.67));
-      let newEnd = this.end.clone().add(dir);
-      let b = new Branch(this.end, newEnd);
+      const newEnd = this.end.clone().add(dir);
+      const b = new Branch(this.end, newEnd);
       return b;
     }
   }
@@ -84,12 +83,12 @@ export default function sketch(app) {
 
     draw() {
       // graphics.clear();
-      //forEach Branch of the Tree: Draw it
+      // forEach Branch of the Tree: Draw it
       // for (let i = 0; i < this.tree.length; i++) {
-        // color
-        // let color1 = m.map(i, 0, this.tree.length, 50, 100);
-        // let col = p.color(color1, 60, 100); // change for chroma
-        // draw line
+      // color
+      // let color1 = m.map(i, 0, this.tree.length, 50, 100);
+      // let col = p.color(color1, 60, 100); // change for chroma
+      // draw line
       // }
     }
 
@@ -100,7 +99,7 @@ export default function sketch(app) {
       // first branch
       const a = new Victor(this.x, this.y);
       const b = new Victor(this.x, this.y - this.branchSize);
-      let root = new Branch(a, b); 
+      const root = new Branch(a, b);
       this.tree.push(root);
 
       for (let i = 0; i < this.size; i++) {
@@ -110,33 +109,33 @@ export default function sketch(app) {
 
     addBranch() {
       for (let i = this.tree.length - 1; i >= 0; i--) {
-        let current = this.tree[i];
+      // for (let i = 0; i < this.tree.length; i++) {
+        const current = this.tree[i];
         // draw branch
 
-        let color1 = m.map(i, 0, this.tree.length, 50, 100);
-        let col = chroma.hsv(color1, 60, 100).num();
+        const color1 = m.map(i, this.tree.length, 0, 50, 360);
+        const col = chroma.hsv(color1, 60, 100).num();
         graphics.lineStyle(1, col, 10);
 
         this.tree[i].show();
         // if the current Branch has no children: add them
         if (!current.finished) {
           this.tree.push(current.branch(Math.PI / this.size));
-          this.tree.push(current.branch(-Math.PI / 4 * this.size * this.rand));
+          this.tree.push(current.branch((-Math.PI / 4) * this.size * this.rand));
         }
-        //now that Branch has children
+        // now that Branch has children
         current.finished = true;
       }
-      //new Level added
+      // new Level added
       this.count++;
     }
   }
   // ----------------------------------------------------------------------------------------------
 
-
   app.stage.addChild(graphics);
   // let count = 0;
 
-  let tree1 = new Tree(0, 200, windowWidth / 2, windowHeight * 4 / 5, 0.1);
+  const tree1 = new Tree(0, 200, windowWidth / 2, (windowHeight * 4) / 5, 0.1);
   forest.push(tree1);
 
   app.ticker.add(() => {
@@ -149,10 +148,8 @@ export default function sketch(app) {
       let spectrumIndex = 5;
       for (let i = 0; i < forest.length; i++) {
         // size of recursion the last number
-        let h = m.map(spectrum[spectrumIndex], 0, 255, 0, 11);
-        let tr = forest[i];
-
-
+        const h = m.map(spectrum[spectrumIndex], 0, 255, 0, 11);
+        const tr = forest[i];
         tr.update(h);
         // tr.draw();
 
@@ -160,5 +157,4 @@ export default function sketch(app) {
       }
     }
   });
-
 }
