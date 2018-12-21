@@ -2,7 +2,7 @@ import Player from '../lib/player';
 
 /* eslint-disable */
 export default function sketch(p) {
-  var numBars = 128;
+  var numBars = 256;
   var forest = [];
   var fireArray = [];
   var frequencyData = new Uint8Array(Player.getAnalyser().frequencyBinCount);
