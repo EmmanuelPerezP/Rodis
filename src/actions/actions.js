@@ -4,6 +4,14 @@ export function addToPlayList(audioFile) {
   return { type: types.APP_PLAYLIST_ADD_SONG, 'audioFile': audioFile };
 }
 
+export function updateCurrentPlaylist(playlist, name) {
+  return { type: types.APP_PLAYLIST_CURRENT_UPDATE, playlist, name };
+}
+
+/**
+ * save the playlist to store
+ * @param {Object} playlist from store
+ */
 export function storePlaylist(playlist) {
   return { type: types.APP_PLAYLIST_STORE_ADD, payload: playlist };
 }

@@ -42,12 +42,24 @@ export default function Sidenav(props) {
       <div className="row justify-content-center mx-auto">
         <div className="col-12">
           <div className="btn-group" role="group" aria-label="Basic example">
-            <button type="button" className="btn btn-secondary btn-outline-dark" onClick={savePlaylist}>Save</button>
+
             <button type="button" className="btn btn-secondary btn-outline-dark">Delete</button>
             <button type="button" className="btn btn-secondary btn-outline-dark" onClick={changeAlbumArt}>Hide Album Art</button>
+
           </div>
         </div>  
       </div>  
+      <div className="row justify-content-center mx-auto my-1">
+        <div className="col-12">
+          <div className="input-group">
+            <input type="text" className="form-control" placeholder="Playlist Name" onChange={(e) => props.nameInputChange(e)}/>
+            <div className="input-group-append">
+              <button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={savePlaylist}>Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 }

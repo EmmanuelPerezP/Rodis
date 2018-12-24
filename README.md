@@ -29,6 +29,7 @@
 ### things that maybe would be nice to do:
 - [ ] further split library_item_song
 - [ ] move the local storage code to another place
+- [ ] refractore the save/delete/update playlist logic to not use double search
 
 
 ## Resources to learn electron:

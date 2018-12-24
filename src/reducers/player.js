@@ -111,6 +111,21 @@ export default (state = initialState, action) => {
       };
     }
 
+    case (types.APP_PLAYLIST_CURRENT_UPDATE): {
+      const newPlaylist = { 
+        ...state,
+        songs: ...state.playlist.songs
+      };
+      return {
+        ...state,
+        playlists: playlists,
+        playlist: {
+          ...state.playlist,
+          songs: ...state.playlist.songs,
+        }
+      };
+    }
+
 
     // library ---------------------------------------------------------------------------
     case (types.APP_LIBRARY_CHANGE_DIRECTORY_UP): {
