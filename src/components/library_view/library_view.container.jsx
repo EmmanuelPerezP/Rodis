@@ -11,8 +11,9 @@ class LibraryViewContainer extends React.Component {
 
   render() {
     // this.props.library is the songs in the library
+    const { itemType, libraryStack, libraryNavbar, playlist } = this.props;
     return (
-      <LibraryView itemType={this.props.itemType} libraryStack={this.props.libraryStack} libraryNavbar={this.props.libraryNavbar} />
+      <LibraryView itemType={itemType} libraryStack={libraryStack} libraryNavbar={libraryNavbar} playlist={playlist} />
     );
   }
 }

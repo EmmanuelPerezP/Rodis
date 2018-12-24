@@ -86,7 +86,7 @@ class PlaybarContainer extends React.Component {
     const percent = ((e.pageX - (bar.offsetLeft + bar.offsetParent.offsetLeft)) / bar.offsetParent.offsetWidth) * 100;
     console.log(percent);
 
-    const currentSong = playlist[playlistCursor];
+    const currentSong = playlist.songs[playlistCursor];
     const songDuration = currentSong.metadata.format.duration;
     const jumpTo = (percent * songDuration) / 100;
 
@@ -113,9 +113,9 @@ class PlaybarContainer extends React.Component {
     let currentSong = 'empty';
     let elapsedPercent = 0;
     // console.log('playlist: ', playlist);
-    if (playlist.length > 0) {
+    if (playlist.songs.length > 0) {
     // if(typeof this.props.playlist != 'undefined') {
-      currentSong = playlist[playlistCursor];
+      currentSong = playlist.songs[playlistCursor];
       const songDuration = currentSong.metadata.format.duration;
       elapsedPercent = (this.state.elapsed * 100) / songDuration;
     }

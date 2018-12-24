@@ -17,6 +17,7 @@
 - [ ] add save and delete playlist
 - [ ] add save state and load state
 - [ ] add React router animation transitions between tabs
+- [ ] do animation while parsing library
 - [ ] make dialog.open for file explorer asynchronous
 - [ ] minimize to tray icon
 

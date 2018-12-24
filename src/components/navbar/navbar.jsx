@@ -24,6 +24,11 @@ export default function Navbar(props) {
               </Link>
             </li>
             <li className="nav-item">
+              <Link className="nav-link js-scroll-trigger" to="/playlist_view">
+                Playlists
+              </Link>
+            </li>
+            <li className="nav-item">
               <Link className="nav-link js-scroll-trigger" to="/settings">
                 Settings
               </Link>

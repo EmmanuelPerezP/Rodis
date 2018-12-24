@@ -1,9 +1,12 @@
 import types from './types';
 
 export function addToPlayList(audioFile) {
-  return { type: types.APP_PLAYLIST_ADD, "audioFile": audioFile };
+  return { type: types.APP_PLAYLIST_ADD_SONG, 'audioFile': audioFile };
 }
 
+export function storePlaylist(playlist) {
+  return { type: types.APP_PLAYLIST_STORE_ADD, payload: playlist };
+}
 
 // library ---------------------------------------------------------------------------
 export function changeDirectoryLibraryUp(folderNavBarIndex) {
@@ -23,6 +26,8 @@ export function clearLibrary() {
 }
 // library ---------------------------------------------------------------------------
 
+// player  ---------------------------------------------------------------------------
+
 export function playerPlay() {
   return { type: types.APP_PLAYER_PLAY };
 }
@@ -40,6 +45,8 @@ export function playerNext() {
 export function playerPrevious() {
   return { type: types.APP_PLAYER_PREVIOUS };
 }
+
+// player  ---------------------------------------------------------------------------
 
 export function toggleSidenav() {
   return { type: types.APP_PLAYLIST_TOGGLE_SIDENAV };

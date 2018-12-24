@@ -60,6 +60,7 @@ class SearchFolderContainer extends React.Component {
       .then((folderData) => {
         dispatch(clearLibrary());
         dispatch(addToLibrary(folderData));
+        console.log('library loaded');
       });
   }
 

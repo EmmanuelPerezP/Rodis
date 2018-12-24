@@ -14,7 +14,11 @@ const initialState = {
   libraryNavbar: ['Library'], // 'Library' is always going to be the root folder
   library: [], // the library folders
   libraryStack: [[]],
-  playlist: [], // the current playlist
+  playlist: {
+    name: null,
+    songs: [],
+  }, // the current playlist
+  playlists: [],
   playlistCursor: 0,
   // queueCursor: null, // The cursor of the queue
   // repeat: config.get('audioRepeat'), // the current repeat state (one, all, none)
@@ -86,13 +90,27 @@ export default (state = initialState, action) => {
       };
     }
 
-    case (types.APP_PLAYLIST_ADD): {
-      const playlist = [...state.playlist, action.audioFile];
+    case (types.APP_PLAYLIST_ADD_SONG): {
+      const playlistSongs = [...state.playlist.songs, action.audioFile];
+      const playlistNew = state.playlist;
+      playlistNew.songs = playlistSongs;
       return {
         ...state,
-        playlist: playlist,
+        playlist: playlistNew,
       };
     }
+
+    /**
+     * @param action.payload the playlist item
+     */
+    case (types.APP_PLAYLIST_STORE_ADD): {
+      const playlists = [...state.playlists, action.payload];
+      return {
+        ...state,
+        playlists: playlists,
+      };
+    }
+
 
     // library ---------------------------------------------------------------------------
     case (types.APP_LIBRARY_CHANGE_DIRECTORY_UP): {
@@ -194,7 +212,7 @@ export default (state = initialState, action) => {
 
     case (types.APP_PLAYER_NEXT): {
       let nextCursor;
-      if (state.playlistCursor < state.playlist.length - 1) {
+      if (state.playlistCursor < state.playlist.songs.length - 1) {
         nextCursor = state.playlistCursor + 1;
       } else {
         nextCursor = state.playlistCursor;

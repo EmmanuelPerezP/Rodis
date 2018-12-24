@@ -16,15 +16,18 @@ class VisualizerPlayerContainer extends React.Component {
 
   shouldComponentUpdate(nextProps) {
     const { playerStatus, playlist, playlistCursor, sketch } = this.props;
+    const { playerStatus: playerStatusNext, playlist: playlistNext, playlistCursor: playlistCursorNext, sketch: sketchNext } = nextProps;
+    const { songs } = playlist;
+    const { songsNext } = playlistNext;
     let differentPath = false;
     let differentPlayerStates = false;
     let differentSketches = false;
 
     // if a track is loaded
     if (playlist.length > 0) {
-      if (nextProps.playerStatus === 'play' || nextProps.playerStatus === 'pause') {
-        differentPath = playlist[playlistCursor].path !== nextProps.playlist[nextProps.playlistCursor].path;
-        differentPlayerStates = playerStatus !== nextProps.playerStatus;
+      if (playerStatus === 'play' || playerStatusNext === 'pause') {
+        differentPath = songs[playlistCursor].path !== songsNext[playlistCursorNext].path;
+        differentPlayerStates = playerStatus !== playerStatusNext;
       }
       if (differentPath || differentPlayerStates) {
         // console.log("component should update");
@@ -44,12 +47,13 @@ class VisualizerPlayerContainer extends React.Component {
 
   render() {
     const { playerStatus, playlist, playlistCursor, sketch } = this.props;
+    const { songs } = playlist;
     // this.props.library is the songs in the library
     // console.log("render visualizer");
     let filePath = '';
     if (playerStatus === 'play' || playerStatus === 'pause') {
       // console.log(this.props.playlistCursor);
-      let currentSongPath = playlist[playlistCursor].path;
+      let currentSongPath = songs[playlistCursor].path;
       filePath = `file://${currentSongPath}`;
     }
 

@@ -1,26 +1,10 @@
 import React from 'react';
 
-class Nombre extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-    
-  render() {
-    return (
-    );
-  }
+export default function Name(props) {
+  // we use the last item of the stack/array
+  const { aprop } = props;
+
+  return (
+    <div> test </div>
+  );
 }
-
-function mapStateToProps(state, ownProps) {
-  return {
-    ...ownProps,
-    "playlist": state.player.playlist,
-    "library": state.player.library,
-    "libraryStack": state.player.libraryStack,
-    "libraryCurrent": state.player.libraryCurrent,
-    "playlistCursor": state.player.playlistCursor,
-  };
-}
-
-
-export default connect(mapStateToProps)(Nombre)

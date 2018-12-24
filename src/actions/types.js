@@ -7,6 +7,7 @@ export default keymirror({
   APP_LIBRARY_REFRESH: null,
   APP_REFRESH_CONFIG: null,
   APP_FILTER_SEARCH: null,
+
   APP_PLAYER_START: null,
   APP_PLAYER_TOGGLE: null,
   APP_PLAYER_PLAY: null,
@@ -24,7 +25,8 @@ export default keymirror({
   APP_LIBRARY_ADD_CURRENT: null,
   APP_LIBRARY_ADD_STACK: null,
 
-  APP_PLAYLIST_ADD: null,
+  APP_PLAYLIST_ADD_SONG: null,
+  APP_PLAYLIST_STORE_ADD: null,
   APP_PLAYLIST_TOGGLE_SIDENAV: null,
   APP_PLAYLIST_TOGGLE_SIDENAV_RIGHT: null,
   APP_PLAYLIST_TOGGLE_ALBUMART: null,

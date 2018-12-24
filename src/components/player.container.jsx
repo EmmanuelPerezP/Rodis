@@ -13,33 +13,38 @@ class PlayerContainer extends React.Component {
     // var currentSongPath = this.props.playlist[this.props.playlistCursor].path;
 
     const { playlist, playlistCursor, dispatch } = this.props;
+    const { songs } = playlist;
 
-    if (playlist.length > 0) {
-      Player.setAudioSrc(`file://${playlist[playlistCursor].path}`);
+    if (songs.length > 0) {
+      Player.setAudioSrc(`file://${songs[playlistCursor].path}`);
       Player.audio.play();
     }
     Player.getAudio().addEventListener('ended', () => dispatch(playerNext()));
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(propsPrev) {
     const { playlist, playlistCursor, playerStatus } = this.props;
+    const { playlist: playlistPrev, playlistCursor: playlistCursorPrev, playerStatus: playerStatusPrev } = propsPrev;
+    const { songs } = playlist;
+    console.log(songs);
+    const { songsPrev } = playlistPrev;
 
     // only manipulate the player if there is a song in the current playlist
-    if (playlist.length > 0) {
+    if (songs.length > 0) {
       // if we press the next or previous button set the audio source to the next song
-      if (playlistCursor !== prevProps.playlistCursor) {
+      if (playlistCursor !== propsPrev.playlistCursor) {
         // console.log("audio set");
-        Player.setAudioSrc(`file://${playlist[playlistCursor].path}`);
+        Player.setAudioSrc(`file://${songs[playlistCursor].path}`);
       }
-      if (playerStatus === 'pause' && prevProps.playerStatus === 'play') {
+      if (playerStatus === 'pause' && propsPrev.playerStatus === 'play') {
         Player.audio.pause();
       } else if (playerStatus === 'play') {
         Player.audio.play();
       }
     }
     // if we added a song to the previously empty playlist set the audio source to the current song
-    if (playlist.length > prevProps.playlist.length && prevProps.playlist.length === 0) {
-      Player.setAudioSrc(`file://${playlist[playlistCursor].path}`);
+    if (songs.length > playlistPrev.length && playlistPrev.length === 0) {
+      Player.setAudioSrc(`file://${songs[playlistCursor].path}`);
     }
   }
 

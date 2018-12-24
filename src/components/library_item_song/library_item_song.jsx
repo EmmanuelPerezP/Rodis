@@ -38,6 +38,9 @@ export default function LibraryItem(props) {
         <td>
           {timeString}
         </td>
+        <td>
+          <i className="fas fa-minus" />
+        </td>
       </tr>
     );
   }

@@ -8,8 +8,18 @@ import BreadcrumItemContainer from '../breadcrum_item/breadcrum_item.container';
 
 export default function LibraryView(props) {
   // we use the last item of the stack/array
-  const { libraryStack, libraryNavbar } = props;
+  const { playlist, libraryStack, libraryNavbar } = props;
   const directoryItems = libraryStack[libraryStack.length - 1];
+
+
+  const songsRows = playlist.songs.map((data, index) =>
+    <LibraryItemSongContainer
+      itemType={'main'}
+      key={index}
+      number={index}
+      data={data}
+    />
+  ); 
 
   // console.log('print directory rows library_view: ', directoryItems);
   const breadcrumRows = libraryNavbar.map((data, index) => {
@@ -31,11 +41,10 @@ export default function LibraryView(props) {
 
   return (
     <div className="container-fluid pl-0">
-      <div className="row no-gutters">
-        <div className="col-3" />
-        <div className="col-6">
+      <div className="row">
+        <div className="col-5 offset-1">
 
-          <SearchFolderContainer />
+          <h2>Library</h2>
 
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
@@ -46,10 +55,10 @@ export default function LibraryView(props) {
           <table className="table table-hover table-bordered">
             <thead>
               <tr>
-                <th scope="col">
+                <th>
                   Name
                 </th>
-                <th scope="col">
+                <th>
                   Time
                 </th>
                 <th>
@@ -64,8 +73,32 @@ export default function LibraryView(props) {
             </tbody>
           </table>
         </div>
-        <div className="col-9">
-          <div className="row" />
+
+        <div className="col-5">
+
+          <h2>Current Playlist</h2>
+
+          <table className="table table-hover table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">
+                  #
+                </th>
+                <th scope="col">
+                  Name
+                </th>
+                <th>
+                  Time
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+
+              {songsRows}
+
+            </tbody>
+          </table>
+
         </div>
       </div>
     </div>
