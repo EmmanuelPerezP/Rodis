@@ -4,8 +4,12 @@ export function addToPlayList(audioFile) {
   return { type: types.APP_PLAYLIST_ADD_SONG, 'audioFile': audioFile };
 }
 
-export function updateCurrentPlaylist(playlist, name) {
-  return { type: types.APP_PLAYLIST_CURRENT_UPDATE, playlist, name };
+export function updateCurrentPlaylist(playlist) {
+  return { type: types.APP_PLAYLIST_CURRENT_UPDATE, playlist };
+}
+
+export function changeSelectedPlaylist(playlist) {
+  return { type: types.APP_PLAYLIST_CHANGE_SELECTED, playlist };
 }
 
 /**
@@ -74,6 +78,10 @@ export function saveState(currentState) {
 
 export function loadState(loadedState) {
   return { type: types.LOAD_STATE, payload: loadedState };
+}
+
+export function clearState(clearState) {
+  return { type: types.CLEAR_STATE, payload: clearState };
 }
 
 export function switchSketch(sketchNumber) {

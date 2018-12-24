@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { addToPlayList, addToLibrary, clearLibrary, loadState, saveState} from '../../actions/actions';
+import { addToPlayList, addToLibrary, clearLibrary, loadState, saveState, clearState } from '../../actions/actions';
 
 import Explorer from '../../lib/explorer';
 // components
@@ -17,6 +17,7 @@ class SearchFolderContainer extends React.Component {
     super(props);
     this.handleInput = this.handleInput.bind(this);
     this.saveState = this.saveState.bind(this);
+    this.clearState = this.clearState.bind(this);
     this.loadState = this.loadState.bind(this);
     this.state = { 'filePath': '' };
   }
@@ -24,32 +25,17 @@ class SearchFolderContainer extends React.Component {
 
   loadState() {
     const { dispatch } = this.props;
-    // console.log("load");
-    // const newState = storeEl.get('state');
-    // dispatch(loadState(newState));
     dispatch(loadState());
-    // storage.get('state', (stateReturned) => {
-    //   dispatch(loadState(stateReturned));
-    //   console.log('state loaded');
-    // });
   }
 
   saveState() {
     const { dispatch, reducerState } = this.props;
-    // console.log("save");
     dispatch(saveState());
+  }
 
-    // const defaultDataPath = storage.getDefaultDataPath();
-
-    // storeEl.set('state', reducerState);
-
-    // console.log('path storage', defaultDataPath);
-    // storage.set('state', reducerState, (error) => {
-    //   if (error) {
-    //     console.error(error);
-    //   }
-    //   console.log('state saved');
-    // });
+  clearState() {
+    const { dispatch, reducerState } = this.props;
+    dispatch(clearState());
   }
 
   handleInput() {
@@ -71,6 +57,7 @@ class SearchFolderContainer extends React.Component {
         handleInput={this.handleInput}
         loadState={this.loadState}
         saveState={this.saveState}
+        clearState={this.clearState}
         filePath={filePath}
       />
     );

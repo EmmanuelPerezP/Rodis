@@ -12,8 +12,12 @@ class PlaylistViewContainer extends React.Component {
   }
     
   render() {
+    const { playlists, playlistSelected } = this.props;
     return (
-      <PlaylistView />
+      <PlaylistView
+        playlists={playlists}
+        playlistSelected={playlistSelected}
+      />
     );
   }
 }
@@ -22,10 +26,8 @@ function mapStateToProps(state, ownProps) {
   return {
     ...ownProps,
     "playlist": state.player.playlist,
-    "library": state.player.library,
-    "libraryStack": state.player.libraryStack,
-    "libraryCurrent": state.player.libraryCurrent,
-    "playlistCursor": state.player.playlistCursor,
+    "playlists": state.player.playlists,
+    "playlistSelected": state.player.playlistSelected,
   };
 }
 

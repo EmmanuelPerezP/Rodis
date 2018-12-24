@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function SearchFolder(props) {
-  const { saveState, handleInput, loadState, filePath } = props;
+  const { saveState, handleInput, loadState, filePath, clearState } = props;
 
   return (
     <form>
@@ -19,6 +19,7 @@ export default function SearchFolder(props) {
         </div>
         <button className="btn btn-outline-secondary" type="button" onClick={saveState}>Save State</button>
         <button className="btn btn-outline-secondary" type="button" onClick={loadState}>Load State</button>
+        <button className="btn btn-outline-secondary" type="button" onClick={clearState}>Clear State</button>
       </div>
     </form>
   );

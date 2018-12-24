@@ -1,8 +1,25 @@
 import React from 'react';
+import PlaylistItemContainer from '../playlist_item/playlist_item.container';
+import LibraryItemSongContainer from '../library_item_song/library_item_song.container';
 
 export default function PlaylistView(props) {
   // we use the last item of the stack/array
-  // const { aprop } = props;
+  const { playlists, playlistSelected } = props;
+  const playlistItems = playlists.map((data, index) =>
+    <PlaylistItemContainer
+      playlist={data}
+      key={index}
+    />
+  );
+
+  const songsRows = playlistSelected.songs.map((data, index) =>
+    <LibraryItemSongContainer
+      itemType={'main'}
+      key={index}
+      number={index}
+      data={data}
+    />
+  ); 
 
   return (
     <div className="container-fluid pl-0">
@@ -24,14 +41,7 @@ export default function PlaylistView(props) {
             </thead>
             <tbody>
 
-              <tr>
-                <td>
-                  Lorem ipsum dolor tus possimus epellat!
-                </td>
-                <td>
-                  <i className="fas fa-plus" />
-                </td>
-              </tr>
+              {playlistItems}
 
             </tbody>
           </table>
@@ -57,17 +67,7 @@ export default function PlaylistView(props) {
             </thead>
             <tbody>
 
-              <tr>
-                <td>
-                  test
-                </td>
-                <td>
-                  test
-                </td>
-                <td>
-                  test
-                </td>
-              </tr>
+              {songsRows}
 
             </tbody>
           </table>

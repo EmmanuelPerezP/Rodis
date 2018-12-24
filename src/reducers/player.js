@@ -20,6 +20,10 @@ const initialState = {
   }, // the current playlist
   playlists: [],
   playlistCursor: 0,
+  playlistSelected: {
+    name: null,
+    songs: [],
+  }, // the playlist selected in playlist_view
   // queueCursor: null, // The cursor of the queue
   // repeat: config.get('audioRepeat'), // the current repeat state (one, all, none)
   // shuffle: config.get('audioShuffle'), // If shuffle mode is enabled
@@ -60,6 +64,13 @@ export default (state = initialState, action) => {
       };
     }
 
+    case (types.CLEAR_STATE): {
+      storeEl.set('state', initialState);
+      return {
+        ...state,
+      };
+    }
+
     case (types.APP_PLAYLIST_TOGGLE_ALBUMART): {
       return {
         ...state,
@@ -92,7 +103,7 @@ export default (state = initialState, action) => {
 
     case (types.APP_PLAYLIST_ADD_SONG): {
       const playlistSongs = [...state.playlist.songs, action.audioFile];
-      const playlistNew = state.playlist;
+      const playlistNew = { ...state.playlist };
       playlistNew.songs = playlistSongs;
       return {
         ...state,
@@ -111,21 +122,33 @@ export default (state = initialState, action) => {
       };
     }
 
+    /**
+     * @param action.name the new name of the current playlist
+     * @param action.playlist the new playlist
+     */
     case (types.APP_PLAYLIST_CURRENT_UPDATE): {
-      const newPlaylist = { 
-        ...state,
-        songs: ...state.playlist.songs
-      };
       return {
         ...state,
-        playlists: playlists,
         playlist: {
           ...state.playlist,
-          songs: ...state.playlist.songs,
-        }
+          name: action.playlist.name,
+          songs: [...state.playlist.songs],
+        },
       };
     }
 
+    /**
+     * @param action.name the new name of the current playlist
+     * @param action.playlist the new playlist
+     */
+    case (types.APP_PLAYLIST_CHANGE_SELECTED): {
+      return {
+        ...state,
+        playlistSelected: {
+          ...action.playlist,
+        },
+      };
+    }
 
     // library ---------------------------------------------------------------------------
     case (types.APP_LIBRARY_CHANGE_DIRECTORY_UP): {
