@@ -14,6 +14,7 @@ class SidenavContainer extends React.Component {
     this.changeAlbumArt = this.changeAlbumArt.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
     this.nameInputChange = this.nameInputChange.bind(this);
+    this.handleRemoveFromPlaylist = this.handleRemoveFromPlaylist.bind(this);
     this.name = '';
   }
 
@@ -26,15 +27,17 @@ class SidenavContainer extends React.Component {
     this.name = e.target.value;
   }
 
-  savePlaylist(e){
+  savePlaylist(e) {
     const { dispatch, playlist } = this.props;
-    if (playlist.name === null){
-      dispatch(storePlaylist(playlist));
-      const newPlaylist = playlist;
-      newPlaylist.name = this.name;
-      console.log('this name', this.name);
-      dispatch(updateCurrentPlaylist(newPlaylist));
-    }
+    const newPlaylist = { ...playlist };
+    newPlaylist.name = this.name;
+    dispatch(storePlaylist(newPlaylist));
+    console.log('this name', this.name);
+    // dispatch(updateCurrentPlaylist(newPlaylist));
+  }
+
+  handleRemoveFromPlaylist(data, number) {
+    console.log('remove song sidenav:', data, 'index: ', number);
   }
 
   render() {
@@ -47,6 +50,7 @@ class SidenavContainer extends React.Component {
         showSidenav={showSidenav}
         savePlaylist={this.savePlaylist}
         changeAlbumArt={this.changeAlbumArt}
+        handleRemoveFromPlaylist={this.handleRemoveFromPlaylist}
       />
     );
   }

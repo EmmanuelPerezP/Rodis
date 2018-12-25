@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function LibraryItem(props) {
-  const { itemType, number, handleAddToPlaylist, data } = props;
+  const { itemType, number, handleAddToPlaylist, data, handleRemoveFromPlaylist } = props;
   // here we have this.props.data like this ex:
   // {path: "/path/file.mp3", metadata: object, type: "mp3"}
   const songMetadata = data.metadata;
@@ -38,7 +38,7 @@ export default function LibraryItem(props) {
         <td>
           {timeString}
         </td>
-        <td>
+        <td onClick={handleRemoveFromPlaylist}>
           <i className="fas fa-minus" />
         </td>
       </tr>

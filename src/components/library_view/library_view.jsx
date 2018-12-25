@@ -42,7 +42,7 @@ export default function LibraryView(props) {
   return (
     <div className="container-fluid pl-0">
       <div className="row">
-        <div className="col-5 offset-1">
+        <div className="col-5 offset-3">
 
           <h2>Library</h2>
 
@@ -74,7 +74,7 @@ export default function LibraryView(props) {
           </table>
         </div>
 
-        <div className="col-5">
+        {/* <div className="col-5">
 
           <h2>Current Playlist</h2>
 
@@ -99,7 +99,8 @@ export default function LibraryView(props) {
             </tbody>
           </table>
 
-        </div>
+        </div> */}
+
       </div>
     </div>
   );

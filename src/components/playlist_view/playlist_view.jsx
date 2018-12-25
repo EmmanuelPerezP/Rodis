@@ -4,7 +4,7 @@ import LibraryItemSongContainer from '../library_item_song/library_item_song.con
 
 export default function PlaylistView(props) {
   // we use the last item of the stack/array
-  const { playlists, playlistSelected } = props;
+  const { playlists, playlistSelected, handleRemoveFromPlaylist } = props;
   const playlistItems = playlists.map((data, index) =>
     <PlaylistItemContainer
       playlist={data}
@@ -18,6 +18,7 @@ export default function PlaylistView(props) {
       key={index}
       number={index}
       data={data}
+      handleRemoveFromPlaylist={handleRemoveFromPlaylist}
     />
   ); 
 

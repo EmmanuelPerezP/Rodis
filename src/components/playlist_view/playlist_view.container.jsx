@@ -9,14 +9,20 @@ import PlaylistView from './playlist_view';
 class PlaylistViewContainer extends React.Component {
   constructor(props) {
     super(props);
+    this.handleRemoveFromPlaylist = this.handleRemoveFromPlaylist.bind(this);
   }
-    
+
+  handleRemoveFromPlaylist(data, number) {
+    console.log('remove song playlist_view:', data, 'index: ', number);
+  }
+
   render() {
     const { playlists, playlistSelected } = this.props;
     return (
       <PlaylistView
         playlists={playlists}
         playlistSelected={playlistSelected}
+        handleRemoveFromPlaylist={this.handleRemoveFromPlaylist}
       />
     );
   }
