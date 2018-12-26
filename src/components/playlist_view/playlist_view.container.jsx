@@ -3,6 +3,10 @@ import React from 'react';
 // redux
 import { connect } from 'react-redux';
 
+import {
+  deleteSongSelectedPlaylist
+} from '../../actions/actions';
+
 // components
 import PlaylistView from './playlist_view';
 
@@ -13,6 +17,8 @@ class PlaylistViewContainer extends React.Component {
   }
 
   handleRemoveFromPlaylist(data, number) {
+    const { dispatch } = this.props;
+    dispatch(deleteSongSelectedPlaylist(number));
     console.log('remove song playlist_view:', data, 'index: ', number);
   }
 

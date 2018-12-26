@@ -31,6 +31,8 @@
 - [ ] move the local storage code to another place
 - [ ] refractore the save/delete/update playlist logic to not use double search
 
+### things that would be nice to do but im probably not going to do because it takes too much time:
+- [ ] introduce and put 'business' logic in redux-saga
 
 ## Resources to learn electron:
 

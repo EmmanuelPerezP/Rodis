@@ -6,7 +6,14 @@ import { connect } from 'react-redux';
 // components
 import Sidenav from './sidenav';
 // import action creators
-import { toggleAlbumArt, toggleSidenav, savePlaylist, storePlaylist, updateCurrentPlaylist } from '../../actions/actions';
+import {
+  toggleAlbumArt,
+  toggleSidenav,
+  savePlaylist,
+  storePlaylist,
+  deleteSongCurrentPlaylist,
+  updateCurrentPlaylist,
+} from '../../actions/actions';
 
 class SidenavContainer extends React.Component {
   constructor(props) {
@@ -37,6 +44,8 @@ class SidenavContainer extends React.Component {
   }
 
   handleRemoveFromPlaylist(data, number) {
+    const { dispatch } = this.props;
+    dispatch(deleteSongCurrentPlaylist(number));
     console.log('remove song sidenav:', data, 'index: ', number);
   }
 

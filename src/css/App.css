@@ -4,7 +4,12 @@
 }
 
 html, body {
-  background: rgba(0, 0, 0, 0);
+  background: rgba(0, 0, 0, 0.0);
+}
+
+/* hide scrolbar */
+::-webkit-scrollbar { 
+    display: none; 
 }
 
 #visualizer {

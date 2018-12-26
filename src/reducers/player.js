@@ -126,13 +126,11 @@ export default (state = initialState, action) => {
      * @param action.name the new name of the current playlist
      * @param action.playlist the new playlist
      */
-    case (types.APP_PLAYLIST_CURRENT_UPDATE): {
+    case (types.APP_PLAYLIST_CHANGE_CURRENT): {
       return {
         ...state,
         playlist: {
-          ...state.playlist,
-          name: action.playlist.name,
-          songs: [...state.playlist.songs],
+          ...action.playlist,
         },
       };
     }
@@ -146,6 +144,54 @@ export default (state = initialState, action) => {
         ...state,
         playlistSelected: {
           ...action.playlist,
+        },
+      };
+    }
+
+    /**
+     * @param action.index the index of the song to delete
+     * @param action.data the data of the song to delete
+     */
+    case (types.APP_PLAYLIST_DELETE_SONG): {
+      const currentPlaylistSongs = [...state.playlist.songs];
+      currentPlaylistSongs.splice(action.index, 1);
+      return {
+        ...state,
+        playlist: {
+          ...state.playlist,
+          name: state.playlist.name,
+          songs: currentPlaylistSongs,
+        },
+      };
+    }
+
+    /**
+     * @param action.index the index of the song to delete
+     * @param action.data the data of the song to delete
+     */
+    case (types.APP_PLAYLIST_DELETE_SONG_SELECTED): {
+      const selectedPlaylistSongs = [...state.playlistSelected.songs];
+      selectedPlaylistSongs.splice(action.index, 1);
+      
+      const deleteItemIndex = state.playlists.findIndex((element) => {
+        return element.name === state.playlistSelected.name;
+      });
+
+
+      const newPlaylists = [...state.playlists];
+      newPlaylists[deleteItemIndex] = {
+        ...state.playlistSelected,
+        name: state.playlistSelected.name,
+        songs: selectedPlaylistSongs,
+      };
+
+      return {
+        ...state,
+        playlists: newPlaylists,
+        playlistSelected: {
+          ...state.playlistSelected,
+          name: state.playlistSelected.name,
+          songs: selectedPlaylistSongs,
         },
       };
     }

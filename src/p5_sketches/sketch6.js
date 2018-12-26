@@ -152,6 +152,8 @@ export default function sketch(p) {
   let col2 = 0;
   p.draw = function() {
     p.background('#ffffff');
+    // p.clear();
+
 
 
       // update spectogram

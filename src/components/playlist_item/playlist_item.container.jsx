@@ -3,7 +3,7 @@ import React from 'react';
 // redux
 import { connect } from 'react-redux';
 // redux actions
-import { changeSelectedPlaylist } from '../../actions/actions';
+import { changeSelectedPlaylist, changeCurrentPlaylist } from '../../actions/actions';
 
 // components
 import PlaylistItem from './playlist_item';
@@ -16,15 +16,15 @@ class PlaylistItemContainer extends React.Component {
   }
 
   playPlaylist(e) {
-    console.log('play playlist');
+    const { dispatch, playlist } = this.props;
+    dispatch(changeCurrentPlaylist(playlist));
   }
 
-  changeSelectedPlaylist(e){
+  changeSelectedPlaylist(e) {
     const { dispatch, playlist } = this.props;
-
     dispatch(changeSelectedPlaylist(playlist));
   }
-    
+
   render() {
     const { playlist } = this.props;
     return (

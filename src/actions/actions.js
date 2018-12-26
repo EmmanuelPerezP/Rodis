@@ -4,16 +4,29 @@ export function addToPlayList(audioFile) {
   return { type: types.APP_PLAYLIST_ADD_SONG, 'audioFile': audioFile };
 }
 
-export function updateCurrentPlaylist(playlist) {
-  return { type: types.APP_PLAYLIST_CURRENT_UPDATE, playlist };
+
+export function changeCurrentPlaylist(playlist) {
+  return { type: types.APP_PLAYLIST_CHANGE_CURRENT, playlist };
 }
 
+/**
+ * switch the playlist in playlist_view to the new one
+ * @param {Object} playlist the playlist to load in playlist_view
+ */
 export function changeSelectedPlaylist(playlist) {
   return { type: types.APP_PLAYLIST_CHANGE_SELECTED, playlist };
 }
 
+export function deleteSongSelectedPlaylist(index) {
+  return { type: types.APP_PLAYLIST_DELETE_SONG_SELECTED, index };
+}
+
+export function deleteSongCurrentPlaylist(index) {
+  return { type: types.APP_PLAYLIST_DELETE_SONG, index };
+}
+
 /**
- * save the playlist to store
+ * save the playlist to database
  * @param {Object} playlist from store
  */
 export function storePlaylist(playlist) {
