@@ -31,10 +31,8 @@ function mapStateToProps(state, ownProps) {
   if (currentSong == undefined) {
     // add default albumart
     currentAlbumArt = '';
-    console.log(currentAlbumArt);
   } else {
     currentAlbumArt = currentSong.albumArtPath;
-    console.log(currentAlbumArt);
   }
   return {
     playlist: state.player.playlist,

@@ -15,7 +15,7 @@ export default function SearchFolder(props) {
           <div className="input-group-prepend">
             <button className="btn btn-outline-secondary" type="button" onClick={handleInput}>Browse</button>
           </div>
-          <input type="text" value={filePath} className="form-control" placeholder="" />
+          <input type="text" value={filePath} className="form-control" placeholder="" readOnly />
         </div>
         <button className="btn btn-outline-secondary" type="button" onClick={saveState}>Save State</button>
         <button className="btn btn-outline-secondary" type="button" onClick={loadState}>Load State</button>
