@@ -9,6 +9,10 @@ export function changeCurrentPlaylist(playlist) {
   return { type: types.APP_PLAYLIST_CHANGE_CURRENT, playlist };
 }
 
+export function clearCurrentPlaylist() {
+  return { type: types.APP_PLAYLIST_CLEAR_CURRENT };
+}
+
 /**
  * switch the playlist in playlist_view to the new one
  * @param {Object} playlist the playlist to load in playlist_view
