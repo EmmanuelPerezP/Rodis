@@ -82,7 +82,9 @@ class audioPlayer {
 
   setAudioSrc(src) {
     // When we change song, need to update the thresholdReached indicator.
+    console.log('songs changed');
     this.durationThresholdReached = false;
+    this.audio.pause();
     this.audio.src = src;
   }
 

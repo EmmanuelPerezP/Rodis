@@ -2,7 +2,7 @@ import React from 'react';
 import LibraryItemSongContainer from '../library_item_song/library_item_song.container';
 
 export default function Sidenav(props) {
-  const { playlist, showSidenav, changeAlbumArt, savePlaylist, handleRemoveFromPlaylist } = props;
+  const { playlist, showSidenav, changeAlbumArt, savePlaylist, handleRemoveFromPlaylist, handleClearPlaylist } = props;
   const songsRows = playlist.songs.map((data, index) =>
     <LibraryItemSongContainer
       itemType={'main'}
@@ -45,7 +45,7 @@ export default function Sidenav(props) {
         <div className="col-12">
           <div className="btn-group" role="group" aria-label="Basic example">
 
-            <button type="button" className="btn btn-secondary btn-outline-dark">Clear Playlist/Cue</button>
+            <button type="button" className="btn btn-secondary btn-outline-dark" onClick={handleClearPlaylist}>Clear Playlist/Cue</button>
             <button type="button" className="btn btn-secondary btn-outline-dark" onClick={changeAlbumArt}>Hide Album Art</button>
 
           </div>

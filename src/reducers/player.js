@@ -136,6 +136,17 @@ export default (state = initialState, action) => {
     }
 
     /**
+     * clear the current playlist
+     */
+    case (types.APP_PLAYLIST_CLEAR_CURRENT): {
+      return {
+        ...state,
+        playlist: { ...initialState.playlist },
+        playlistCursor: initialState.playlistCursor,
+      };
+    }
+
+    /**
      * @param action.name the new name of the current playlist
      * @param action.playlist the new playlist
      */

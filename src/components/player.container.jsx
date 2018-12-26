@@ -26,27 +26,39 @@ class PlayerContainer extends React.Component {
     const { playlist, playlistCursor, playerStatus } = this.props;
     const { playlist: playlistPrev, playlistCursor: playlistCursorPrev, playerStatus: playerStatusPrev } = propsPrev;
     const { songs } = playlist;
-    console.log(songs);
-    const { songsPrev } = playlistPrev;
+    const { songs: songsPrev } = playlistPrev;
 
     // only manipulate the player if there is a song in the current playlist
     if (songs.length > 0) {
       // if we press the next or previous button set the audio source to the next song
       if (playlistCursor !== propsPrev.playlistCursor) {
-        // console.log("audio set");
         Player.setAudioSrc(`file://${songs[playlistCursor].path}`);
       }
+      // if the player goes from 'play' to 'pause' pause the audio
       if (playerStatus === 'pause' && propsPrev.playerStatus === 'play') {
         Player.audio.pause();
+      // if the player goes from 'pause' to 'play' play the audio
       } else if (playerStatus === 'play') {
         Player.audio.play();
       }
     }
+
     // if we added a song to the previously empty playlist set the audio source to the current song
-    if (songs.length > playlistPrev.length && playlistPrev.length === 0) {
+    if (songs.length > songsPrev.length && songsPrev.length === 0) {
       Player.setAudioSrc(`file://${songs[playlistCursor].path}`);
     }
+    if (playlist.name !== playlistPrev.name && songs.length !== 0) {
+      Player.setAudioSrc(`file://${songs[playlistCursor].path}`);
+      if (playerStatus === 'play') {
+        Player.audio.play();
+      }
+    }
+    // if the playlist is cleared stop the player
+    if (songs.length === 0) {
+      Player.audio.pause();
+    }
   }
+
 
   render() {
     return (

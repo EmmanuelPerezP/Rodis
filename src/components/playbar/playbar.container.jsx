@@ -107,14 +107,9 @@ class PlaybarContainer extends React.Component {
 
   render() {
     const { playlist, playlistCursor, playerStatus } = this.props;
-    // console.log('playlist cursor:', playlistCursor);
-    // console.log('playlist:', playlist);
-    // console.log('player status:', playerStatus);
     let currentSong = 'empty';
     let elapsedPercent = 0;
-    // console.log('playlist: ', playlist);
     if (playlist.songs.length > 0) {
-    // if(typeof this.props.playlist != 'undefined') {
       currentSong = playlist.songs[playlistCursor];
       const songDuration = currentSong.metadata.format.duration;
       elapsedPercent = (this.state.elapsed * 100) / songDuration;

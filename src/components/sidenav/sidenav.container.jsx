@@ -13,6 +13,7 @@ import {
   storePlaylist,
   deleteSongCurrentPlaylist,
   updateCurrentPlaylist,
+  clearCurrentPlaylist,
 } from '../../actions/actions';
 
 class SidenavContainer extends React.Component {
@@ -22,6 +23,7 @@ class SidenavContainer extends React.Component {
     this.savePlaylist = this.savePlaylist.bind(this);
     this.nameInputChange = this.nameInputChange.bind(this);
     this.handleRemoveFromPlaylist = this.handleRemoveFromPlaylist.bind(this);
+    this.handleClearPlaylist = this.handleClearPlaylist.bind(this);
     this.name = '';
   }
 
@@ -39,14 +41,16 @@ class SidenavContainer extends React.Component {
     const newPlaylist = { ...playlist };
     newPlaylist.name = this.name;
     dispatch(storePlaylist(newPlaylist));
-    console.log('this name', this.name);
-    // dispatch(updateCurrentPlaylist(newPlaylist));
   }
 
   handleRemoveFromPlaylist(data, number) {
     const { dispatch } = this.props;
     dispatch(deleteSongCurrentPlaylist(number));
-    console.log('remove song sidenav:', data, 'index: ', number);
+  }
+
+  handleClearPlaylist() {
+    const { dispatch } = this.props;
+    dispatch(clearCurrentPlaylist());
   }
 
   render() {
@@ -60,6 +64,7 @@ class SidenavContainer extends React.Component {
         savePlaylist={this.savePlaylist}
         changeAlbumArt={this.changeAlbumArt}
         handleRemoveFromPlaylist={this.handleRemoveFromPlaylist}
+        handleClearPlaylist={this.handleClearPlaylist}
       />
     );
   }

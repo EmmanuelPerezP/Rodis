@@ -14,7 +14,7 @@ class BreadcrumItemContainer extends React.Component {
     this.handleFolderChange = this.handleFolderChange.bind(this);
   }
 
-  handleFolderChange(e) {
+  handleFolderChange() {
     const { dispatch, itemNumber } = this.props;
     dispatch(changeDirectoryLibraryUp(itemNumber));
   }
@@ -35,14 +35,13 @@ class BreadcrumItemContainer extends React.Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    "playlist": state.player.playlist,
-    "library": state.player.library,
-    "libraryStack": state.player.libraryStack,
-    "libraryCurrent": state.player.libraryCurrent,
-    "libraryNavbar": state.player.libraryNavbar,
+    playlist: state.player.playlist,
+    library: state.player.library,
+    libraryStack: state.player.libraryStack,
+    libraryCurrent: state.player.libraryCurrent,
+    libraryNavbar: state.player.libraryNavbar,
     ...ownProps,
-  }
+  };
 }
-
 
 export default connect(mapStateToProps)(BreadcrumItemContainer);

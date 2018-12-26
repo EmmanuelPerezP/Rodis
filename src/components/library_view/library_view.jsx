@@ -74,33 +74,6 @@ export default function LibraryView(props) {
           </table>
         </div>
 
-        {/* <div className="col-5">
-
-          <h2>Current Playlist</h2>
-
-          <table className="table table-hover table-bordered">
-            <thead>
-              <tr>
-                <th scope="col">
-                  #
-                </th>
-                <th scope="col">
-                  Name
-                </th>
-                <th>
-                  Time
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-
-              {songsRows}
-
-            </tbody>
-          </table>
-
-        </div> */}
-
       </div>
     </div>
   );

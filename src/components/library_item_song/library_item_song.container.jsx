@@ -8,7 +8,6 @@ import { addToPlayList } from '../../actions/actions';
 // components
 import LibraryItemSong from './library_item_song';
 
-
 /**
  * This is the song item for the playlist_view song table, the sidenav playlist table
  * and the library_view table it has two modes 'main' and 'library', in library mode
@@ -25,14 +24,16 @@ class LibraryItemSongContainer extends React.Component {
     this.handleRemoveFromPlaylist = this.handleRemoveFromPlaylist.bind(this);
   }
 
-  handleAddToPlaylist(e) {
+  handleAddToPlaylist() {
     const { dispatch, data } = this.props;
     // console.log(this.props.data);
     dispatch(addToPlayList(data));
   }
 
-  handleRemoveFromPlaylist(e) {
-    const { dispatch, data, handleRemoveFromPlaylist, number } = this.props;
+  handleRemoveFromPlaylist() {
+    const {
+      data, handleRemoveFromPlaylist, number,
+    } = this.props;
     // console.log(this.props.data);
     handleRemoveFromPlaylist(data, number);
   }
@@ -53,8 +54,8 @@ class LibraryItemSongContainer extends React.Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    "playlist": state.player.playlist,
-    "library": state.player.library,
+    playlist: state.player.playlist,
+    library: state.player.library,
     ...ownProps,
   };
 }

@@ -3,6 +3,7 @@ const { dialog } = electron.remote;
 // music metadata
 const mm = window.require('music-metadata');
 
+// const fs = window.require('fs');
 const fs = window.require('graceful-fs');
 
 export default class Explorer {
@@ -21,6 +22,7 @@ export default class Explorer {
           // return the fist element of the array (only one item/path)
           resolve(result[0]);
         } else {
+          console.error('No result in explorer');
           reject("No result in explorer");
         }
       });
@@ -42,6 +44,7 @@ export default class Explorer {
         if (err === null) {
           resolve({ filepath, files });
         } else {
+          console.error('Error reading directory');
           reject('Error reading directory');
         }
       });
@@ -67,7 +70,7 @@ export default class Explorer {
         albumArtPath = `${filepath}/${fileInFolder}`;
       }
     }
-    if (albumArtPath == null) {
+    if (albumArtPath === null) {
       albumArtPath = null; // add default album art here
     }
     return { ...data, albumArtPath };
@@ -90,10 +93,19 @@ export default class Explorer {
     const { filepath, files, albumArtPath } = data;
     // the folder array containing all the objects type 'mp3' and 'folder'
     const folder = [];
+    let counter = 0;
     // add songs to library
     // promises array to keep track of the promises and when to end the calls
     /* eslint-disable no-await-in-loop */
     for (const fileInFolder of files) {
+
+      counter += 1;
+      if (counter % 10 === 0) {
+        // if is multiple of 10 do stuff
+      }
+      console.log('iteraded:', counter);
+      console.log('iterating path: ', filepath);
+
       const path = `${filepath}/${fileInFolder}`;
       // if file is a directory
       if (fs.statSync(path).isDirectory()) {

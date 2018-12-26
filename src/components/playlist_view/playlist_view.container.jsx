@@ -19,7 +19,6 @@ class PlaylistViewContainer extends React.Component {
   handleRemoveFromPlaylist(data, number) {
     const { dispatch } = this.props;
     dispatch(deleteSongSelectedPlaylist(number));
-    console.log('remove song playlist_view:', data, 'index: ', number);
   }
 
   render() {
