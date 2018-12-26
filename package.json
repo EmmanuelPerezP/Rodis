@@ -11,7 +11,7 @@
     "graceful-fs": "^4.1.15",
     "key-mirror": "^1.0.1",
     "keymirror": "^0.1.1",
-    "music-metadata": "^3.3.1",
+    "music-metadata": "^3.3.2",
     "npm": "^6.1.0",
     "p5": "^0.7.2",
     "pixi.js": "^4.8.3",

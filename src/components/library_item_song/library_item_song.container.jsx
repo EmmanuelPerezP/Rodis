@@ -22,6 +22,12 @@ class LibraryItemSongContainer extends React.Component {
     super(props);
     this.handleAddToPlaylist = this.handleAddToPlaylist.bind(this);
     this.handleRemoveFromPlaylist = this.handleRemoveFromPlaylist.bind(this);
+    this.handlePlaySong = this.handlePlaySong.bind(this);
+  }
+
+  handlePlaySong() {
+    const { itemType, number, data } = this.props;
+    console.log(data);
   }
 
   handleAddToPlaylist() {
@@ -47,6 +53,7 @@ class LibraryItemSongContainer extends React.Component {
         data={data}
         handleAddToPlaylist={this.handleAddToPlaylist}
         handleRemoveFromPlaylist={this.handleRemoveFromPlaylist}
+        handlePlaySong={this.handlePlaySong}
       />
     );
   }

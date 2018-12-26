@@ -26,13 +26,15 @@ class MainViewContainer extends React.Component {
 
 function mapStateToProps(state, ownProps) {
   // current song
-  const currentSong = state.player.playlist[state.player.playlistCursor];
+  const currentSong = state.player.playlist.songs[state.player.playlistCursor];
   let currentAlbumArt;
   if (currentSong == undefined) {
     // add default albumart
     currentAlbumArt = '';
+    console.log(currentAlbumArt);
   } else {
     currentAlbumArt = currentSong.albumArtPath;
+    console.log(currentAlbumArt);
   }
   return {
     playlist: state.player.playlist,

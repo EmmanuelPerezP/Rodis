@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function LibraryItem(props) {
-  const { itemType, number, handleAddToPlaylist, data, handleRemoveFromPlaylist } = props;
+  const { itemType, number, handleAddToPlaylist, data, handleRemoveFromPlaylist, handlePlaySong } = props;
   // here we have this.props.data like this ex:
   // {path: "/path/file.mp3", metadata: object, type: "mp3"}
   const songMetadata = data.metadata;
@@ -32,7 +32,7 @@ export default function LibraryItem(props) {
         <td>
           {number}
         </td>
-        <td scope="row">
+        <td onDoubleClick={handlePlaySong}>
           {songMetadata.common.title}
         </td>
         <td>

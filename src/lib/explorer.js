@@ -3,6 +3,7 @@ const { dialog } = electron.remote;
 // music metadata
 const mm = window.require('music-metadata');
 
+let counter = 0;
 // const fs = window.require('fs');
 const fs = window.require('graceful-fs');
 
@@ -93,19 +94,17 @@ export default class Explorer {
     const { filepath, files, albumArtPath } = data;
     // the folder array containing all the objects type 'mp3' and 'folder'
     const folder = [];
-    let counter = 0;
     // add songs to library
     // promises array to keep track of the promises and when to end the calls
     /* eslint-disable no-await-in-loop */
     for (const fileInFolder of files) {
 
       counter += 1;
-      if (counter % 10 === 0) {
+      if (counter % 100 === 0) {
         // if is multiple of 10 do stuff
+        console.log('iteraded:', counter);
+        console.log('iterating path: ', filepath);
       }
-      console.log('iteraded:', counter);
-      console.log('iterating path: ', filepath);
-
       const path = `${filepath}/${fileInFolder}`;
       // if file is a directory
       if (fs.statSync(path).isDirectory()) {
